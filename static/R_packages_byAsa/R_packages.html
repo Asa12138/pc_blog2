@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="R_packages_files/libs/clipboard/clipboard.min.js"></script>
+<script src="R_packages_files/libs/quarto-html/tabby.min.js"></script>
+<script src="R_packages_files/libs/quarto-html/popper.min.js"></script>
+<script src="R_packages_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="R_packages_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="R_packages_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="R_packages_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="R_packages_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <meta name="author" content="Chen Peng">
+  <meta name="dcterms.date" content="2024-04-19">
+  <title>Asa’s R packages 📦</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="R_packages_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="R_packages_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="R_packages_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="extra.css">
+  <link href="R_packages_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="R_packages_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="R_packages_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="R_packages_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="R_packages_files/libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+  <script src="R_packages_files/libs/d3-4.5.0/d3.min.js"></script>
+  <script src="R_packages_files/libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
+  <script src="R_packages_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="R_packages_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Asa’s R packages 📦</h1>
+  <p class="subtitle">for bioinformatics and data analysis</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Chen Peng 
+</div>
+        <p class="quarto-title-affiliation">
+            ZJU LSI Jianglab
+          </p>
+    </div>
+</div>
+
+  <p class="date">2024-04-19</p>
+</section>
+<section id="my-r-packges" class="slide level2">
+<h2>My R packges</h2>
+<p><img data-src="https://img.shields.io/badge/R-276DC3?logo=r&amp;logoColor=fff&amp;style=flat.png" alt="R Badge"> <img data-src="https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&amp;logoColor=fff&amp;style=flat.png" alt="RStudio Badge">   <a href="https://asa12138.github.io/"><img src="https://img.shields.io/badge/Website-个人网页-78C2AD"></a> <a href="https://asa-blog.netlify.app/"><img src="https://img.shields.io/badge/Blog-博客-F1805D"></a> <a href="https://asa12138.github.io/wp.html"><img src="https://img.shields.io/badge/WeChat-微信-07c160"></a> <a href="https://space.bilibili.com/142776729/"><img src="https://img.shields.io/badge/Bilibili-B站-ff69b4"></a> <a href="https://blog.csdn.net/Asa12138/"><img src="https://img.shields.io/badge/CSDN-论坛-c32136"></a> <a href="https://www.jianshu.com/u/d62b7298b117"><img src="https://img.shields.io/badge/Jianshu-简书-ee705b"></a></p>
+<p>My favorite programming language is R, I have developed some R packages:</p>
+<p><img align="right" width="40%" src="images/images.gif"></p>
+<ul>
+<li><a href="https://github.com/Asa12138/pcutils">pcutils</a></li>
+<li><a href="https://github.com/Asa12138/pctax">pctax</a></li>
+<li><a href="https://github.com/Asa12138/MetaNet">MetaNet</a></li>
+<li><a href="https://github.com/Asa12138/ReporterScore">ReporterScore</a></li>
+<li><a href="https://github.com/Asa12138/iCRISPR">iCRISPR</a></li>
+<li><a href="https://github.com/Asa12138/plot4fun">plot4fun</a></li>
+</ul>
+<aside class="notes">
+<p>Hello, everyone. Today I want to share some of my R packages for bioinformatics and data analysis.</p>
+<p>My favorite programming language is R, and I have developed some R packages. By now, I have six R packages, and 5 of them are available on CRAN.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pcutils" class="slide level2 scrollable">
+<h2><a href="https://asa12138.github.io/pcutils/" data-preview-link="true">pcutils</a> <img src="https://asa12138.github.io/pcutils/reference/figures/pcutils.png" align="right" width="100"></h2>
+<p>It contains many useful functions for statistics and visualization.</p>
+<div class="fragment">
+<p><img data-src="https://asa12138.github.io/pcutils/reference/figures/pcutils1.png" style="width:80.0%"></p>
+</div>
+<div class="fragment">
+<p>Go down 👇</p>
+<p><img data-src="https://asa12138.github.io/pcutils/reference/figures/pcutils2.png" style="width:80.0%"></p>
+<aside class="notes">
+<p>The first R package I developed is pcutils, which contains many useful functions for statistics and visualization. I almost use it in every project. And I built a simple website for my packages (click the title, wait a moment), you can find the documentation and examples here. (右下角) And here is the development status of pcutils. You can see the R-CMD-check results, the download statistics, and the CRAN status. (Other packages) The other packages also linked on this website.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="pctax" class="slide level2">
+<h2><a href="https://asa12138.github.io/pctax/">pctax</a> <img src="https://asa12138.github.io/pctax/reference/figures/pctax.png" align="right" width="100"></h2>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>It contains a basic pipeline for omics analysis.</li>
+<li>See the <a href="https://bookdown.org/Asa12138/pctax_book/">pctax Tutorial</a></li>
+</ul>
+<p><a href="https://bookdown.org/Asa12138/pctax_book/"><img data-src="https://bookdown.org/Asa12138/pctax_book/cover2.png" style="width:70.0%"></a></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-in">
+<p><img data-src="images/pctax.png"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Then comes the pctax package, which contains a basic pipeline for omics analysis, especially for metagenomics data. I have written a bookdown tutorial for this package. The pctax can do many analysis tasks, such as diversity analysis, differential abundance analysis, community assembly analysis, functional enrichment analysis, network analysis, and elemental cycling analysis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="pctax-features" class="slide level2 scrollable">
+<h2>pctax features</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Metagenomic workflow</a></li><li><a href="#tabset-1-2">Rtaxonkit</a></li><li><a href="#tabset-1-3">Phylogenetic tree</a></li><li><a href="#tabset-1-4">Diversity analysis</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p><img src="images/micro_sbatch.png" align="right" width="700"></p>
+<p>Built-in steps in the <code>micro_sbatch()</code>:</p>
+<ul>
+<li>fastp</li>
+<li>rm_human</li>
+<li>kraken2</li>
+<li>megahit</li>
+<li>prodigal</li>
+<li>cluster</li>
+<li>salmon-quant</li>
+<li>eggnog</li>
+<li>cazy</li>
+<li>rgi</li>
+<li>vfdb</li>
+<li>…</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<p><a href="https://github.com/shenwei356/taxonkit">Taxonkit</a> is a Practical and Efficient NCBI Taxonomy Toolkit.</p>
+<p>You can use <code>Taxonkit</code> in R by <code>pctax</code> interface as followed:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>?taxonkit_lineage</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="co"># taxonkit_list</span></span>
+<span id="cb1-4"><a href=""></a><span class="co"># taxonkit_reformat</span></span>
+<span id="cb1-5"><a href=""></a><span class="co"># taxonkit_name2taxid</span></span>
+<span id="cb1-6"><a href=""></a><span class="co"># taxonkit_filter</span></span>
+<span id="cb1-7"><a href=""></a><span class="co"># taxonkit_lca</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">name_or_id2df</span>(<span class="fu">c</span>(<span class="st">"562"</span>,<span class="st">"9606"</span>),<span class="at">mode =</span> <span class="st">"id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  taxid      Kingdom            Phylum                  Class
+1   562  k__Bacteria p__Pseudomonadota c__Gammaproteobacteria
+2  9606 k__Eukaryota       p__Chordata            c__Mammalia
+                Order                Family          Genus             Species
+1 o__Enterobacterales f__Enterobacteriaceae g__Escherichia s__Escherichia coli
+2         o__Primates          f__Hominidae        g__Homo     s__Homo sapiens</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ann_tree</span>(taxonomy, otutab) <span class="ot">-&gt;</span> tree</span>
+<span id="cb4-2"><a href=""></a><span class="fu">easy_tree</span>(tree, <span class="at">add_tiplab =</span> <span class="cn">FALSE</span>) <span class="ot">-&gt;</span> p</span>
+<span id="cb4-3"><a href=""></a>some_tax <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"p__Proteobacteria"</span>,<span class="st">"p__Actinobacteria"</span>,<span class="st">"p__Firmicutes"</span>,</span>
+<span id="cb4-4"><a href=""></a>              <span class="st">"p__Bacteroidetes"</span>,<span class="st">"p__Acidobacteria"</span>)</span>
+<span id="cb4-5"><a href=""></a><span class="fu">add_strip</span>(p, some_tax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div style="font-size: 0.8em">
+<p><strong><span class="red">Unified input and output format of one type of analysis for convenient downstream</span></strong></p>
+<ul>
+<li>α-diversity
+<ul>
+<li>Richness, Shannon, Simpson, Chao1, ACE, PD, Pielou, …</li>
+</ul></li>
+<li>β-diversity
+<ul>
+<li>Distance: Bray-Curtis, Jaccard, Unifrac, Beta MPD, Phylosor, …</li>
+<li>Ordination: PCA, PCoA, NMDS, PLS-DA, t-SNE, UMAP, LDA, RDA, CCA, db-RDA, …</li>
+<li>PERMANOVA: adonis, anosim, mrpp, mantel, envfit, …</li>
+</ul></li>
+<li>ζ-diversity</li>
+</ul>
+</div>
+<p><img data-src="https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-rda-1.png" style="width:30.0%"> <img data-src="https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-mantel-1.png" style="width:30.0%"> <img data-src="https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-z-diversity-1.png" style="width:30.0%"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Most of my projects are metagenome-related, so pctax includes a workflow of upstream analysis processes that I commonly use, including quality control, remove-host, species classification, functional annotation, etc. Using the micro_sbatch function, we can get these common scripts.</p>
+<p>We know the Taxonkit is a Practical and Efficient NCBI Taxonomy Toolkit. pctax also includes an interface for easy use of taxonkit in R. For example, this function can be used to query the classification information using the taxonomy id.</p>
+<p>With a table of classification, pctax can convert it into a tree object. Here is a simple example of a taxonomy tree.</p>
+<p>pctax also contains some general analysis methods for various types of omics. When developing these parts, I tried to maintain a unified input and output format to facilitate subsequent analysis. Such as diversity analysis, including α, β, ζ diversity.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pctax-features-1" class="slide level2 scrollable">
+<h2>pctax features</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Differential abundance analysis</a></li><li><a href="#tabset-2-2">Community assembly</a></li><li><a href="#tabset-2-3">Elemental cycling</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p><img src="https://bookdown.org/Asa12138/pctax_book/05-differential_files/figure-html/fig-lefse-2.png" align="right" width="700"></p>
+<ul>
+<li>t.test</li>
+<li>wilcox.test</li>
+<li>DESeq2</li>
+<li>edgeR</li>
+<li>limma</li>
+<li>randomForest</li>
+<li>LEfSe</li>
+<li>…</li>
+</ul>
+</div>
+<div id="tabset-2-2">
+<p><img src="https://bookdown.org/Asa12138/pctax_book/07-community_files/figure-html/fig-ncm-1.png" align="right" width="500"></p>
+<ul>
+<li>Solan NCM</li>
+<li>Stegen (βNTI &amp; RCbray-based)</li>
+<li>ST, NST, MST (stochasticity ratio)</li>
+</ul>
+</div>
+<div id="tabset-2-3">
+<p>The <code>pctax</code> package includes some built-in cycling pathways, which enables users to conveniently visualize all genes or KO (KEGG Orthology) involved in these pathways.</p>
+<p><img data-src="https://bookdown.org/Asa12138/pctax_book/10-element-cycle_files/figure-html/fig-N-cycle-1.png" style="width:80.0%"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>There is also differential abundance analysis, which includes a variety of methods, such as T.EST, wilcox.test, DESeq2, edgeR, limma, randomForest, LEfSe, etc.</p>
+<p>Community assembly analysis included Solan NCM, Stegen (βNTI &amp; RCbray-based), ST, NST, MST (stochasticity ratio), etc.</p>
+<p>pctax includes some built-in cycle pathways that allow users to visualize all genes or KO (KEGG Orthology) involved in these pathways.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="metanet" class="slide level2">
+<h2><a href="https://asa12138.github.io/MetaNet/">MetaNet</a> <img src="https://asa12138.github.io/MetaNet/reference/figures/MetaNet.png" align="right" width="100"></h2>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>It is a comprehensive network analysis package for omics data.</li>
+<li>See the <a href="https://bookdown.org/Asa12138/metanet_book/">MetaNet Tutorial</a></li>
+</ul>
+<p><a href="https://bookdown.org/Asa12138/metanet_book/"><img data-src="https://bookdown.org/Asa12138/metanet_book/cover1.png" width="250"></a></p>
+</div><div class="column" style="width:45%;">
+<div class="fragment fade-in-then-semi-out">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/images/1.metanet.svg" class="absolute" style="top: 50px; right: 60px; width: 500px; "></p>
+</div>
+<div class="fragment fade-in">
+<p><img data-src="images/metanet_func.png" class="absolute" style="top: 150px; right: 40px; width: 550px; "></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<p><a href="https://www.bilibili.com/video/BV1R84y1Q7Um/">video of MetaNet</a></p>
+</div>
+<aside class="notes">
+<p>MetaNet is a comprehensive network analysis package for omics data. I also wrote a detailed bookdown tutorial for it. And here is the overall development framework of MetaNet, including data processing, network construction, network analysis, network visualization and other functions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="metanet-features" class="slide level2">
+<h2>MetaNet features</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Support for integrated analysis for multi-omics data</label></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Example code</a></li><li><a href="#tabset-3-2">Output figure</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(MetaNet)</span>
+<span id="cb5-2"><a href=""></a><span class="fu">multi_net_build</span>(<span class="fu">list</span>(</span>
+<span id="cb5-3"><a href=""></a>  <span class="at">Microbiome =</span> micro,</span>
+<span id="cb5-4"><a href=""></a>  <span class="at">Metabolome =</span> metab,</span>
+<span id="cb5-5"><a href=""></a>  <span class="at">Transcriptome =</span> transc</span>
+<span id="cb5-6"><a href=""></a>)) <span class="ot">-&gt;</span> multi1</span>
+<span id="cb5-7"><a href=""></a><span class="co"># set vertex_class</span></span>
+<span id="cb5-8"><a href=""></a>multi1_with_anno <span class="ot">&lt;-</span> <span class="fu">c_net_set</span>(multi1, micro_g, metab_g, transc_g, </span>
+<span id="cb5-9"><a href=""></a>                              <span class="at">vertex_class =</span> <span class="fu">c</span>(<span class="st">"Phylum"</span>, <span class="st">"kingdom"</span>, <span class="st">"type"</span>))</span>
+<span id="cb5-10"><a href=""></a><span class="co"># set vertex_size</span></span>
+<span id="cb5-11"><a href=""></a>multi1_with_anno <span class="ot">&lt;-</span> <span class="fu">c_net_set</span>(multi1_with_anno,</span>
+<span id="cb5-12"><a href=""></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance1"</span> <span class="ot">=</span> <span class="fu">colSums</span>(micro)),</span>
+<span id="cb5-13"><a href=""></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance2"</span> <span class="ot">=</span> <span class="fu">colSums</span>(metab)),</span>
+<span id="cb5-14"><a href=""></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance3"</span> <span class="ot">=</span> <span class="fu">colSums</span>(transc)),</span>
+<span id="cb5-15"><a href=""></a>  <span class="at">vertex_size =</span> <span class="fu">paste0</span>(<span class="st">"Abundance"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb5-16"><a href=""></a>)</span>
+<span id="cb5-17"><a href=""></a><span class="fu">plot</span>(multi1_with_anno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>MetaNet has some unique features. For example, it supports integrated analysis for multi-omics data. Here is an example code for building a multi-omics network.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="metanet-features-1" class="slide level2">
+<h2>MetaNet features</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Calculate correlation network quickly, accelerate lots of analysis by parallel computing</label></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Time &amp; Memory</a></li><li><a href="#tabset-4-2">Packages comparison</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/images/2-1.time_memory.png"></p>
+</div>
+<div id="tabset-4-2">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/02-construction_files/figure-html/fig-2-packages-comparison-1.png" style="width:70.0%"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>secondly, MetaNet can calculate correlation network quickly, accelerate lots of analysis by parallel computing. Time, memory consumption, and saved file size approximately increase linearly with the square of the number of features. The calculation speed of MetaNet is much faster than other R packages, especially when the number of features is large.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="metanet-features-2" class="slide level2 scrollable">
+<h2>MetaNet features</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Offer various layout algorithms for multi-omics network and interfaces to other software (Gephi, Cytoscape, ggplot2), easy to visualize</label></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Basic layout</a></li><li><a href="#tabset-5-2">as_polygon()</a></li><li><a href="#tabset-5-3">as_circle_tree()</a></li><li><a href="#tabset-5-4">Group layout</a></li><li><a href="#tabset-5-5">Pie node</a></li><li><a href="#tabset-5-6">ggplot2</a></li><li><a href="#tabset-5-7">networkD3</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-8-1.png" width="1248"></p>
+<figcaption>Layout methods for c_net_layout()</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/images/4-1.multiangle.gif" style="width:60.0%"></p>
+</div>
+<div id="tabset-5-3">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-df2net-1.png"></p>
+</div>
+<div id="tabset-5-4">
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="images/g_lay_1.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-1.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-2.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-3.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-4.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-5.png"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-6.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-7.png"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-5">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">data</span>(<span class="st">"otutab"</span>)</span>
+<span id="cb6-2"><a href=""></a>pie_value<span class="ot">=</span><span class="fu">hebing</span>(otutab,metadata<span class="sc">$</span>Group)</span>
+<span id="cb6-3"><a href=""></a><span class="fu">c_net_plot</span>(multi1_with_anno,<span class="at">vertex.shape=</span><span class="fu">c</span>(<span class="st">"Microbiome"</span><span class="ot">=</span><span class="st">"pie"</span>),</span>
+<span id="cb6-4"><a href=""></a>           <span class="at">pie_value =</span> pie_value,<span class="at">vertex.label=</span><span class="cn">NA</span>,<span class="at">pie_legend =</span> T,<span class="at">color_legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<figcaption>Plot a network with pie node</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">as.ggig</span>(multi1_with_anno) <span class="ot">-&gt;</span> ggig</span>
+<span id="cb7-2"><a href=""></a><span class="fu">plot</span>(ggig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+<figcaption>Plot a network in ggplot2 style</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-7">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">netD3plot</span>(multi1_with_anno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="forceNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1b4ff99564eb6e8884a5" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1b4ff99564eb6e8884a5">{"x":{"links":{"source":[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,7,7,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,11,11,11,12,12,12,12,13,13,14,14,14,15,16,16,16,17,17,17,17,17,17,17,18,18,18,18,18,18,19,19,19,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,22,22,22,22,22,22,23,23,24,25,26,26,26,26,26,26,26,26,27,27,28,28,29,30,30,30,30,30,31,31,31,31,31,31,31,32,32,32,33,33,33,33,33,33,33,33,33,34,34,34,34,35,35,35,36,36,36,36,37,38,38,38,38,38,38,38,38,38,38,39,40,40,40,41,41,41,41,41,41,41,41,41,41,41,42,43,43,43,43,43,43,43,43,43,43,43,44,44,45,46,47,47,48,49,49,49,49,50,50,50,50,50,50,50,51,51,51,51,51,52,53,53,54,54,54,54,54,55,55,55,55,55,56,56,56,57,58,59,59,60,60,60,60,61,61,61,61,61,61,61,61,63,65,65,65,65,65,65,65,65,66,66,66,66,67,68,68,68,69,69,69,69,70,71,72,72,73,74,75,75,76,77,78,78,79,81,81,83,84,85,85,85,86,87,87,87,88,89,90,91,91,91,93,94,94,95,95,96,96,96,96,98,101,102,106,108,112,113,115,116,116,116,117,127],"target":[14,18,24,34,5,9,17,20,33,38,41,43,54,55,56,61,69,78,83,104,107,115,25,26,27,28,82,104,114,11,53,108,109,82,104,106,9,20,21,26,33,38,41,43,54,61,62,65,69,83,90,112,115,116,13,57,65,94,110,14,24,84,100,133,17,20,22,33,38,41,43,54,55,56,61,69,83,85,90,104,28,40,52,44,53,108,65,74,94,110,47,94,15,24,84,81,27,77,118,22,55,69,78,102,115,125,24,34,47,51,77,88,84,87,133,33,43,46,54,61,63,66,69,83,88,90,26,29,41,115,41,55,61,96,115,129,25,27,94,27,31,41,43,50,73,101,104,121,103,114,40,82,39,51,58,96,116,129,41,43,50,60,79,85,115,53,66,97,38,39,43,54,61,65,69,73,112,36,58,77,126,70,80,111,67,77,86,107,129,43,54,61,65,69,85,94,112,115,116,93,52,80,105,43,50,55,59,61,72,73,90,93,104,115,130,50,54,55,56,61,69,83,86,90,115,119,48,126,63,54,101,121,126,56,66,96,105,53,73,90,101,104,108,132,58,85,96,116,129,80,70,71,61,69,73,83,90,56,61,69,78,107,69,72,78,65,64,93,99,79,116,122,128,65,69,83,86,96,115,116,119,66,70,85,94,96,110,116,124,129,87,96,97,117,86,93,97,134,78,81,83,115,79,79,73,110,132,110,98,121,103,113,115,125,128,86,115,86,100,92,94,116,131,96,117,133,90,129,132,103,105,122,97,96,116,113,123,116,117,124,129,120,135,133,122,109,116,123,116,119,124,129,134,131],"colour":["#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D"]},"nodes":{"name":["s__un_f__Thermomonosporaceae","s__Pelomonas_puraquae","s__Rhizobacter_bergeniae","s__Flavobacterium_terrae","s__un_g__Rhizobacter","s__un_o__Burkholderiales","s__un_g__Streptomyces","s__Lentzea_flaviverrucosa","s__un_g__Actinoplanes","s__un_g__Rhizobium","s__un_g__Noviherbaspirillum","s__un_f__Comamonadaceae","s__Bradyrhizobium_neotropicale","s__Streptomyces_ederensis","s__Actinocorallia_herbida","s__un_g__Amycolatopsis","s__Actinophytocola_burenkhanensis","s__un_p__Proteobacteria","s__Kribbella_catacumbae","s__un_o__Rhizobiales","s__un_g__Sphingomonas","s__Amycolatopsis_keratiniphila_subsp._keratiniphila","s__Kinneretia_asaccharophila","s__un_f__Burkholderiales_incertae_sedis","s__Kineosporia_rhamnosa","s__un_f__Oxalobacteraceae","s__un_g__Bacillus","s__Pseudoduganella_violaceinigra","s__Piscinibacter_aquaticus","s__un_g__Lentzea","s__Steroidobacter_denitrificans","s__Sphingopyxis_soli","s__un_g__Herpetosiphon","s__Phenylobacterium_composti","s__un_f__Micromonosporaceae","s__un_g__Ensifer","s__un_g__Agromyces","s__un_g__Nocardioides","s__un_g__Devosia","s__un_f__Bradyrhizobiaceae","s__Noviherbaspirillum_suwonense","s__un_c__Deltaproteobacteria","s__Kibdelosporangium_phytohabitans","s__Dongia_mobilis","s__un_g__Pseudomonas","s__Pseudoxanthomonas_gei","s__un_f__Xanthomonadaceae","metabolite1","metabolite2","metabolite3","metabolite4","metabolite5","metabolite6","metabolite7","metabolite8","metabolite9","metabolite10","metabolite12","metabolite13","metabolite14","metabolite15","metabolite16","metabolite17","metabolite18","metabolite19","metabolite20","metabolite21","metabolite22","metabolite23","metabolite24","metabolite25","metabolite26","metabolite27","metabolite28","metabolite29","metabolite30","metabolite31","metabolite32","metabolite34","metabolite35","metabolite36","metabolite37","metabolite38","metabolite39","metabolite41","metabolite42","metabolite43","metabolite44","metabolite45","metabolite46","metabolite47","metabolite48","metabolite49","metabolite50","gene1","gene2","gene3","gene5","gene6","gene7","gene8","gene10","gene11","gene12","gene14","gene15","gene18","gene19","gene20","gene21","gene22","gene23","gene24","gene25","gene27","gene28","gene29","gene30","gene32","gene33","gene34","gene35","gene36","gene37","gene38","gene40","gene41","gene42","gene43","gene44","gene45","gene46","gene47","gene48","gene49","gene50"],"group":["p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Bacteroidetes","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Firmicutes","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Chloroflexi","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","B","A","A","A","A","A","A","A","A","B","A","A","A","B","A","B","A","A","B","A","A","B","B","B","B","B","B","B","A","B","A","B","B","B","B","A","A","A","B","A","B","A","A","B","B","A","A","D","C","C","C","C","D","C","D","D","D","D","D","C","D","D","C","C","C","D","C","C","D","D","D","D","D","C","C","C","D","C","D","C","D","D","D","C","D","C","D","C","C"],"nodesize":[40,38.6323000116104,25.947985603158,25.789155927087,21.981655636828,17.6314872866597,17.4491272882077,15.5299353690158,14.0739966716978,13.0018963582182,11.6606679825071,11.350361856109,10.7076899260807,9.99883896435621,8.65319865319865,7.94287704632532,7.15755253686288,7.11931576299392,7.02813576376795,6.85312899106003,6.68694608924494,6.55752931615001,6.19427996439491,6.17810286775804,6.13398351329386,6.07956964278803,5.66484771082472,5.62661093695576,5.55601996981307,5.43395642246217,5.42072061612292,5.36630674561709,5.08100158674871,5.0765896513023,5.02070513564767,4.95305545880259,4.58980610704749,4.4471535276133,4.44568288246449,4.40744610859553,4.15302449785208,3.96478191880491,3.89272030651341,3.80006966213863,3.64271063121638,3.59270869615697,3.54711869654398,3.54417740624637,3.46917450365726,3.29269708580053,3.27651998916367,3.26769611827083,3.23828321529471,3.21034095746739,3.06915902318201,3.0662177328844,3.02651031386664,2.97797902395604,2.97209644336081,2.96768450791439,2.96621386276559,2.91621192770618,2.90444676651573,2.88826966987887,2.84267967026588,2.81767870273617,2.77061805797438,2.73238128410542,2.7264987035102,2.70885096172452,2.68090870389721,2.66767289755796,2.65590773636751,2.64561322032586,2.63825999458183,2.59708193041526,2.58531676922482,2.5573745113975,2.54266805990944,2.52354967297496,2.50590193118929,2.47795967336197,2.46913580246914,2.46619451217152,2.39119160958241,2.38089709354077,2.37942644839197,2.37795580324316,2.37648515809435,2.35736677115987,2.34560160996943,2.33383644877898,2.32795386818375,2.30589419095166,2.28677580401718,2.25883354618987,2.25883354618987,2.25295096559464,2.24853903014823,2.24559773985061,2.23971515925539,2.22353806261852,2.22206741746972,2.20441967568404,2.17500677270792,2.15882967607106,2.15000580517822,2.14265257943419,2.11912225705329,2.11618096675568,2.11323967645807,2.11323967645807,2.11029838616045,2.09853322497001,2.09412128952359,2.08823870892836,2.08823870892836,2.08529741863075,2.0720616122915,2.0720616122915,2.06912032199389,2.06617903169627,2.06470838654747,2.06176709624985,2.06176709624985,2.02794225782732,2.0250009675297,2.0235303223809,2.02205967723209,2.01911838693448,2.01176516119045,2.01176516119045,2.00441193544642,2.00441193544642,2.00294129029761,2]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal([`#b2df8a`,`#ff7f00`,`#cab2d6`,`#e31a1c`,`#33a02c`,`#fb9a99`,`#a6bce3`,`#1f78b4`,`#fdbf6f`])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":20,"linkWidth":"function(d) { return (d.width); }","charge":-5,"opacity":0.6,"zoom":false,"legend":true,"arrows":false,"nodesize":true,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<p>Plot a network in NetworkD3 style</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Layout is an important part of network visualization, a good layout will present information clearly. MetaNet offers various basic layout algorithms. The as_polygon() is interesting: it can draw a network in a polygon shape, and you can change the edge numbers of the polygon. The as_circle_tree() can draw a network in a circle tree shape.</p>
+<p>Beside the basic layout, we provide an advanced layout method for a network with group variable (such as omics or modules). It is easy to use g_layout() to control each group position and layout of each group.</p>
+<p>And we can plot a network with pie node, which can show the composition of each node.</p>
+<p>If you are more familiar with ggplot2, use the function as.ggig() transfer the basic R plot to ggplot2 style.</p>
+<p>NetworkD3 can produce interactive network plot based on JavaScript</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="metanet-features-3" class="slide level2 scrollable">
+<h2>MetaNet features</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Provide comprehensive topology indexes calculation，including ecological network stability</label></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Network indexes</a></li><li><a href="#tabset-6-2">Node indexes</a></li><li><a href="#tabset-6-3">Modules</a></li><li><a href="#tabset-6-4">Keystone</a></li><li><a href="#tabset-6-5">Stability</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<p><img data-src="images/net_tp.png"></p>
+</div>
+<div id="tabset-6-2">
+<p><img data-src="images/node_tp.png"></p>
+</div>
+<div id="tabset-6-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>test_module_net <span class="ot">&lt;-</span> <span class="fu">module_net</span>(<span class="at">module_number =</span> <span class="dv">3</span>, <span class="at">n_node_in_modu =</span> <span class="dv">30</span>)</span>
+<span id="cb9-2"><a href=""></a><span class="fu">plot</span>(test_module_net, <span class="at">mark_module =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-4">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<caption>The topological role of individual node</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Zi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Zi&gt;2.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid;">Pi</td>
+<td style="text-align: left;">peripherals</td>
+<td style="text-align: left;"><span style="     color: red !important;">module hubs</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid;">Pi&gt;0.62</td>
+<td style="text-align: left;"><span style="     color: red !important;">connectors</span></td>
+<td style="text-align: left;"><span style="     color: red !important;">network hubs</span></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><img data-src="https://bookdown.org/Asa12138/metanet_book/05-topology_files/figure-html/fig-6-zp-plot2-1.png"></p>
+</div>
+<div id="tabset-6-5">
+<p><img src="https://bookdown.org/Asa12138/metanet_book/images/6-1.robust_res.png" align="right" width="600"></p>
+<ul>
+<li>Robust test</li>
+<li>Robustness</li>
+<li>Vulnerability</li>
+<li>Cohesion</li>
+<li>…</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>MetaNet can calculate comprehensive topology indexes, including network indexes and node indexes. MetaNet can also do module analysis. And use Zi-Pi analysis to find keystone nodes in a network. The stability analysis includes robust test, robustness, vulnerability, cohesion, and so on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="reporterscore" class="slide level2">
+<h2><a href="https://github.com/Asa12138/ReporterScore">ReporterScore</a> <img src="https://asa12138.github.io/ReporterScore/reference/figures/ReporterScore.png" align="right" width="100"></h2>
+<div class="fragment">
+<p><a href="https://doi.org/10.1093/bib/bbae116"><img data-src="images/grsa_cover.png" style="width:60.0%"></a></p>
+<div class="fragment fade-in">
+<p><img data-src="images/BIB.png" style="width:100.0%"></p>
+</div>
+<div class="footer">
+<p><a href="https://asa-blog.netlify.app/p/grsa-bib/">introduction post of GRSA</a>; <a href="https://www.bilibili.com/video/BV12j41157LR/">video of GRSA</a></p>
+</div>
+<aside class="notes">
+<p>I developed the improved ‘Generalized Reporter Score-based Analysis (GRSA)’ method, implemented in the R package ‘ReporterScore’, along with comprehensive visualization methods and pathway databases.</p>
+<p>This work was published in Briefings in Bioinformatics recently.</p>
+<p>Here is the graphical abstract: ‘GRSA’ is a threshold-free method that works well with all types of biomedical features, such as ko, genes, chemical compounds, and microbial species. Importantly, the ‘GRSA’ supports multi-group and longitudinal experimental designs.</p>
+<p>And you can find the detailed introduction in my blog and the video tutorial on Bilibili.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="icrispr" class="slide level2">
+<h2><a href="https://github.com/Asa12138/iCRISPR">iCRISPR</a> <img src="https://github.com/Asa12138/iCRISPR/blob/main/man/figures/iCRISPR.png?raw=true" align="right" width="100"></h2>
+<p>CRISPR/Cas9 system analysis in genomics and metagenomics.</p>
+<div class="fragment">
+<p><img data-src="images/iCRISPR_ab.png" style="width:87.0%"></p>
+<aside class="notes">
+<p>The iCRISPR package is an analysis tool for CRISPR/Cas9 system in genomics and metagenomics. In the beginning, I developed it for the CRISPR project of LiuZhen, it is not completed yet. We use the CripsrCasFinder to predict the CRISPR array in the genome, but its output is not easy to use. iCRISPR can help process the output and transform to a crispr object. The crispr object containg the information of CRISPR, Cas, Array, and Spacer. We can do statistics, structure analysis, and source-target analysis with it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="plot4fun" class="slide level2">
+<h2><a href="https://github.com/Asa12138/plot4fun">plot4fun</a> <img src="https://asa12138.github.io/plot4fun/reference/figures/plot4fun.png" align="right" width="100"></h2>
+<p>It provides some interesting functions for plotting.</p>
+<div class="fragment">
+<p>How to bend your text? How to draw a DNA? How to handle the relationship between layers? How to make a LED display?</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="fragment fade-in">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">clock</span>(<span class="at">rotate_text =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">DNA_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-17-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment fade-in">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">chunlian</span>(<span class="at">words =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-18-1.png" width="300" height="440"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment fade-in">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">Olympic_rings</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_packages_files/figure-revealjs/unnamed-chunk-19-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">make_LED</span>(<span class="st">"一起来画图！"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="https://github.com/Asa12138/plot4fun/raw/main/man/figures/README-unnamed-chunk-5-1.gif"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The last package is plot4fun, which provides many interesting functions for plotting. For example, how to bend your words? we can make a clock with the bendable text. And we can use the DNA_plot function to draw a DNA. We can use the chunlian function to draw a Chinese couplet. How to use ggplot to draw a standard Olympic rings as the Olympic rings is nested, we need to handle the relationship between layers to display the correct graphics. And here is a LED display, I used Image processing technology converts text into heatmaps and combines a GIF.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="more-resources" class="slide level2">
+<h2><a href="https://asa12138.github.io/">More Resources</a></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment fade-in">
+<!-- -->
+<h4 id="r-tips-for-advanced-use">R tips for advanced use</h4>
+<p><br></p>
+<p><a href="https://asa-blog.netlify.app/r_tips_for_advanced_use_byasa/r_tips" data-preview-link="true"><img data-src="images/R-tips.png"></a></p>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<div class="fragment fade-in">
+<!-- -->
+<h4 id="official-account">Official account</h4>
+<p><img data-src="images/wp.png" width="300"></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>I have introduced some R tips for advanced use in previous lab meeting, here is the slides. For more resources, you can visit my official account, where I share my R packages and other resources.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<section id="thanks-for-your-attention" style="text-align: center; margin-top: 4em; font-size: 2em">
+<h3>Thanks for your attention! 🙏</h3>
+</section>
+<div class="quarto-auto-generated-content">
+<p><img src="images/R.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://github.com/Asa12138" class="uri">https://github.com/Asa12138</a></p>
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="R_packages_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="R_packages_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="R_packages_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="R_packages_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

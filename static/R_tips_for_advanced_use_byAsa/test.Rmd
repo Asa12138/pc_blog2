@@ -1,0 +1,501 @@
+---
+title: "Test for tips"
+author: "pengchen"
+date: "2023-07-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if(!requireNamespace("pcutils"))remotes::install_github("Asa12138/pcutils")
+library(pcutils)
+lib_ps("dplyr")
+```
+
+## More about Rstudio
+
+Rstuido的魔法：按住Ctrl（Command）单击某个变量名或函数名，如果是data.frame就可以进入预览窗格， 如果是函数就可以进入函数内部看具体的代码。
+
+其实是调用了`View()`函数，对于不是以上类型的对象我们可以手动调用。
+
+```{r}
+lm(hp~wt,mtcars)
+
+View(mtcars[1:5,1:5])
+
+View(as.list(mtcars))
+```
+
+```{python}
+import os
+print(1+1)
+```
+
+
+## 学习资料
+
+tidyverse全家桶，其中包含ggplot2，tibble，dplyr，readr，stringr等常用的全面的数据处理包，能够很好的满足我们下游数据处理需求：
+
+```{r}
+library(tidyverse)
+```
+
+为可视化而建的网站：[From data to Viz \| Find the graphic you need](https://www.data-to-viz.com)
+
+```{r}
+# Library
+library(streamgraph)
+ 
+# Create data:
+data <- data.frame(
+  year=rep(seq(1990,2016) , each=10),
+  name=rep(letters[1:10] , 27),
+  value=sample( seq(0,1,0.0001) , 270)
+)
+ 
+# Basic stream graph: just give the 3 arguments
+pp <- streamgraph(data, key="name", value="value", date="year", height="300px", width="1000px")
+pp 
+
+# save the widget
+# library(htmlwidgets)
+# saveWidget(pp, file=paste0( getwd(), "/HtmlWidget/streamgraphBasic.html"))
+```
+
+## 基本使用
+
+普通有names属性的列表可以用`$`访问元素，S4对象可以用`@`访问元素。
+```{r eval=FALSE}
+rec <- list(name="李明", "age 2"=30,scores=c(85, 76, 90))
+rec$`age 2`
+rec[3]
+
+library(ReporterScore)
+data("reporter_score_res")
+ko_pvalue=reporter_score_res$ko_pvalue
+gsea_res=KO_gsea(ko_pvalue)
+class(gsea_res)
+isS4(gsea_res)
+gsea_res@result
+```
+
+
+数据框类似于一个矩阵，有个横行、个纵列，但各列允许有不同类型：数值型、因子、字符、日期时间，但同一列的数据类型相同。取子集应注意`drop` 。
+
+```{r}
+d <- data.frame(name=c("李明", "张聪", "王建"),age=c(30, 35, 28), height=c(180, 162, 175))
+str(d)
+d[1:2, "age"]
+d[1:2, "age",drop=FALSE]
+
+?pcutils::gghuan()
+```
+
+### 包
+
+-   找到包，主要平台：
+    -   [CRAN](https://cran.r-project.org/) 官方存储库，多个镜像
+    -   [BioConductor](https://www.bioconductor.org/) 用于生物信息学的开源软件专题库
+    -   [Github](https://github.com/) 开发版本，无限惊喜，但也可能缺少维护
+    -   Bitbucket、SVN...
+
+```{r eval=FALSE}
+install.packages("pcutils")
+BiocManager::install("ggtree")
+devtools::install_github("Asa12138/pcutils")
+```
+
+### 正确的数据/图像读入和写出
+
+各种表格读取：read.table(), read.csv(), read.delim()
+
+[test.txt](test.txt)
+
+```{r eval=FALSE}
+read.table("test.txt",header = T,sep = "\t",comment.char = "",quote = "",check.names = F) #无法读取
+```
+
+当我们的表格含有 `", ', #` 或者列名中含有任何非变量名字符时都要小心
+
+```{r eval=FALSE}
+read.table("test.txt",header = T,sep = "\t",comment.char = "",quote = "",check.names = F)
+```
+
+建议在readr包的支持下用read_csv(), read_table2(), read_delim()等函数读入。
+
+保存为tibble类型，快得多，也不自动将字符型列转换成因子，不自动修改变量名为合法变量名。
+
+```{r eval=FALSE}
+readr::read_delim("test.txt",delim = "\t")
+```
+
+剪切板可用`datapasta`包 [test](test.xlsx)
+
+```{r}
+tibble::tribble(
+                  ~name, ~mpg, ~cyl, ~disp,  ~hp, ~drat,   ~wt, ~qsec, ~vs, ~am, ~gear, ~carb,
+            "Mazda RX4",   21,   6L,  160L, 110L,   3.9,  2.62, 16.46,  0L,  1L,    4L,    4L,
+        "Mazda RX4 Wag",   21,   6L,  160L, 110L,   3.9, 2.875, 17.02,  0L,  1L,    4L,    4L,
+           "Datsun 710", 22.8,   4L,  108L,  93L,  3.85,  2.32, 18.61,  1L,  1L,    4L,    1L,
+       "Hornet 4 Drive", 21.4,   6L,  258L, 110L,  3.08, 3.215, 19.44,  1L,  0L,    3L,    1L,
+    "Hornet Sportabout", 18.7,   8L,  360L, 175L,  3.15,  3.44, 17.02,  0L,  0L,    3L,    2L
+    )->df1
+data.frame(
+  stringsAsFactors = FALSE,
+              name = c("Mazda RX4","Mazda RX4 Wag",
+                       "Datsun 710","Hornet 4 Drive","Hornet Sportabout"),
+               mpg = c(21, 21, 22.8, 21.4, 18.7),
+               cyl = c(6L, 6L, 4L, 6L, 8L),
+              disp = c(160L, 160L, 108L, 258L, 360L),
+                hp = c(110L, 110L, 93L, 110L, 175L),
+              drat = c(3.9, 3.9, 3.85, 3.08, 3.15),
+                wt = c(2.62, 2.875, 2.32, 3.215, 3.44),
+              qsec = c(16.46, 17.02, 18.61, 19.44, 17.02),
+                vs = c(0L, 0L, 1L, 1L, 0L),
+                am = c(1L, 1L, 1L, 0L, 0L),
+              gear = c(4L, 4L, 4L, 3L, 3L),
+              carb = c(4L, 4L, 1L, 1L, 2L)
+)
+
+```
+
+任意文件访问，跟python很像，使用`file()`打开文件，`close()`关闭
+
+```{r}
+f=file("output.txt",open = "w")
+writeLines("some output",f)
+close(f)
+
+cat("something \n else",file = "output.txt")
+
+clipr::write_clip(mtcars)
+```
+
+[output.txt](output.txt)
+
+### R变量储存
+
+R的`save()`命令可以将一个或者多个R变量保存到文件(`.rda`或`.RData`)中，保存结果是经过压缩的，在不同的R运行环境中兼容。 使用`load()`可以恢复保存的变量。
+
+强烈建议传递数据时用这种文件，避免了数据写入和读取时引起的差异。
+
+使用`save.image()`可以把整个环境的所有变量保存，方便结果复现。
+
+保存单变量时推荐使用`saveRDS()`，用`readRDS()`载入并返回变量，这样可以将某个变量赋值给某个拟定的变量名，避免某个变量值变了我们还不知道， 如
+
+```{r eval=FALSE}
+a="i need to be saved"
+save(a,file = "tmp.rda")
+saveRDS(a,file = "tmp.RDS")
+rm(a)
+load("tmp.rda")
+
+a="i don't want to be changed"
+load("tmp.rda")
+
+a="i don't want to be changed"
+new_a=readRDS("tmp.RDS")
+```
+
+# 程序控制结构
+
+循环结构进阶，`apply()`家族
+
+```{r}
+mtcars
+apply(mtcars,MARGIN =  2, FUN = max)
+```
+
+### 管道
+
+我还是更喜欢用`magrittr`提供的`%>%`，支持更复杂的应用，比如用`.`代表产生的中间变量放到合适的参数位置：
+
+```{r}
+library(magrittr)
+"hhh"%>%paste0("prefix_",.)
+
+#比如我想看看mpg大于15的样本中，不同cyl的disp的平均数和方差
+mtcars%>%
+    filter(mpg>15)%>%
+    group_by(cyl)%>%
+    summarise(mean=mean(disp),sd=sd(disp))
+```
+
+还有`%<>%`等方便的变体:
+
+```{r}
+a="hhh"
+a%<>%paste0("prefix_",.)
+a
+```
+
+### 函数
+
+**特殊形参**：`...`
+
+```{r}
+my_mean=function(...)sum(...)/length(c(...))
+my_mean(1,2,3,4,34,54)
+```
+
+**无名函数**: 不定义函数名也可以调用
+
+```{r}
+a=lapply(1:3, \(i)print(i))
+```
+
+**变量作用域**：全局变量 vs 局部变量
+
+函数内部调用变量，会先在内部找，找不到就逐一往上一层找，直到找到
+```{r eval=FALSE, include=FALSE}
+x=100
+func=function(x){
+    return(x+1)
+}
+func(x = 0)
+
+x=100
+
+y=0
+func=function(){
+    func2=function(y){
+        return(y) #x
+    }
+    return(func2(y))
+}
+
+func()
+
+func2(y = 1)
+```
+
+## Debug
+某个函数突然失灵了
+
+1. 工作环境变化
+```{r}
+1+1
+#定义了`+`,或者新导入的包包含一个`+`的函数名，覆盖了base的加法
+`+`=`-`
+1+1
+
+rm(`+`)
+1+1
+
+#正常使用
+select(mtcars,1)->aa
+print(select)
+
+#导入新包
+library(MASS)
+#报错
+select(mtcars,1)->aa
+print(select)
+
+#常使用`pkg::func`的形式调用函数是个好习惯
+dplyr::select(mtcars,1)->aa
+#detach冲突包
+detach("package:MASS")
+print(select)
+```
+
+```{r}
+#debug R function
+library(pcutils)
+a <- data.frame(type = letters[1:6], num = c(1, 3, 3, 4, 5, 10))
+gghuan(a)
+
+debug(gghuan)
+gghuan(a)
+undebug(gghuan)
+gghuan(a)
+```
+
+### 泛型函数
+
+一般来说我们可以找到报错的代码行以及具体的函数，便可以使用`debug()`。
+
+但有时候会发现一些函数无法被正确定位，具体代码也只能看到`UseMethod()`：其实是我们碰到了**泛型函数**。下面同样一个`summary`函数，为啥对women和fit做出了完全不同的处理？
+
+```{r}
+summary(women)
+fit <- lm(weight ~ height, data=women)
+summary(fit)
+```
+
+```{r}
+class(women)
+class(fit)
+```
+
+原来他们是不同的类（class），泛型函数会更具对象的类选择运行什么样的代码（即见人说人话，见鬼说鬼话）：
+调用`func.class()`函数，上述就是分别调用了`summary.data.frame()`，`summary.lm()`。
+
+```{r}
+summary.data.frame(women)
+summary.lm(fit)
+```
+或者我们可能发现某些报错函数not found（但我们又确定有这样一个函数）：
+其实是我们碰到了**非导出函数**（R包开发者不想用户看到所有的函数，只把有用的导出）。
+
+```{r, eval=FALSE}
+library(reshape2)
+class(mtcars)
+melt(mtcars,id.vars = "cyl")
+#melt是泛型函数，那应该调用melt.data.frame
+melt.data.frame(mtcars,id.vars = "cyl")
+## Error in melt.data.frame(mtcars, id.vars = "cyl") : 
+##  could not find function "melt.data.frame"
+```
+找到这些函数的方法也很简单（毕竟R包需要都开源）：`pkg:::func`即可
+
+```{r, eval=FALSE}
+reshape2:::melt.data.frame(mtcars,id.vars = "cyl")
+```
+
+有时候我们通过debug可以发现一些有用的内部函数（比如从那种一步/很久完成XX分析的函数中找到我们需要的功能），
+这样我们便可以使用`pkg:::func`做想做的部分。
+
+
+# 写R包
+
+```{r}
+library(devtools)
+#创建R包
+create_package("testpkg")
+#配置git用于版本控制
+use_git()
+#创建一个R脚本，开始写函数
+use_r("first")
+#生成man文件和NAMESPACE
+document("./")
+#使所有函数可用（没有install但R包已在内存）
+load_all("./")
+#检查R包语法，建议每次重要修改后运行一次，解决完所有的Error，Warning，Note再进一步修改，不要积累较多错误
+check("./")
+#打包为bundle包，.tar.gz
+build("./")
+#install我们写好的R包
+install("./")
+#定义一些测试例子
+use_testthat()
+```
+
+[写一个函数试试](testpkg/R/test.R)
+```{r}
+#' Plot a doughnut chart
+#'
+#' @param tab two columns: first is type, second is number
+#' @param reorder reorder by number?
+#' @param mode plot style, 1~3
+#' @param topN plot how many top items
+#' @param name label the name
+#' @param percentage label the percentage
+#' @param text_params parameters parse to \code{\link[ggplot2]{geom_text}}
+#' @param text_params2 parameters parse to \code{\link[ggplot2]{geom_text}}, for name=T & mode=1,3
+#' @param bar_params parameters parse to \code{\link[ggplot2]{geom_rect}}, for mode=1,3 or \code{\link[ggplot2]{geom_col}} for mode=2.
+#'
+#' @import ggplot2 dplyr
+#' @return a ggplot
+#' @export
+#'
+#' @examples
+#' a <- data.frame(type = letters[1:6], num = c(1, 3, 3, 4, 5, 10))
+#' gghuan(a) + ggplot2::scale_fill_manual(values = get_cols(6, "col3"))
+#' gghuan(a,bar_params=list(col="black"),
+#'     text_params=list(col="#b15928",size=3),
+#'     text_params2=list(col="#006d2c",size=5))+
+#'   ggplot2::scale_fill_manual(values = get_cols(6, "col3"))
+#' gghuan(a,mode=2) + ggplot2::scale_fill_manual(values = get_cols(6, "col3"))
+#' gghuan(a,mode=3) + ggplot2::scale_fill_manual(values = get_cols(6, "col3"))
+gghuan <- function(tab, reorder = TRUE, mode = "1", topN = 5, name = TRUE, percentage = TRUE,
+                   bar_params=NULL,text_params=NULL,text_params2=NULL) {
+  type=ymax=ymin=rate_per=fraction=NULL
+  if (ncol(tab) > 2) stop("need two columns: first is type, second is number")
+
+  colnames(tab)[1] -> g_name
+  colnames(tab) <- c("type", "n")
+
+  plot_df <- tab %>%
+    dplyr::group_by(type) %>%
+    dplyr::summarise(sum = sum(n))
+
+  if (reorder) {
+    plot_df$type <- stats::reorder(plot_df$type, plot_df$sum)
+    plot_df <- dplyr::arrange(plot_df, -sum)
+  }
+
+  if (nrow(plot_df) > topN) {
+    plot_df <- rbind(
+      head(plot_df, topN),
+      data.frame(
+        type = "others",
+        sum = sum(plot_df$sum[(topN + 1):nrow(plot_df)])
+      )
+    )
+
+    plot_df$type <- stats::relevel(factor(plot_df$type), "others")
+  }
+  dplyr::mutate(plot_df, fraction = sum / sum(sum)) -> plot_df
+
+  plot_df$ymax <- cumsum(plot_df$fraction)
+  plot_df$ymin <- c(0, head(plot_df$ymax, n = -1))
+  if (percentage) {
+    plot_df$rate_per <- paste(as.character(round(100 * plot_df$fraction, 1)), "%", sep = "")
+  } else {
+    plot_df$rate_per <- plot_df$sum
+  }
+
+  if (mode == "1") {
+    plt <- ggplot(data = plot_df, aes(fill = type, ymax = ymax, ymin = ymin, xmax = 3.2, xmin = 1.7)) +
+      do.call(geom_rect,update_param(list(alpha = 0.8),bar_params))+
+      xlim(c(0, 5)) +
+      coord_polar(theta = "y") +
+      do.call(geom_text,update_param(list(mapping = aes(x = 2.5, y = ((ymin + ymax) / 2), label = rate_per), size = 3.6, col = "white"),text_params))
+
+    if (name) plt <- plt +do.call(geom_text,update_param(list(mapping = aes(x = 3.6, y = ((ymin + ymax) / 2), label = type), size = 4),text_params2))
+
+  }
+  if (mode == "2") {
+    plt <- ggplot(plot_df, aes(x = type, y = fraction, fill = type)) +
+      do.call(geom_col,update_param(list(position = "dodge2", show.legend = TRUE, alpha = .9),bar_params))+
+      coord_polar(theta = "x") +
+      ylim(-min(plot_df$fraction), max(plot_df$fraction)) +
+      do.call(geom_text,update_param(list(mapping = aes(x = type, y = fraction,
+                                                        label = paste0(type, ": ", rate_per)), size = 4),text_params))
+
+  }
+  if (mode == 3) {
+    # lib_ps("ggpubr", library = FALSE)
+    # labs <- paste0(plot_df$type, "\n", plot_df$rate_per)
+    # p <- ggpubr::ggpie(plot_df, "fraction", label = labs, fill = "type") + theme(legend.position = "none")
+    plt <- ggplot(data = plot_df, aes(fill = type, ymax = ymax, ymin = ymin, xmax = 3.2, xmin = 1.7)) +
+      do.call(geom_rect,update_param(list(alpha = 0.8),bar_params))+
+      xlim(c(1.7, 3.5)) +
+      coord_polar(theta = "y") +
+      do.call(geom_text,update_param(list(mapping = aes(x = 2.8, y = ((ymin + ymax) / 2), label = rate_per), size = 3.6, col = "white"),text_params))
+
+    if (name) plt <- plt +do.call(geom_text,update_param(list(mapping = aes(x = 3.4, y = ((ymin + ymax) / 2), label = type), size = 4),text_params2))
+  }
+
+  plt <- plt + theme_light() +
+    labs(x = "", y = "", fill = g_name) +
+    theme(panel.grid = element_blank()) +
+    theme(axis.text = element_blank()) +
+    theme(axis.ticks = element_blank()) +
+    theme(panel.border = element_blank(), legend.position = "none")
+  return(plt)
+}
+
+```
+
+# 制作Shiny APP
+
+[例子](test_shiny/app.R)：
+
+```{r eval=FALSE}
+shiny::runApp("test_shiny/app.R")
+
+shiny::runApp("../../R/iphylo-visual/app.R")
+```
+

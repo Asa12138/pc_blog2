@@ -1,0 +1,11 @@
+.gray-title {
+  color: gray;
+}
+.red {
+  color: #BD0D19;
+}
+
+.panel-tabset-tabby a {
+  font-size: 20px;
+  font-style: italic
+}

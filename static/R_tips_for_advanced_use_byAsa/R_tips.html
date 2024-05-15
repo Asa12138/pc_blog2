@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R tips</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Peng Chen email: pengchen2001@zju.edu.cn" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet/leaflet.js"></script>
+    <link href="libs/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="libs/proj4/proj4.min.js"></script>
+    <script src="libs/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding/leaflet.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="zh-CN.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# R tips
+]
+.subtitle[
+## for advanced use
+]
+.author[
+### Peng Chen
+email: <a href="mailto:pengchen2001@zju.edu.cn" class="email">pengchen2001@zju.edu.cn</a>
+]
+.institute[
+### ZJU LSI Jianglab
+]
+.date[
+### 2023/7/7
+]
+
+---
+
+
+
+class: middle
+##  Lv1. Use R
+## .gray-title[Lv2. R programming]
+## .gray-title[Lv3. R markdown (to everything)]
+## .gray-title[Lv4. R package/shiny]
+
+.footnote[[*] 才疏学浅，仅代表本人学习经验，R是一个宝库，此处只是冰山一角。[下载ppt及资料](R_tips_for_advanced_use_byAsa.zip)]
+
+---
+
+# R语言简介
+R语言是S语言的一个变种。S语言由Rick Becker等人在贝尔实验室开发（著名的C语言、Unix系统开发实验室）。
+
+R是一个自由源代码软件，GPL授权，于1997年发布，实现了与S语言基本相同的功能和统计功能。 现在由R核心团队开发，但全世界的用户都可以贡献软件包。 
+
+R的网站: http://www.r-project.org/
+
+特点：
+- 自由软件，免费、开放源代码，支持各个主要计算机系统；
+
+- 具有完善的数据类型，代码简洁、可读；
+- **强调交互式数据分析，支持复杂算法描述，图形功能强**；
+
+- 统计科研工作者广泛使用R进行计算和发表算法。R有**上万扩展包**(截止2023年7月5日在R包网站CRAN上有19784个)。
+
+---
+
+# 技术特点
+
+S语言作者，R语言专家J. M. Chambers指出R的.red[本质特征]：
+
+- R中所有的存在都是**对象**（object）；
+- R中发生的动作都是**函数调用**（function call）。
+
+--
+
+详细地说R有如下技术特点：
+
+- 函数编程（functional programming）。
+
+- 支持对象类和类方法，面向对象的程序设计。
+- 动态类型语言，解释执行，速度较慢。
+
+- 数据框（data.frame）是基本数据类型，类似于数据库的表。
+- 可以用作C和C++、FORTRAN语言编写的算法库的接口。
+
+- 内部数值算法采用已广泛测试和采纳的算法实现，如排序、线性代数等。
+
+---
+
+background-image: url(images/R.jpg)
+background-size: 100px
+background-position: 90% 8%
+
+
+# R &amp; Rstudio
+- R是一种统计学编程语言
+- Rstudio是R语言最好的IDE（Integrated development environment）
+
+&lt;img src="images/Rstudio.png" alt="Rstudio" width="80%"&gt;
+
+???
+进入Rstudio看一看
+介绍更多的东西
+
+---
+
+## More about Rstudio
+2022年RStudio公司正式改名Posit，拥抱大数据科学生态：R、Python、Julia...
+
+&lt;img src="images/Rstudio2.png" alt="Rstudio" width="70%" style="float:left"&gt;
+
+RStudio使用方法概要PDF下载：[rstudio-ide.pdf](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/rstudio-ide.pdf)
+
+Rstuido的魔法：按住Ctrl（Command）单击某个变量名或函数名，如果是data.frame就可以进入预览窗格，
+如果是函数就可以进入函数内部看具体的代码。
+
+其实是调用了`View()`函数，对于不是以上类型的对象我们可以手动调用。
+
+---
+## 学习资料
+### 全面教程
+小白上手首推北大李老师的课程讲义[《R语言教程》](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/index.html)，中文讲义，简单易读，甚至整本书就是用Rbookdown编写的，电子书也比较好复制代码进行学习。
+
+[《R语言实战》](https://www.zhihu.com/search?q=R%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A217799209%7D)，也有中文版，介绍地更加全面且有不少进阶知识，值得一看！
+
+&lt;img src="images/Rshizhan.jpg" alt="Rshizhan" width="25%" style="float:right"&gt;
+
+然后是著名的英文书和参考手册：
+
+-   [《An Introduction to R》](cran.r-project.org/doc/manuals/R-intro.pdf)
+-   [《R Cookbook》](https://rc2e.com/)
+
+---
+## 学习资料
+###数据处理
+
+tidyverse全家桶，其中包含ggplot2，tibble，dplyr，readr，stringr等常用的全面的数据处理包，能够很好的满足我们下游数据处理需求：
+
+&lt;a href="https://bookdown.org/roy_schumacher/r4ds/"&gt;
+&lt;img src="images/Rdatasci.png" alt="R data science" width="20%" style="float:right"&gt;&lt;/a&gt;
+
+- 读取数据
+- 清洗数据
+- 转换数据
+- 合并数据
+- 筛选数据
+- 可视化
+
+
+官方教程：[《R for Data Science》](https://bookdown.org/roy_schumacher/r4ds/)，非常建议熟读并使用
+
+---
+## 学习资料
+&lt;a href="https://ggplot2-book.org/"&gt;
+&lt;img src="images/ggplot2.jpg" alt="R data science" width="20%" style="float:right"&gt;&lt;/a&gt;
+
+###可视化
+
+ggplot官方教程：[《ggplot2: Elegant Graphics for Data Analysis》](https://ggplot2-book.org/)
+
+&lt;a href="https://www.data-to-viz.com"&gt;
+&lt;img src="images/data2viz.png" alt="ggplot2" width="50%" style="float:left"&gt;&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+为可视化而建的网站：[From data to Viz \| Find the graphic you need](https://www.data-to-viz.com)
+
+---
+## 学习资料
+###R编程
+
+&lt;a href="https://adv-r.hadley.nz/"&gt;
+&lt;img src="images/advancer.png" alt="advanced r" width="20%" style="float:right"&gt;&lt;/a&gt;
+
+[《Advanced R》](https://adv-r.hadley.nz/)，对R高级编程技术进行讲解
+
+更多关于R的书可以在[Home \| Bookdown](https://bookdown.org/)这里找到。
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href="https://www.data-to-viz.com"&gt;
+&lt;img src="images/rbooks.png" alt="ggplot2" width="55%"&gt;&lt;/a&gt;
+
+---
+# 基本使用
+
+很多人使用 R，只为用其中的某个包的某个功能，只需学会以下几步即可：
+
+1. 装好R &amp; Rstudio ✅
+
+2. 认识基本数据类型，结构
+3. 装好需要的包
+
+4. 正确数据/图像读入和写出
+5. 关闭R走人
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据类型
+
+.pull-left[
+- 数值型常量 `1,1e2,5L,Inf,-Inf`;
+
+- 字符型常量 `"str",'str'`;
+
+- 逻辑型常量 `TRUE,FALSE,T,F`;
+
+- 缺失值 `NaN,NA`, 空值 `NULL`;
+
+- 复数常量 `2.2 + 3.5i`;
+
+- 变量，区分大小写的字母、数字、下划线和句点组成变量名，支持但不建议中文;
+]
+
+.pull-right[
+
+```r
+typeof(c(123,10e2,12L,Inf,-Inf))
+```
+
+```
+## [1] "double"
+```
+
+```r
+typeof(c("str",'str'))
+```
+
+```
+## [1] "character"
+```
+
+```r
+typeof(c(TRUE,FALSE,T,F))
+```
+
+```
+## [1] "logical"
+```
+
+```r
+typeof(2.2 + 3.5i)
+```
+
+```
+## [1] "complex"
+```
+
+```r
+typeof(NULL)
+```
+
+```
+## [1] "NULL"
+```
+]
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据结构：向量(vector)
+
+用`c()`函数把多个元素或向量组合成一个**向量**。如果元素基本类型不同，将统一转换成最复杂的一个，复杂程度从简单到复杂依次为： logical&lt;integer&lt;double&lt;character。此外还可以有Date和factor类型的元素
+
+```r
+x &lt;- c(1:3, 10:13);x
+```
+
+```
+## [1]  1  2  3 10 11 12 13
+```
+
+```r
+x[2]=T #类型转换，T为1，F为0
+x
+```
+
+```
+## [1]  1  1  3 10 11 12 13
+```
+
+```r
+x[1]="T" #类型升档，全部变为character
+x
+```
+
+```
+## [1] "T"  "1"  "3"  "10" "11" "12" "13"
+```
+
+```r
+is.vector(x)
+```
+
+```
+## [1] TRUE
+```
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据结构：列表(list)
+
+列表(list)类型包装保存不同类型的数据。单个列表元素必须用两重方括号格式访问,单重方括号结果还是列表而不是列表元素。
+
+```r
+rec &lt;- list(name="李明", age=30,scores=c(85, 76, 90))
+rec
+## $name
+## [1] "李明"
+## 
+## $age
+## [1] 30
+## 
+## $scores
+## [1] 85 76 90
+typeof(rec)
+## [1] "list"
+rec[[1]]
+## [1] "李明"
+typeof(rec[[1]])
+## [1] "character"
+rec[1]
+## $name
+## [1] "李明"
+typeof(rec[1])
+## [1] "list"
+```
+
+普通有names属性的列表可以用`$`访问元素，S4对象可以用`@`访问元素。
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据结构：矩阵，数组(matrix, array)
+
+矩阵用matrix函数定义，实际存储成一个向量，根据保存的行数和列数对应到矩阵的元素， 存储次序为按列存储。 
+
+```r
+A &lt;- matrix(11:16, nrow=3, ncol=2) ;A
+```
+
+```
+##      [,1] [,2]
+## [1,]   11   14
+## [2,]   12   15
+## [3,]   13   16
+```
+矩阵是一个二维数组，我们可以定义多维数组
+
+```r
+ara &lt;- array(1:24, dim=c(1,2,2)) ;ara
+```
+
+```
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    2
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    3    4
+```
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据结构：数据框(data.frame)
+
+数据框类似于一个矩阵，有多个横行、多个纵列，各列允许有不同类型：数值型、因子、字符、日期时间，但同一列的数据类型相同。取子集应注意`drop` 。
+
+```r
+d &lt;- data.frame(name=c("李明", "张聪", "王建"),age=c(30, 35, 28), height=c(180, 162, 175))
+str(d)
+```
+
+```
+## 'data.frame':	3 obs. of  3 variables:
+##  $ name  : chr  "李明" "张聪" "王建"
+##  $ age   : num  30 35 28
+##  $ height: num  180 162 175
+```
+
+```r
+d[1:2, "age"]
+```
+
+```
+## [1] 30 35
+```
+
+```r
+d[1:2, "age",drop=FALSE]
+```
+
+```
+##   age
+## 1  30
+## 2  35
+```
+
+```r
+is.list(d)
+```
+
+```
+## [1] TRUE
+```
+
+大多数更高级的对象本质上都是list，包括data.frame
+
+---
+### 基本使用
+2&amp;#46; 认识基本数据结构：改进数据框(tibble)
+
+tibble类型是一种改进的数据框，tidyverse全家桶推荐使用，确实有不少好处：
+不会随意改变我们的数据名称，类型。打印优美。
+
+```r
+class(d)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+library(tibble)
+td=as_tibble(d)
+td
+```
+
+```
+## # A tibble: 3 × 3
+##   name    age height
+##   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 李明     30    180
+## 2 张聪     35    162
+## 3 王建     28    175
+```
+
+```r
+class(td)
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+---
+### 基本使用
+3&amp;#46; 装好需要的包
+
+包是R函数、数据、预编译代码以一种定义完善的格式组成的集合。
+- 找到包，主要平台：
+    - [CRAN](https://cran.r-project.org/) 官方存储库，多个镜像
+    - [BioConductor](https://www.bioconductor.org/) 用于生物信息学的开源软件专题库
+    - [Github](https://github.com/) 开发版本，无限惊喜，但也可能缺少维护
+    - Bitbucket、SVN...
+- 装在哪，本机位置：
+
+计算机上存储包的目录称为库（library）。
+函数`.libPaths()`能够显示库所在的位置，函数`library()`可以显示库中有哪些包。
+
+
+```r
+.libPaths()
+```
+
+```
+## [1] "/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library"
+```
+
+这个地址很重要，有时候会有多个（如Windows分区），我们要搞清楚装在哪里。
+
+---
+### 基本使用
+3&amp;#46; 装好需要的包
+- 怎么装，[例子](https://cran.r-project.org/web/packages/pcutils/index.html)：大部分情况下CRAN用 `install.packages("pkg")`，BioConductor用`BiocManager::install("pkg")`，Github用`devtools::install_github("repos")`即可。
+但有时候会有依赖包相关的报错，我们可以手动下载特定版本包文件后安装。
+&lt;a href="https://r-pkgs.org/structure.html#sec-package-states"&gt;
+&lt;img src="images/pkg_state.png" alt="converting between package states" width="60%" style="float:right"&gt;&lt;/a&gt;
+    - source， 源码，一堆R脚本和文本文件，我们直接在github上看的就是这个。
+    - bundle， 捆绑态，其实就是打包过的source，一般.tar.gz结尾。
+    - binary， 二进制版本，架构不一样，.zip(Windows)或.tgz(macOS)结尾。
+    
+所谓安装包就是把source变成binary在放在我们的`.libPaths()`文件夹下。
+
+还有问题，谷歌大法，或github问包作者。
+带C++的R包出问题会麻烦一些，需要考察自己本机的C语言编译器。
+
+---
+
+### 基本使用
+3&amp;#46; 装好需要的包
+- 怎么用包
+
+首先可以用`library(pkg)`或`require(pkg)`将包导入内存，这样便可以调用其中的函数。
+`search()`函数可以查看我们已经library的包。
+
+```r
+library(pcutils)
+search()
+```
+
+```
+##  [1] ".GlobalEnv"        "package:pcutils"   "package:tibble"   
+##  [4] "package:stats"     "package:graphics"  "package:grDevices"
+##  [7] "package:utils"     "package:datasets"  "package:methods"  
+## [10] "Autoloads"         "package:base"
+```
+
+
+```r
+if(!require("pcutils")) install.packages("pcutils")
+```
+使用`pkg::`加上tab键可以列出某个包里所有导出的函数，多用`help(pkg::func)`或`?pkg::func`查看某个函数的用法。
+
+如果不想用某个包了，可以用`detach`从当前环境移除（不是删除包）
+
+```r
+detach("package:pcutils")
+```
+
+---
+### 基本使用
+4&amp;#46; 正确的数据/图像读入和写出
+
+各种表格读取：read.table(), read.csv(), read.delim()
+
+[test.txt](test.txt)
+
+```r
+read.table("test.txt") #无法读取
+```
+当我们的表格含有 `", ', #` 或者列名中含有任何非变量名字符时都要小心
+
+```r
+read.table("test.txt",header = T,sep = "\t",comment.char = "",quote = "",check.names = F)
+```
+
+建议在readr包的支持下用read_csv(), read_table2(), read_delim()等函数读入。
+
+保存为tibble类型，快得多，也不自动将字符型列转换成因子，不自动修改变量名为合法变量名。
+
+```r
+readr::read_delim("test.txt",delim = "\t")
+```
+
+excel用`readxl`包，剪切板可用`datapasta`包或`clipr::read_clip()`。表格写出用`write_*()`，与读入一致。
+
+---
+
+### 基本使用
+4&amp;#46; 正确的数据/图像读入和写出
+
+任意文件访问，跟python很像，使用`file()`打开文件，`close()`关闭。
+- r—文本型只读;
+w—文本型只写;
+a—文本型末尾添加;
+- rb—二进制只读;
+wb—二进制只写;
+ab—二进制末尾添加;
+- r+或r+b—读写;
+w+或w+b—读写，清空文件;
+a+或a+b—读和末尾添加。
+
+或者可以用`cat()`直接输出任意文本到文件。
+
+`clipr::write_clip()`可以把R数据框或向量写入剪切板，可以直接粘贴他处。
+
+图片保存：
+
+
+```r
+pdf("new.pdf") #png(),jpg(),tiff(),bmp()
+#画一些图
+dev.off() #要记得关闭设备
+```
+
+
+```r
+ggplot2::ggsave("new.pdf",plot = p,device = "pdf") 
+#p是一个ggplot对象，device可选各种文件格式
+```
+
+---
+
+### 基本使用
+4&amp;#46; 正确数据/图像读入和写出
+
+R变量储存：
+
+R的`save()`命令可以将一个或者多个R变量保存到文件(`.rda`或`.RData`)中，保存结果是经过压缩的，在不同的R运行环境中兼容。
+使用`load()`可以恢复保存的变量。
+
+强烈建议传递数据时用这种文件，避免了数据写入和读取时引起的差异。
+
+使用`save.image()`可以把整个环境的所有变量保存，方便结果复现。
+
+保存单变量时推荐使用`saveRDS()`，用`readRDS()`载入并返回变量，这样可以将某个变量赋值给某个拟定的变量名，避免某个变量值变了我们还不知道， 如
+
+
+```r
+saveRDS(old,file = "tmp.RDS")
+new=readRDS("tmp.RDS")
+```
+
+---
+class: left, middle
+
+## .gray-title[Lv1. Use R]
+## Lv2. R programming
+## .gray-title[Lv3. R markdown (to everything)]
+## .gray-title[Lv4. R package/shiny]
+
+---
+
+# 程序控制结构
+1. 分支结构
+
+
+```r
+x=1
+if(x&gt;0) {
+  print("x &gt; 0")
+} else {
+  print("x &lt;= 0")
+}
+```
+
+```
+## [1] "x &gt; 0"
+```
+
+```r
+#或者用switch函数
+switch (x&gt;0,
+    T = {print("x &gt; 0")},
+    F = {print("x &lt;= 0")}
+)
+```
+
+```
+## [1] "x &gt; 0"
+```
+
+```r
+#或者用ifelse函数，向量式
+x &lt;- c(-2, 0, 1)
+ifelse(x &gt;=0, 1, 0)
+```
+
+```
+## [1] 0 1 1
+```
+
+---
+# 程序控制结构
+2&amp;#46; 循环结构
+
+
+```r
+for (i in 1:3) {
+    print(i)
+}
+#或者用while函数
+i=1
+while (i&lt;4) {
+    print(i)
+    i=i+1
+}
+#或者用repeat函数
+i=1
+repeat{
+    print(i)
+    i=i+1
+    if(i&gt;3)break
+}
+```
+注意用到的判断条件必须是逻辑标量值，不能为NA或零长度。
+这是R编程时比较容易出错的地方。
+
+---
+# 程序控制结构
+循环结构进阶，`apply()`家族
+
+上述显式循环是R运行速度较慢的部分，有循环的程序也比较冗长，建议使用`apply, sapply, lapply, vapply, tapply`等函数替代。
+
+
+```r
+func=function(i)print(i)
+a=lapply(1:3, func)
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+```
+
+另外，建议循环过程不要制作副本：
+
+类似于`x &lt;- c(x, y)`这样的累积结果每次运行都会制作一个x的副本， 在x存储量较大或者重复修改次数很多时会减慢程序。
+
+而是应该在循环前设置好用来保存结果的数据结构：
+
+```r
+x=numeric(100)
+x[[i]]={i循环100次产生的结果}
+```
+
+---
+# 程序控制结构
+3&amp;#46; 管道
+
+原生管道，R从4.1.0版本开始提供了一个`|&gt;`运算符实现管道，如计算 `\(e^{\sqrt{2}}\)`：
+
+```r
+2 |&gt; sqrt() |&gt; exp()
+```
+
+```
+## [1] 4.11325
+```
+
+但是我还是更喜欢用`magrittr`提供的`%&gt;%`，支持更复杂的应用，比如用`.`代表产生的中间变量放到合适的参数位置：
+
+```r
+library(magrittr)
+"hhh"%&gt;%paste0("prefix_",.)
+```
+
+```
+## [1] "prefix_hhh"
+```
+还有`%&lt;&gt;%`等方便的变体:
+
+```r
+a="hhh"; a%&lt;&gt;%paste0("prefix_",.)
+a
+```
+
+```
+## [1] "prefix_hhh"
+```
+
+---
+# 函数
+
+使用自定义函数， 优点是代码复用、模块化设计。
+
+&gt;函数名 &lt;- function(形式参数表) 函数体
+
+**特殊形参**：`...`
+
+```r
+my_mean=function(...)sum(...)/length(c(...))
+my_mean(1,2,3,4)
+```
+
+```
+## [1] 2.5
+```
+
+**无名函数**: 不定义函数名也可以调用
+
+```r
+a=lapply(1:3, \(i)print(i))
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+```
+
+**变量作用域**：全局变量 vs 局部变量
+
+
+
+---
+# 函数
+
+- .red[R中所有的存在都是**对象**（object）]
+对象其实就是一种封装的概念，它把事物封装成一个类(class)，然后提供类的方法(method)，而具体的过程人们看不到。
+
+
+```r
+class(mean)
+```
+
+```
+## [1] "function"
+```
+
+- .red[R中发生的动作都是**函数调用**（function call）???]
+
+函数调用有四种方式：
+
+1 前缀形式。 
+这也是一般的格式
+
+```r
+mean(1:2)
+```
+
+```
+## [1] 1.5
+```
+
+---
+
+# 函数
+
+2 中缀形式。二元运算符实际上都是函数
+
+```r
+1+1
+```
+
+```
+## [1] 2
+```
+
+```r
+`+`(1,1)
+```
+
+```
+## [1] 2
+```
+
+```r
+`%love%`=function(a,b)paste0(a," loves ",b)
+"Romeo"%love%"Juliet"
+```
+
+```
+## [1] "Romeo loves Juliet"
+```
+
+---
+
+# 函数
+
+3 替换形式。
+
+```r
+x &lt;- 1:2
+names(x) &lt;- c("a", "b")
+x
+```
+
+```
+## a b 
+## 1 2
+```
+
+```r
+print(`names&lt;-`)
+```
+
+```
+## function (x, value)  .Primitive("names&lt;-")
+```
+
+---
+
+# 函数
+
+4 特殊形式。x[1], x[[1]]这些取子集或元素等
+
+```r
+x &lt;- 1:5
+x[1]
+```
+
+```
+## [1] 1
+```
+
+```r
+`[`(x, 1)
+```
+
+```
+## [1] 1
+```
+
+确实，.red[R中发生的动作都是**函数调用**（function call）]，知晓函数调用的形式，可以让我们在用某些包的函数时明确问题来源，查找源码等。
+
+---
+# Debug
+某个函数突然失灵了
+
+1. 工作环境变化
+
+环境是R语言比较困难的概念，一般不需要深入了解也能用。
+
+但我们要知道，大多数时候我们处于Global Environment，我们敲出来的每一个变量名(函数名)都是优先在全局环境找，找不到的话就`search()`里面按顺序去每个环境找。
+所以要注意环境优先级以及变量名冲突，极端情况如下：
+
+
+```r
+1+1
+```
+
+```
+## [1] 2
+```
+
+```r
+#定义了`+`,或者新导入的包包含一个`+`的函数名，覆盖了base的加法
+`+`=`-`
+1+1
+```
+
+```
+## [1] 0
+```
+
+常使用`pkg::func`的形式调用函数是个好习惯，可以防止不同包的同名函数冲突。
+
+---
+# Debug
+
+2&amp;#46; 断点，`traceback()`，`debug()`， `browser()`
+
+反向追踪(traceback)将错误定位到某一函数调用。
+
+可以用`debug(func)`命令对函数func开启跟踪运行。
+
+用`undebug(func)`取消对func的这种操作。
+
+[例子](test.Rmd)
+
+---
+
+# Debug
+
+3&amp;#46; 我要debug的函数在哪？
+
+一般来说我们可以找到报错的代码行以及具体的函数，便可以使用`debug()`。
+
+但有时候会发现一些函数无法被正确定位，具体代码也只能看到`UseMethod()`：其实是我们碰到了**泛型函数**。下面同样一个`summary`函数，为啥对women和fit做出了完全不同的处理？
+
+
+```r
+summary(women)
+fit &lt;- lm(weight ~ height, data=women)
+summary(fit)
+```
+
+
+
+
+```r
+class(women); class(fit)
+```
+
+```
+## [1] "data.frame"
+```
+
+```
+## [1] "lm"
+```
+原来他们是不同的类（class），泛型函数会更具对象的类选择运行什么样的代码（即见人说人话，见鬼说鬼话）：
+调用`func.class()`函数，上述就是分别调用了`summary.data.frame()`，`summary.lm()`。`print`和`plot`也是非常常见的泛型函数。
+
+---
+
+# Debug
+
+3&amp;#46; 我要debug的函数在哪？
+
+或者我们可能发现某些报错函数not found（但我们又确定有这样一个函数）：
+其实是我们碰到了**非导出函数**（R包开发者不想用户看到所有的函数，只把有用的导出）。
+
+
+```r
+library(reshape2)
+class(mtcars)
+#melt是泛型函数，那应该调用melt.data.frame
+melt.data.frame(mtcars,id.vars = "cyl")
+## Error in melt.data.frame(mtcars, id.vars = "cyl") : 
+##  could not find function "melt.data.frame"
+```
+找到这些函数的方法也很简单（毕竟R包需要都开源）：`pkg:::func`即可
+
+
+```r
+reshape2:::melt.data.frame(mtcars,id.vars = "cyl")
+```
+
+有时候我们通过debug可以发现一些有用的内部函数（比如从那种一步/很久完成XX分析的函数中找到我们需要的功能），
+这样我们便可以使用`pkg:::func`做想做的部分。
+
+---
+# 代码整理
+
+我们在做数据分析时会产生大量代码，做好整理非常重要。
+
+- 最开始，每一个独立的R脚本进行分析 （代码冗余度太高，后期很难快速看懂）
+
+- 学会编写函数，复制函数到不同的R脚本使用（n个地方的函数需要修改n次）
+
+- 将常用的函数放在一个R脚本下，要用的时候`source()`整个脚本（全局环境中出现大量函数名，可能还会引起冲突）
+
+- 将常用函数整理成R包，写好注释和帮助文档，方便调用和分享 （嘎嘎香)
+
+---
+class: left, middle
+
+## .gray-title[Lv1. Use R]
+## .gray-title[Lv2. R programming]
+## Lv3. R markdown (to everything)
+## .gray-title[Lv4. R package/shiny]
+.footnote[[*] 3,4部分非必需，但我觉得学习后便会有惊喜]
+
+---
+# R Markdown
+
+R Markdown是一种文本格式，用于创建具有代码、文本、图形和输出结果的可重复性报告。
+是“文学式编程”(literate programming, (Knuth 1984))思想的实践。
+
+它是在R语言环境中开发的，也可以与其他编程语言（如Python，shell）结合使用。
+
+优点：
+
+-   可重复性：代码和结果都是可重复的，有助于确保研究结果的可靠性和透明度。
+
+-   效率：使用R Markdown在单个文件中组织和记录所有内容，节省时间和精力。
+
+-   灵活性：R Markdown支持多种格式和输出选项，根据需要自定义样式布局。
+
+总之，比word好用，比Latex好学😂
+
+Yihui Xie大佬的官方文档：[R Markdown: The Definitive Guide (bookdown.org)](https://bookdown.org/yihui/rmarkdown/)
+
+以及参考书：[R Markdown Cookbook (bookdown.org)](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+???
+进入Rstudio打开一个Rmd看看
+如果什么进阶功能都不用，光用来做个R脚本也不错，毕竟可以优美的查看表格，留存每一个代码块的图等等
+
+---
+# To Documents
+
+Rmd文档头部是YAML元数据，可指定各种输出参数
+
+1. [HTML](to_document/test.html)
+
+2. [PDF](to_document/test.pdf)
+
+3. Word
+
+优点：
+1. 公式，化学分子式非常好写
+
+2. 文献插入也不错（配合Zotero）
+
+2. 图表自动编号和引用、链接（我觉得比word好用点）
+
+3. 支持交互式图形（HTML）
+
+---
+
+# To Presentation
+
+R Markdown支持生成各种幻灯片文件（此幻灯片也是由Rmd生成的😂）
+
+1. PowerPoint
+
+    常用，易分享
+
+2. ioslide/Slidy
+
+    网页格式的幻灯片，支持交互
+
+3. Beamer
+
+    PDF幻灯片，模版众多，大学课堂热衷使用
+
+---
+
+# To Interactive Presentation 
+
+地图 (拜托，PPT可交互真的很酷)：
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a0d5ca16a5286d0d017b" style="width:504px;height:504px;"></div>
+<script type="application/json" data-for="htmlwidget-a0d5ca16a5286d0d017b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[30,120],4,[]]},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# To Research Papers
+
+`rticle`包，包含一套自定义 R Markdown 格式和模板，用于创作期刊文章和会议提交。
+
+例子：
+
+- [Frontiers](to_article/Test/Test.pdf)
+
+- [Bioinformatics](to_article/Bioinfo/Bioinfo.pdf)
+
+---
+# To Website
+
+Rmarkdown可以帮助我们搭建简易网站：
+
+- index.Rmd是主页内容， 可以在此处人工加入其它页面链接。
+
+- _site.yml是一个YAML文件， 其中包含站点的设定和输出设定。
+
+[例子](to_website/_site/index.html)：
+
+File -&gt; New Project -&gt; New directory -&gt; Simple R Markdown Website -&gt; 
+
+Create Project (click Open in new session) -&gt; Build -&gt; Build Website
+
+---
+
+# To Blog
+
+&lt;a href="https://bookdown.org/yihui/blogdown/"&gt;
+&lt;img src="images/blogdown.jpg" alt="Rshizhan" width="25%" style="float:right"&gt;&lt;/a&gt;
+
+R扩展包[blogdown](https://github.com/rstudio/blogdown)可以与Hugo软件配合制作简单的静态博客网站。 
+
+
+网站的所有文件都在一个目录中，只要上传到任意的网站服务器就可以发布，没有任何限制。
+
+我的博客：[Asa's blog](https://asa-blog.netlify.app/)
+
+参考书：[blogdown: Creating Websites with R Markdown (bookdown.org)](https://bookdown.org/yihui/blogdown/)
+
+---
+# To Book
+
+&lt;a href="https://bookdown.org/yihui/bookdown/"&gt;
+&lt;img src="images/bookdown.jpg" alt="Rshizhan" width="25%" style="float:right"&gt;&lt;/a&gt;
+
+R的[bookdown](https://github.com/rstudio/bookdown)扩展包 
+
+在bookdown的管理下：一本书的内容可以分解成多个Rmd文件， 其中可以有可执行的R代码， R代码生成的文字结果、表格、图形可以自动插入到生成的内容中， 表格和图形可以是浮动排版的。 输出格式主要支持gitbook格式的网页图书。
+
+我也稍微尝试写了一下：[MetaNet Tutorial](../../R/MetaNet_tutorial/_book/index.html)
+
+参考书：[bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+
+---
+class: left, middle
+
+## .gray-title[Lv1. Use R]
+## .gray-title[Lv2. R programming]
+## .gray-title[Lv3. R markdown (to everything)]
+## Lv4. R package/shiny
+
+---
+
+# 写R包
+&lt;a href="https://r-pkgs.org/"&gt;
+&lt;img src="images/rpackge.png" alt="RPackage" width="18%" style="float:right"&gt;&lt;/a&gt;
+
+包是可重现 R 代码的基本单元，包括可重用的 R 函数、描述如何使用它们的文档和示例数据。
+一个包将代码、数据、文档和测试捆绑在一起，并且很容易与他人共享。
+
+简单例子（需要下载`roxygen2`包）：
+
+File -&gt; New Project -&gt; New directory -&gt; R package -&gt; 
+
+Create Project (click Open in new session)-&gt; Package name -&gt; Build -&gt; Install
+
+&lt;img src="images/rfile.png" alt="RPackage file" width="50%" style="float:right"&gt;
+
+最简单的包只需要这些目录和文件即可，
+- [R]()目录下放在我们编写的R函数脚本
+- [man](https://r-pkgs.org/man.html)目录放着所有函数的帮助文档（`roxygenise()`函数生成，不要自己写）
+- [DECRIPTION](https://r-pkgs.org/description.html)定义了包的各种元数据，包名/版本/依赖包等等，非常重要
+- [NAMESPACE](https://r-pkgs.org/description.html)控制函数的可视性（`roxygenise()`函数生成，不要修改！）
+
+
+参考书：[R Packages (2e) (r-pkgs.org)](https://r-pkgs.org/)
+
+---
+
+# 写R包
+
+如果真的有意开发R包，建议走`devtools`的流程，要比前面的简单例子好用。
+
+
+```r
+library(devtools)
+#创建R包
+create_package("testpkg")
+#配置git用于版本控制
+use_git()
+#创建一个R脚本，开始写函数
+use_r("first")
+#生成man文件和NAMESPACE
+document("./")
+#使所有函数可用（没有install但R包已在内存）
+load_all("./")
+#检查R包语法，建议每次重要修改后运行一次，解决完所有的Error，Warning，Note再进一步修改，不要积累较多错误
+check("./")
+#打包为bundle包，.tar.gz
+build("./")
+#install我们写好的R包
+install("./")
+#定义一些测试例子
+use_testthat()
+```
+
+循环后面几步：function -&gt; document -&gt; load_all -&gt; check -&gt;install，直到功能完善，check无误。
+
+---
+
+# 写R包
+
+[写一个函数试试](testpkg/R/test.R)
+
+- 函数应该功能明确，不能使用`library`，而应该用pkg::func调用，并且这里的pkg一定要在DESCRIPTION中声明。
+- 函数不应该产生不良副作用，比如修改用户环境变量，谨慎使用`option`, `par`, `setwd`等函数。
+- 函数的头文件很重要，包含了帮助文档以及决定函数性质的参数：
+- 使用Shift+option+command+R可以帮助生成头文件
+.pull-left[
+&lt;table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 标签 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 描述 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @title &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 函数名 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @description &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 一行的函数描述 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @details &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 多行的函数描述(第一行之后要有缩进) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @param &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 函数参数 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @export &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 添加函数到NAMESPACE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @method generic class &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 泛型S3方法的文档 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @import importFrom &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 声明调用的函数或包 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+.pull-right[
+&lt;table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 标签 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 描述 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @return &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 函数返回的值 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @author &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 作者和联系地址 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @rdname &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 绑定到其他函数 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @examples &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 使用函数的例子 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @note &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 使用函数的注意事项 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @aliases &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 用户能够找到文档的额外的别名 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; @references &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 函数所涉及的方法的参考文档 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+# 写R包
+
+发布包:
+
+- [CRAN submission](https://xmpalantir.wu.ac.at/cransubmit/) 请仔细阅读[CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html)，然后必须让代码通过`R CMD check`再提交，不然会直接拒收。我们提交的包是bundle包，.tar.gz格式。过了机检后就会有“审包人”联系（一般是志愿者，我们应当态度好些），
+再积极沟通修改代码就好，最后通过审核一天就能在CRAN上看到了。
+
+- [BioConductor submission](https://www.bioconductor.org/) 用于生物信息学的开源软件专题库，上传前仔细阅读[Guidelines](https://contributions.bioconductor.org/submission-overview.html)，
+明确包的主题要跟生物有相关性（ Software, Experiment Data, Annotation and Workflow.），发布包的流程是[Github issues](https://github.com/Bioconductor/Contributions/issues)，
+审核过程全公开透明，你现在就能点进去看有哪些包正在提交。
+
+- [Github](https://github.com/) 这里就最自由了，你可以随意上传在自己的仓库，也可以邀请别人直接从github安装。
+ 
+---
+
+# 写R包
+
+我写的几个包，欢迎使用与批评指正：
+
+1.  [MetaNet](https://github.com/Asa12138/MetaNet), Network analysis for omics data, you can find the [MetaNet Tutorial](MetaNet_tutorial) here.
+
+2.  [pcutils](https://github.com/Asa12138/pcutils), which contains many useful tools or functions for statistics or visualization. I always use this package for productivity.
+
+3.  [pctax](https://github.com/Asa12138/pctax), which contains some helpful functions for microbiome analysis.
+
+4.  [ReporterScore](https://github.com/Asa12138/ReporterScore), it is ReporterScore Functional Enrichment Method for Microbiome.
+
+---
+# 制作Shiny APP
+
+&lt;a href="https://mastering-shiny.org/"&gt;
+&lt;img src="images/rshiny.png" alt="Rshizhan" width="20%" style="float:right"&gt;&lt;/a&gt;
+
+Shiny 是一个 R 包，可轻松地直接从 R 构建交互式 Web 应用程序。
+
+可以在网页上托管独立应用程序或将它们嵌入 R Markdown 文档。还可以使用 CSS 主题、html 小部件和 JavaScript 操作扩展Shiny 应用程序。
+
+[例子](test_shiny/app.R)：
+
+File -&gt; New Project -&gt; New directory -&gt; Shiny Application -&gt; 
+
+Create Project (click Open in new session) -&gt; Run App
+
+
+```r
+shiny::runApp("test_shiny/app.R")
+```
+
+官方教程：[Shiny Learning Resources](https://shiny.rstudio.com/tutorial/)
+
+参考书：[Mastering Shiny](https://mastering-shiny.org/)
+
+---
+# 制作Shiny APP
+
+我的实践：
+
+[**iphylo visual**](), which is developed in cooperation with Li Yueer.
+
+&lt;img src="images/iphylo.png" alt="Rshizhan" width="80%"&gt;
+
+---
+
+class: center, middle, inverse
+
+# 谢谢🙏
+
+本幻灯片使用 R 包 [**xaringan**](https://github.com/yihui/xaringan) 制作；
+
+--
+
+依赖于[remark.js](https://remarkjs.com)、[**knitr**](https://yihui.org/knitr)、以及 [R Markdown](https://R markdown.rstudio.com)。
+
+--
+
+参考资料：
+
+[李东风《R语言教程》](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/index.html)
+
+--
+
+以及文中提到的其他各种学习资料
+
+--
+
+感谢chatGPT老师
+
+--
+
+.
+
+--
+
+.
+
+--
+
+.
+
+--
+
+THE END
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "r",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

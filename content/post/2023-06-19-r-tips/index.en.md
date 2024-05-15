@@ -1,0 +1,29 @@
+---
+title: R进阶使用小技巧
+author: Peng Chen
+date: '2023-07-05'
+slug: r-tips
+categories:
+  - R
+tags:
+  - R
+  - 编程
+description: 一些R进阶使用的小技巧
+image: images/r-tips.png
+math: ~
+license: ~
+hidden: no
+comments: yes
+---
+
+分享一下R进阶使用的小技巧，相当于是之前写的[R语言学习](../r-learning)的实践和总结了。
+
+点击[Presentation](/R_tips_for_advanced_use_byAsa/R_tips.html)查看slide，或者点击[Download](/R_tips_for_advanced_use_byAsa/R_tips_for_advanced_use_byAsa.zip)下载slide和相关的各种test文件。
+关键词：
+- 基本使用
+- R包安装
+- R编程
+- Debug
+- Rmarkdown to everything
+- R包编写
+- Shiny

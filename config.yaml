@@ -1,0 +1,185 @@
+baseurl: /
+languageCode: en-us
+theme: "hugo-theme-stack"
+paginate: 5
+title: Asa's blog
+
+languages:
+    en:
+        languageName: English
+        title: Asa's blog
+        description: "bioinformatics, microbiology, R-programming..."
+        weight: 1
+    zh-cn:
+        languageName: 中文
+        title: 晨的小屋
+        description: "生物信息学、微生物学、R 编程……"
+        weight: 2
+
+ignoreFiles:
+  - \.Rmd$
+  - \.Rmarkdown$
+  - _cache$
+  - \.knit\.md$
+  - \.utf8\.md$
+  
+# Change it to your Disqus shortname before using
+disqusShortname: hugo-theme-stack
+
+# GA Tracking ID
+googleAnalytics:
+
+# Theme i18n support
+# Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
+DefaultContentLanguage: en
+
+# Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
+# This will make .Summary and .WordCount behave correctly for CJK languages.
+hasCJKLanguage: false
+
+permalinks:
+    post: /p/:slug/
+    page: /:slug/
+
+params:
+    mainSections:
+        - post
+    featuredImageField: image
+    rssFullContent: true
+    favicon: /favicon/favicon.ico  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+
+    footer:
+        since: 2022
+        customText: "Email: pengchen2001@zju.edu.cn"
+
+    dateFormat:
+        published: Jan 02, 2006
+        lastUpdated: Jan 02, 2006 15:04 MST
+
+    sidebar:
+        emoji: 🐛🐶
+        subtitle: work hard, live happily.
+        avatar:
+            enabled: true
+            local: true
+            src: img/guodong1.jpg
+
+    #开启latex功能
+    article:
+        math: true
+        toc: true
+        readingTime: true
+        license:
+            enabled: true
+            default: Licensed under CC BY-NC-SA 4.0
+
+    comments:
+        enabled: true
+        provider: utterances
+
+        utterances:
+            repo: Asa12138/pc_blog
+            issueTerm: pathname
+            label: none
+
+    widgets:
+        homepage:
+            - type: search
+            - type: archives
+              params:
+                  limit: 5
+            - type: categories
+              params:
+                  limit: 10
+            - type: tag-cloud
+              params:
+                  limit: 10
+        page:
+            - type: toc
+
+    opengraph:
+        twitter:
+            # Your Twitter username
+            site:
+
+            # Available values: summary, summary_large_image
+            card: summary_large_image
+
+    defaultImage:
+        opengraph:
+            enabled: true
+            local: false
+            src:
+
+    colorScheme:
+        # Display toggle
+        toggle: true
+
+        # Available values: auto, light, dark
+        default: auto
+
+    imageProcessing:
+        cover:
+            enabled: true
+        content:
+            enabled: true
+
+#整体布局
+### Custom menu
+### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
+### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
+menu:
+    main: []
+
+    social:
+        - identifier: 1github
+          name: GitHub
+          url: https://github.com/Asa12138
+          params:
+              icon: brand-github
+
+        - identifier: 2twitter
+          name: Twitter
+          url: https://twitter.com/Asa12138_
+          params:
+              icon: brand-twitter
+              
+        - identifier: 3bilibili
+          name: Bilibili
+          url: https://space.bilibili.com/142776729
+          params:
+              icon: bilibili
+              
+        - identifier: 4homepage
+          name: Homepage
+          url: https://asa12138.github.io/
+          params:
+              icon: website              
+related:
+    includeNewer: true
+    threshold: 60
+    toLower: false
+    indices:
+        - name: tags
+          weight: 100
+
+        - name: categories
+          weight: 200
+
+markup:
+    goldmark:
+        renderer:
+            ## Set to true if you have HTML content inside Markdown
+            unsafe: true
+    tableOfContents:
+        endLevel: 4
+        ordered: true
+        startLevel: 2
+    highlight:
+        noClasses: false
+        codeFences: true
+        guessSyntax: true
+        lineNoStart: 1
+        lineNos: true
+        lineNumbersInTable: true
+        tabWidth: 4

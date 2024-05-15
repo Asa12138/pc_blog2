@@ -1,0 +1,343 @@
+---
+title: R-statistics
+author: Peng Chen
+date: '2023-03-24'
+slug: r-statistics
+categories:
+  - R
+tags:
+  - statistics
+  - R
+description: R语言是一个专门用于数据分析和统计建模的编程语言，是做为做统计分析的理想选择。
+image: index.en_files/figure-html/unnamed-chunk-4-1.png
+math: ~
+license: ~
+hidden: no
+comments: yes
+bibliography: [../../bib/My Library.bib]
+link-citations: yes
+csl: ../../bib/science.csl
+---
+
+```{r include=FALSE}
+Packages <- c("dplyr","kableExtra","pctax","ggplot2")
+pcutils::lib_ps(Packages)
+knitr::opts_chunk$set(message = FALSE,warning = FALSE,cache = T,fig.width = 6)
+```
+
+## Introduction
+
+统计分析在生物信息学中具有非常重要的意义，因为生物信息学研究的数据量庞大、复杂性高，而统计分析可以帮助我们更好地理解和解释这些数据。下面是统计分析对生物信息学的几个重要意义：
+
+1.  数据清洗和预处理：生物信息学研究中经常需要处理大规模的数据，而这些数据可能存在噪声、错误和缺失值等问题。统计分析可以帮助我们对数据进行清洗和预处理，以确保数据的质量和可靠性。
+2.  数据可视化：统计分析可以帮助我们将复杂的数据转化为可视化图形，从而更好地理解数据的分布、关系和趋势。这些图形可以帮助我们发现隐藏在数据中的模式和规律。
+3.  数据分析：生物信息学研究中需要对大量的数据进行分析，例如比较基因组学、转录组学、蛋白质组学等。统计分析可以帮助我们对数据进行建模和预测，从而深入探究生物学的复杂现象和机制。
+4.  数据挖掘：生物信息学研究中需要挖掘大量的数据来发现新的生物学现象和机制。统计分析可以帮助我们从数据中提取出有用的信息和知识，进而推动生物学的研究和发展。
+
+R语言是一个专门用于数据分析和统计建模的编程语言，它有以下几个优点，使其成为做统计分析的理想选择：
+
+1.  免费和开源：R语言是一个免费和开源的软件，可以在不付出额外成本的情况下使用和定制。这使得许多学生、学者和数据分析师选择R语言作为他们的首选统计分析工具。
+
+2.  强大的数据处理能力：R语言具有强大的数据处理能力，支持多种数据结构和数据类型，可以轻松地进行数据清洗、整合、变换和分析。
+
+3.  丰富的统计分析函数库：R语言具有丰富的统计分析函数库，包括线性回归、逻辑回归、聚类分析、主成分分析、时间序列分析等等。这些函数库提供了许多常用的统计分析方法，可以满足不同数据分析需求。
+
+4.  图形可视化功能：R语言具有强大的图形可视化功能，可以轻松地创建各种类型的图表，包括散点图、条形图、折线图、热图等。这些图表可以帮助数据分析师更好地理解数据、发现规律和提取信息。
+
+5.  社区支持和生态系统：R语言拥有庞大的用户社区和生态系统，用户可以轻松地找到并使用数千种可用的统计分析工具和R包，这些工具和R包可以帮助用户更加高效地完成统计分析任务。
+
+我想在这里稍微记录一下我使用R常用的一些初等统计分析方法，如回归，方差分析，广义线性模型等，主要参考资料是[《R语言教程》](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/index.html) VII部分统计分析的内容。
+
+## Statistics
+
+### 基础用法
+
+#### 单样本均值检验
+
+```{r}
+?t.test()
+
+#install.packages("ggstatsplot",dependencies = T)
+library(ggstatsplot)
+#这个包会在画图的过程中计算很多统计量，帮我们更好地把握数据的性质
+#比如我们想看tooth length均值是否和25有显著差异
+t.test(ToothGrowth$len,mu = 25,alternative = "two.sided")
+
+gghistostats(
+  data            = ToothGrowth,
+  x               = len,
+  xlab            = "Tooth length",
+  test.value = 25
+)
+
+```
+
+检验的功效， 是指对立假设成立时检验拒绝$H_0$的概率$1-\beta$， 其中$\beta$是第二类错误， 即当对立假设成立时错误地接受$H_0$的概率。 需要足够大的样本量才能使得检验能够发现实际存在的显著差异。
+
+```{r}
+pwr::pwr.t.test(
+  type = "one.sample", 
+  alternative="greater",
+  d = (7.25 - 7.0)/1.052,
+  sig.level = 0.05,
+  power = 0.80 ) |>
+  plot()
+```
+
+#### 均值比较
+
+独立两样本t检验
+```{r}
+t.test(mpg~am,data = mtcars)
+ggbetweenstats(mtcars, am, mpg)
+```
+
+#### 比例检验
+```{r}
+#抽查400个样本100个异常，异常比例是否显著大于0.2
+prop.test(100, 400, p=0.20, alternative = "greater")
+#两次抽查的比例是否一致
+prop.test(c(35,27), c(250,300), alternative = "two.sided")
+```
+
+#### 方差的假设检验
+
+检查两组数据的方差有误显著差异？
+```{r}
+var.test(c(
+  20.5, 18.8, 19.8, 20.9, 21.5, 19.5, 21.0, 21.2), c(
+  17.7, 20.3, 20.0, 18.8, 19.0, 20.1, 20.2, 19.1),
+  alternative = "two.sided")
+```
+
+#### 拟合优度检验
+```{r}
+#6类face的count比例是否相等，卡方检验
+chisq.test(c(168, 159, 168, 180, 167, 158))
+ggpiestats(
+  data         = data.frame(face=1:6, 
+                 counts=c(168, 159, 168, 180, 167, 158)),
+  x            = face,
+  counts       = counts,
+  title        = "Dice equality"
+)
+
+#各类比例是否为指定值
+chisq.test(c(48, 98, 54), p=c(0.3, 0.5, 0.2))
+
+```
+#### 检验分布类型
+vcd包提供了一个goodfit函数， 可以用来拟合指定的某种理论分布(包括泊松、二项、负二项分布）， 并检验服从该理论分布的零假设。
+```{r}
+set.seed(101)
+datax <- rpois(100, 2)
+summary(vcd::goodfit(datax, "poisson"))
+```
+
+#### 独立性卡方检验
+```{r}
+ctab.beer <- rbind(c(
+  20, 40, 20),
+  c(30,30,10))
+colnames(ctab.beer) <- c("Light", "Regular", "Dark")
+rownames(ctab.beer) <- c("Male", "Female")
+addmargins(ctab.beer)
+#列联表独立性检验：
+chisq.test(ctab.beer)
+#在0.05水平下认为啤酒类型偏好与性别有关
+```
+
+#### 非参数检验
+常用的有独立两样本比较的Wilcoxon秩和检验， 单样本的符号秩检验和符号检验等
+
+```{r}
+x <- c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+y <- c(1.15, 0.88, 0.90, 0.74, 1.21)
+wilcox.test(x,mu = 0.7)
+wilcox.test(x, y, alternative = "g") 
+```
+
+### 回归分析
+#### 相关分析
+1. Pearson相关系数：
+$$
+\rho(X,Y)=\frac{E[(X-E(X))(Y-E(Y))]}{\sqrt{Var(X)Var(Y)}}
+$$
+
+相关系数绝对值在0.8以上认为高度相关。
+在0.5到0.8之间认为中度相关。
+在0.3到0.5之间认为低度相关。
+在0.3以下认为不相关或相关性很弱以至于没有实际价值。
+当然，在特别重要的问题中， 只要经过检验显著不等于零的相关都认为是有意义的。
+
+相关系数检验：
+
+检验统计量:
+$$
+t=\frac{r\sqrt{n-2}}{\sqrt{1-r^2}}
+$$
+p值为： $P(|t(n-2)|>|t_0|)$
+
+```{r}
+set.seed(1)
+x <- runif(30, 0, 10)
+xx <- seq(0, 10, length.out = 100)
+y <- 40 - (x-7)^2 + rnorm(30)
+yy <- 40 - (xx-7)^2
+plot(x, y, pch=16)
+lines(xx, yy)
+
+cor(x,y,method = "pearson")
+cor.test(x,y,method = "pearson")
+
+ggstatsplot::ggscatterstats(
+    data = data.frame(x,y),
+  x     = x,
+  y     = y
+)
+
+```
+相关性矩阵，`n*n`或`n*m`的$r$ 和$p-value$矩阵
+
+```{r}
+ggstatsplot::ggcorrmat(
+  data     = mtcars
+)
+
+pcutils::cor_plot(mtcars)
+
+corrplot::corrplot(cor(mtcars))
+
+ggcorrplot::ggcorrplot(cor(mtcars),method = "circle")
+```
+
+2. Spearman秩相关系数
+Spearman rho系数， 是两个变量的秩统计量的相关系数
+
+3. Kendall tau系数
+当变量正相关性很强时， 任意两个观测的X值的大小顺序应该与Y值的大小顺序相同； 如果独立， 一对观测的X值比较和Y值比较顺序相同与顺序相反的数目应该基本相同。Kandall tau系数也是取值于区间[-1,1]， 用这样的思想表示两个变量的相关性和正负。
+```{r}
+cor.test(x,y,method = "spearman")
+cor.test(x,y,method = "kendall")
+```
+#### 一元回归
+$$
+Y=a+bX+\varepsilon, \varepsilon \sim N(0,\sigma^2)
+$$
+
+最小二乘法
+$$
+\hat{b}=\frac{\sum_i(x_i-\overline{x})(y_i-\overline{y})}{\sum_i{(x-x_i)}^2}=r_{xy}\frac{S_y}{S_x}
+$$
+
+$$
+\hat{a}=\overline{y}-\hat{b}\overline{x}
+$$
+回归有效性可以用$R^2$和$p-valuie$来度量，
+
+$R^2=1-\frac{SSE}{SST}$
+
+统计量$F=\frac{SSR}{SSE/(n-2)}$,$p-value$为$P(F(1,n-2)>c)$,c为F的值。
+
+```{r}
+lm1 <- lm(y ~ x)
+summary(lm1)
+
+#prediction
+predict(lm1,newdata =data.frame(x=c(5,10,15)))
+
+pcutils::my_lm(y,x)
+```
+
+#### 多元回归
+
+```{r}
+lm2 <- lm(mpg ~ cyl + disp, data=mtcars)
+summary(lm2)
+
+ggstatsplot::ggcoefstats(lm2)
+
+#回归自变量筛选
+lm3 <- step(lm(mpg ~ cyl + disp+hp+drat+vs, data=mtcars))
+
+```
+
+多重共线性
+
+狭义的多重共线性（multicollinearity）： 自变量的数据存在线性组合近似地等于零， 使得解线性方程组求解回归系数时结果不稳定， 回归结果很差。
+
+广义的多重共线性： 自变量之间存在较强的相关性， 这样自变量是联动的， 互相之间有替代作用。 甚至于斜率项的正负号都因为这种替代作用而可能是错误的方向。
+
+```{r}
+#car包的vif()函数计算方差膨胀因子
+car::vif(lm3)
+```
+
+#### 非参数回归
+所谓参数回归， 是指回归函数有预先确定的公式， 仅需要估计的未知参数； 非参数回归， 就是没有预先确定的公式， 的形式本身也依赖于输入的样本, 。 下面描述的核回归就是这样典型的非参数回归， 样条平滑、样条函数回归一般也看作是非参数回归。
+```{r}
+#样条平滑
+set.seed(1)
+nsamp <- 30
+x <- runif(nsamp, -10, 10)
+xx <- seq(-10, 10, length.out=100)
+x <- sort(x)
+y <- 10*sin(x/10*pi)^2 + rnorm(nsamp,0,0.3)
+plot(x, y)
+curve(10*sin(x/10*pi)^2, -10, 10, add=TRUE, lwd=2)
+
+library(splines)
+res <- smooth.spline(x, y)
+lines(spline(res$x, res$y), col="red")
+res2 <- loess(y ~ x, degree=2, span=0.3)
+lines(xx, predict(res2, newdata=data.frame(x=xx)), 
+      col="blue")
+legend("top", lwd=c(2,1,1), 
+       col=c("black", "red", "blue"),
+       legend=c("real data", "smooth.spline", "local lm"))
+
+## 线性可加模型
+## R扩展包mgcv的gam()函数可以执行这样的可加模型的非参数回归拟合。
+lm.rock <- lm(log(perm) ~ area + peri + shape, data=rock)
+summary(lm.rock)
+gam.rock1 <- mgcv::gam(log(perm) ~ s(area) + s(peri) + s(shape), data=rock)
+summary(gam.rock1)
+plot(gam.rock1)
+```
+
+
+### 方差分析
+
+单因素方差分析可以看成基础统计中两样本t检验的一个推广， 要比较试验观测值的某个因变量（称为“指标”）按照一个分组变量（称为“因素”）分组后， 各组的因变量均值有无显著差异。
+```{r}
+mtcars$cyl=as.factor(mtcars$cyl)
+aov.manu <- aov(mpg ~ cyl, data=mtcars)
+summary(aov.manu)
+pcutils::group_box(mtcars["mpg"],group = "cyl",metadata = mtcars)
+
+#非参数形式
+kruskal.test(mpg ~ cyl, data=mtcars)
+```
+进行多个假设检验（如均值比较）的操作称为*“多重比较”*（multiple comparison， 或multiple testing）， 多次检验会使得总第一类错误概率增大。 
+```{r}
+pcutils::multitest(mtcars$mpg,mtcars$cyl)
+```
+
+### 广义线性模型
+
+#### 泊松回归
+
+```{r}
+counts <- c(18,17,15,20,10,20,25,13,12)
+outcome <- gl(3,1,9)
+treatment <- gl(3,3)
+D93=data.frame(treatment, outcome, counts) ## showing data
+
+ggplot(data = D93, mapping = aes(x = counts)) +geom_bar()
+
+glm.D93 <- glm(counts ~ outcome + treatment,data = D93, family = poisson())
+summary(glm.D93)
+
+```
+#### 逻辑斯谛回归
+....

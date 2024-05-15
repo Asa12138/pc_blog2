@@ -1,0 +1,238 @@
+---
+title: "使用ReporterScore包进行富集分析"
+author: "Peng Chen"
+date: "2023-07-04"
+categories:
+- R
+- metagenomic
+tags:
+- R
+- package
+- 功能基因
+description: Reporter Score是一种改进微生物富集分析的新方法，这里我们分享一下使用ReporterScore包进行富集分析的具体方法。
+image: "index.en_files/figure-html/unnamed-chunk-7-1.png"
+math: yes
+license: null
+hidden: no
+comments: yes
+bibliography: ../../bib/My Library.bib
+link-citations: yes
+csl: ../../bib/science.csl
+slug: "reporterscore-package"
+---
+
+```{r include=FALSE}
+Packages <- c("dplyr","kableExtra","ggplot2","ReporterScore")
+pcutils::lib_ps(Packages)
+knitr::opts_chunk$set(message = FALSE,warning = FALSE,eval = T,cache = T)
+```
+
+## Introduction
+
+上次已经在[一篇推文](../reporter-score)中介绍过了微生物组分析常用的功能富集分析方法以及reporter score方法的原理，并且也介绍了我开发的R包`ReporterScore`。
+
+但时那个时候R包写的还比较粗糙，功能也不多，最近进一步优化了这个包的各种功能，支持两种模式，多种统计检验方法，支持两组甚至更多组的实验设计（这个挺好用的），KEGG数据库的同步做的也比较好了，还增加了一些可视化形式。
+
+以下是我给这个R包github主页（<https://github.com/Asa12138/ReporterScore>）下写的介绍和用法，这里简单翻译一下贴过来了。但其实里面还有不少功能没在下面写出，可以在R包里探索一下，哈哈。
+
+
+## Citation
+
+这个包暂时还没有在刊物上发表，要在出版物中引用 `ReporterScore`，请使用：
+
+Chen Peng, Chao Jiang. ReporterScore: an R package for Reporter Score-based Microbial Enrichment Analysis. R package (2023), <https://github.com/Asa12138/ReporterScore>
+
+🤗也欢迎在GitHub上点个star⭐️
+
+## Install
+
+```{r eval=FALSE}
+if(!require("devtools"))install.packages("devtools")
+devtools::install_github('Asa12138/pcutils',dependencies=T)
+devtools::install_github('Asa12138/ReporterScore',dependencies=T)
+library(ReporterScore)
+```
+
+## Usage
+
+### 1. Inputdata (KO abundance table and metadata)
+
+通常，我们可以使用[KEGG数据库](https://www.kegg.jp/kegg/)来注释我们的微生物组测序数据，特别是环境微生物组，因为KEGG相对来说更全面（当然大部分还是unknown）。
+
+具体方法包括直接使用blast对KEGG序列数据库进行比对，使用KEGG官方mapper软件，使用[EggNOG数据库](http://eggnog5.embl.de/#/app/home)并将结果转化为KEGG注释。
+
+这样我们就可以得到一个KO丰度表（行是KO，列是样本）用于我们的富集分析：
+
+```{r}
+data("KO_abundance_test")
+head(KO_abundance[,1:6])
+```
+
+还需要提供实验设计的元数据metadata（行是样本，列是组）。
+
+```{r}
+head(metadata)
+```
+
+### 2. Pathway database
+
+`ReporterScore`内置了KEGG 通路和模块数据库（2023-08 版）用于KO 丰度表分析。
+
+你可以使用 `load_KOlist()` 查看并使用 `update_KO_file()` 更新这些数据库（通过 KEGG API），因为使用最新的数据库非常重要。
+
+或者你可以使用`custom_modulelist()`自定义你自己的通路数据库（感兴趣的基因集）。
+
+```{r eval=FALSE}
+load_KOlist()
+head(KOlist$pathway)
+```
+
+### 3. One step enrichment
+
+使用函数`reporter_score`可以一步得到reporter score结果。
+
+有一些重要的参数可供调节：
+
+-   **mode**: "mixed" 或 "directed"（仅适用于两组差异分析或多组相关分析），详细信息参见`pvalue2zs`。
+-   **方法**：统计检验类型。 默认为"wilcox.test"：
+    -   `t.test` （参数）和 `wilcox.test` （非参数）。 对两组样品进行比较。 如果分组变量包含两个以上水平，则执行成对比较。                 -   `anova`（参数）和 `kruskal.test`（非参数）。 执行比较多个组的单向方差分析测试。
+    -   "pearson"、"kendall"或"spearman"（相关分析），请参见`cor`。
+-   **p.adjust.method**：用于测试结果的p.adjust.method，参见`p.adjust`。
+-   **type**/**modulelist**：选择通路数据库，默认数据库为"pathway"或"module"，或使用自定义的模块列表。
+
+group作为因子变量，第一个水平将被设置为**对照组**，你可以更改因子水平来改变你的比较。
+
+例如，我们想要比较两组"WT-OE"，并使用"directed"模式，因为我们只想知道 **OE 组** 中哪些通路被富集或耗尽：
+
+```{r eval=TRUE,collapse=TRUE}
+cat("Comparison: ",levels(factor(metadata$Group)))
+
+reporter_score_res=reporter_score(KO_abundance,"Group",metadata,mode="directed")
+```
+
+结果是一个"reporter_score"对象：
+
+| elements     | description                        |
+|--------------|------------------------------------|
+| `kodf`       | 你的输入 KO_abundance 表           |
+| `ko_pvalue`  | ko 统计结果包含 p.value            |
+| `ko_stat`    | ko统计结果包含p.value和z_score     |
+| `reporter_s` | 在每个途径中的reporter score       |
+| `modulelist` | 默认 KOlist 或自定义模块列表数据框 |
+| `group`      | 你的数据中的比较组                 |
+| `metadata`   | 示例信息数据框包含组               |
+
+### 4. Visualization
+
+绘制最显著富集的通路：
+
+```{r fig.height=7,fig.width=10}
+#View(reporter_score_res$reporter_s)
+plot_report(reporter_score_res,rs_threshold = c(-2,2))
+```
+
+当我们聚焦于一条通路时，例如 “map00780”：
+
+```{r}
+plot_KOs_in_pathway(reporter_score_res,map_id = "map00780")
+```
+
+或者显示为网络：
+
+```{r}
+plot_KOs_network(reporter_score_res,map_id = "map00780",main="")
+```
+
+我们也可以查看通路中每个 KO 的丰度：
+
+```{r fig.height=7,fig.width=8}
+plot_KOs_box(reporter_score_res,map_id = "map00780",only_sig = TRUE)
+```
+
+或者热图形式呈现：
+
+```{r }
+plot_KOs_heatmap(reporter_score_res,map_id = "map00780",only_sig = TRUE,heatmap_param = list(cutree_rows=2))
+```
+
+### example for "mixed"
+
+如果我们的实验设计超过两组，我们可以选择多组比较和“mixed”模式：
+
+```{r collapse=TRUE}
+cat("Comparison: ",levels(factor(metadata$Group2)))
+
+reporter_score_res2=reporter_score(KO_abundance,"Group2",metadata,mode="mixed",
+      method = "kruskal.test",p.adjust.method1 = "none")
+
+plot_KOs_in_pathway(reporter_score_res2,map_id = "map00541")
+```
+
+
+## Details
+
+### Step by step
+
+一步函数 `reporter_score` 由三部分组成：
+
+1. `ko.test`：此函数有助于通过各种内置方法计算 KO_abundance 的 *p-value*，例如差异分析（t.test、wilcox.test、kruskal.test、anova）或相关分析（pearson 、spearman、kendall）。 **你还可以通过其他方法计算 KO_abundance 的 p-value**，例如“DESeq2”、“Edger”、“Limma”、“ALDEX”、“ANCOM”，并自行进行 p值矫正，然后跳过` ko.test` 步骤转到步骤2...
+2. `pvalue2zs`：该函数将 KO 的 p-value 转换为 Z-score（选择模式: “mixed” 或 “directed”）。
+3. `get_reporter_score` 该函数计算特定数据库中每个通路的reporter score。 你可以在此处使用自定义数据库。
+
+这样你就可以一步一步得到reporter score。
+
+### Other enrichment methods
+
+`ReporterScore` 还提供了其他丰富方法，如 `KO_fisher`(fisher.test)、`KO_enrich`(fisher.test, from `clusterProfiler`)、`KO_gsea` (GSEA, from `clusterProfiler`)，输入数据来自 `reporter_score `，并且也支持自定义数据库，因此你可以轻松比较各种富集方法的结果并进行全面分析：
+
+```{r message=FALSE}
+data("KO_abundance_test")
+reporter_score_res2=reporter_score(KO_abundance,"Group",metadata,mode="mixed")
+#View(reporter_score_res2$reporter_s)
+#reporter_score
+reporter_score_res2$reporter_s$p.adjust=p.adjust(reporter_score_res2$reporter_s$p.value,"BH")
+filter(reporter_score_res2$reporter_s,(ReporterScore)>1.64,p.adjust<0.05)%>%pull(ID)->RS
+#fisher
+ko_pvalue=reporter_score_res2$ko_pvalue
+fisher_res=KO_fisher(ko_pvalue)
+filter(fisher_res,p.adjust<0.05)%>%pull(ID)->Fisher
+#enricher
+enrich_res=KO_enrich(ko_pvalue)
+filter(enrich_res,p.adjust<0.05)%>%pull(ID)->clusterProfiler
+#GESA
+set.seed(1234)
+gsea_res=KO_gsea(ko_pvalue)
+filter(gsea_res@result,p.adjust<0.05)%>%pull(ID)->GSEA
+
+venn_res=list(RS=RS,Fisher=Fisher,CP=clusterProfiler,GSEA=GSEA)
+library(pcutils)
+venn(venn_res)
+venn(venn_res,"network",vertex.label.cex=c(rep(1,4),rep(0.5,22)))
+```
+
+### KO levels
+
+[KEGG BRITE](https://www.genome.jp/kegg/brite.html) 是一个层次分类系统的集合，捕获各种生物对象的功能层次结构，特别是那些表示为 KEGG 对象的功能层次结构。
+
+我们收集了 k00001 KEGG Orthology (KO) 表，以便你可以总结每个级别的丰度。 使用 `load_KO_htable` 获取 KO_htable 并使用 `update_KO_htable` 进行更新。 使用 `up_level_KO` 可以升级到“pathway”、“module”、“level1”、“level2”、“level3”、“module1”、“module2”、“module3”之一中的特定级别。
+
+```{r fig.height=7,fig.width=10}
+load_KO_htable()
+head(KO_htable)
+plot_KO_htable()
+```
+
+```{r collapse=TRUE}
+KO_level1=up_level_KO(KO_abundance,level = "level1",show_name = TRUE)
+pcutils::stackplot(KO_level1[-which(rownames(KO_level1)=="Unknown"),])
+```
+
+## Reference
+
+1.  Patil, K. R.
+    & Nielsen, J. Uncovering transcriptional regulation of metabolism by using metabolic network topology.
+    Proc Natl Acad Sci U S A 102, 2685--2689 (2005).
+
+2.  L. Liu, R. Zhu, D. Wu, Misuse of reporter score in microbial enrichment analysis. iMeta. 2, e95 (2023).
+
+3.  <https://github.com/wangpeng407/ReporterScore>

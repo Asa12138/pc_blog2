@@ -1,0 +1,727 @@
+---
+title: "Asa's R packages 📦"
+subtitle: "for bioinformatics and data analysis"
+author: "Chen Peng"
+institute: "ZJU LSI Jianglab"
+date: "2024/4/19"
+email: "pengchen2001@zju.edu.cn"
+format: 
+  revealjs:
+    theme: [custom.scss]
+    logo: images/R.jpg
+    footer: <https://github.com/Asa12138>
+    slide-number: true
+    preview-links: auto
+    css: extra.css
+editor: source
+knitr:
+  opts_chunk:
+    echo: TRUE
+    cache: TRUE
+mermaid: 
+  theme: forest
+---
+
+## My R packges
+
+![R Badge](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=fff&style=flat)
+![RStudio Badge](https://img.shields.io/badge/RStudio-75AADB?logo=rstudio&logoColor=fff&style=flat)
+&emsp;
+<a href="https://asa12138.github.io/"><img src="https://img.shields.io/badge/Website-个人网页-78C2AD" /></a>
+    <a href="https://asa-blog.netlify.app/"><img src="https://img.shields.io/badge/Blog-博客-F1805D" /></a>
+    <a href="https://asa12138.github.io/wp.html"><img src="https://img.shields.io/badge/WeChat-微信-07c160" /></a>
+    <a href="https://space.bilibili.com/142776729/"><img src="https://img.shields.io/badge/Bilibili-B站-ff69b4" /></a>
+    <a href="https://blog.csdn.net/Asa12138/"><img src="https://img.shields.io/badge/CSDN-论坛-c32136" /></a>
+    <a href="https://www.jianshu.com/u/d62b7298b117"><img src="https://img.shields.io/badge/Jianshu-简书-ee705b" /></a>
+
+My favorite programming language is R, I have developed some R packages:
+
+<img align="right" width="40%" src="images/images.gif" />
+
+- [pcutils](https://github.com/Asa12138/pcutils)
+- [pctax](https://github.com/Asa12138/pctax)
+- [MetaNet](https://github.com/Asa12138/MetaNet)
+- [ReporterScore](https://github.com/Asa12138/ReporterScore)
+- [iCRISPR](https://github.com/Asa12138/iCRISPR)
+- [plot4fun](https://github.com/Asa12138/plot4fun)
+
+::: {.notes}
+Hello, everyone. Today I want to share some of my R packages for bioinformatics and data analysis. 
+
+My favorite programming language is R, and I have developed some R packages.
+By now, I have six R packages, and 5 of them are available on CRAN.
+:::
+
+## [pcutils](https://asa12138.github.io/pcutils/){preview-link="true"} <img src="https://asa12138.github.io/pcutils/reference/figures/pcutils.png" align="right" width="100" /> {.scrollable} 
+
+It contains many useful functions for statistics and visualization.
+
+. . .
+
+![](https://asa12138.github.io/pcutils/reference/figures/pcutils1.png){width=80%}
+
+. . .
+
+Go down 👇
+
+![](https://asa12138.github.io/pcutils/reference/figures/pcutils2.png){width=80%}
+
+::: {.notes}
+The first R package I developed is pcutils, which contains many useful functions for statistics and visualization. I almost use it in every project.
+And I built a simple website for my packages (click the title, wait a moment), you can find the documentation and examples here. 
+(右下角) And here is the development status of pcutils. You can see the R-CMD-check results, the download statistics, and the CRAN status.
+(Other packages) The other packages also linked on this website.
+:::
+
+## [pctax](https://asa12138.github.io/pctax/) <img src="https://asa12138.github.io/pctax/reference/figures/pctax.png" align="right" width="100" />
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- It contains a basic pipeline for omics analysis.
+- See the [pctax Tutorial](https://bookdown.org/Asa12138/pctax_book/)
+
+[![](https://bookdown.org/Asa12138/pctax_book/cover2.png){width=70%}](https://bookdown.org/Asa12138/pctax_book/)
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+![](images/pctax.png)
+:::
+
+:::
+
+::::
+
+::: {.notes}
+Then comes the pctax package, which contains a basic pipeline for omics analysis, especially for metagenomics data.
+I have written a bookdown tutorial for this package.
+The pctax can do many analysis tasks, such as diversity analysis, differential abundance analysis, community assembly analysis, functional enrichment analysis, network analysis, and elemental cycling analysis.
+:::
+
+## pctax features {.scrollable}
+
+```{r}
+#| include: false
+#| cache: false
+devtools::load_all("~/Documents/R/pctax/pctax/")
+library(ggplot2)
+data("otutab", package = "pcutils")
+```
+
+::: {.panel-tabset}
+
+### Metagenomic workflow
+
+<img src="images/micro_sbatch.png" align="right" width="700" />
+
+Built-in steps in the `micro_sbatch()`: 
+
+- fastp
+- rm_human
+- kraken2
+- megahit
+- prodigal
+- cluster
+- salmon-quant
+- eggnog
+- cazy
+- rgi
+- vfdb
+- ...
+
+### Rtaxonkit
+
+[Taxonkit](https://github.com/shenwei356/taxonkit) is a Practical and Efficient NCBI Taxonomy Toolkit.
+
+You can use `Taxonkit` in R by `pctax` interface as followed:
+
+```{r}
+#| eval: false
+?taxonkit_lineage
+
+# taxonkit_list
+# taxonkit_reformat
+# taxonkit_name2taxid
+# taxonkit_filter
+# taxonkit_lca
+```
+
+<br>
+
+```{r}
+name_or_id2df(c("562","9606"),mode = "id")
+```
+
+### Phylogenetic tree
+
+```{r}
+#| fig-width: 13
+#| fig-height: 10
+#| out-width: "70%"
+ann_tree(taxonomy, otutab) -> tree
+easy_tree(tree, add_tiplab = FALSE) -> p
+some_tax <- c("p__Proteobacteria","p__Actinobacteria","p__Firmicutes",
+              "p__Bacteroidetes","p__Acidobacteria")
+add_strip(p, some_tax)
+```
+
+### Diversity analysis
+
+::: {style="font-size: 0.8em"}
+**[Unified input and output format of one type of analysis for convenient downstream]{.red}**
+
+- α-diversity
+  - Richness, Shannon, Simpson, Chao1, ACE, PD, Pielou, ...
+- β-diversity
+  - Distance: Bray-Curtis, Jaccard, Unifrac, Beta MPD, Phylosor, ...
+  - Ordination: PCA, PCoA, NMDS, PLS-DA, t-SNE, UMAP, LDA, RDA, CCA, db-RDA, ...
+  - PERMANOVA: adonis, anosim, mrpp, mantel, envfit, ...
+- ζ-diversity
+:::
+
+![](https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-rda-1.png){width=30%}
+![](https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-mantel-1.png){width=30%}
+![](https://bookdown.org/Asa12138/pctax_book/04-diversity_files/figure-html/fig-z-diversity-1.png){width=30%}
+
+:::
+
+::: {.notes}
+Most of my projects are metagenome-related, so pctax includes a workflow of upstream analysis processes that I commonly use, including quality control, remove-host, species classification, functional annotation, etc. Using the micro_sbatch function, we can get these common scripts.
+
+We know the Taxonkit is a Practical and Efficient NCBI Taxonomy Toolkit.
+pctax also includes an interface for easy use of taxonkit in R. 
+For example, this function can be used to query the classification information using the taxonomy id.
+
+With a table of classification, pctax can convert it into a tree object. Here is a simple example of a taxonomy tree.
+
+pctax also contains some general analysis methods for various types of omics. When developing these parts, I tried to maintain a unified input and output format to facilitate subsequent analysis.
+Such as diversity analysis, including α, β, ζ diversity.
+:::
+
+
+## pctax features {.scrollable}
+
+::: {.panel-tabset}
+
+### Differential abundance analysis
+
+<img src="https://bookdown.org/Asa12138/pctax_book/05-differential_files/figure-html/fig-lefse-2.png" align="right" width="700" />
+
+- t.test
+- wilcox.test
+- DESeq2
+- edgeR
+- limma
+- randomForest
+- LEfSe
+- ...
+
+
+### Community assembly
+
+<img src="https://bookdown.org/Asa12138/pctax_book/07-community_files/figure-html/fig-ncm-1.png" align="right" width="500" />
+
+- Solan NCM
+- Stegen (βNTI & RCbray-based)
+- ST, NST, MST (stochasticity ratio)
+
+
+### Elemental cycling
+
+The `pctax` package includes some built-in cycling pathways, which enables users to conveniently visualize all genes or KO (KEGG Orthology) involved in these pathways.
+
+![](https://bookdown.org/Asa12138/pctax_book/10-element-cycle_files/figure-html/fig-N-cycle-1.png){width=80%}
+
+:::
+
+:::{.notes}
+There is also differential abundance analysis, which includes a variety of methods, such as T.EST, wilcox.test, DESeq2, edgeR, limma, randomForest, LEfSe, etc.
+
+Community assembly analysis included Solan NCM, Stegen (βNTI & RCbray-based), ST, NST, MST (stochasticity ratio), etc.
+
+pctax includes some built-in cycle pathways that allow users to visualize all genes or KO (KEGG Orthology) involved in these pathways.
+:::
+
+
+## [MetaNet](https://asa12138.github.io/MetaNet/) <img src="https://asa12138.github.io/MetaNet/reference/figures/MetaNet.png" align="right" width="100" />
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- It is a comprehensive network analysis package for omics data.
+- See the [MetaNet Tutorial](https://bookdown.org/Asa12138/metanet_book/)
+
+[![](https://bookdown.org/Asa12138/metanet_book/cover1.png){width="250"}](https://bookdown.org/Asa12138/metanet_book/)
+
+:::
+
+::: {.column width="45%"}
+
+::: {.fragment .fade-in-then-semi-out}
+![](https://bookdown.org/Asa12138/metanet_book/images/1.metanet.svg){.absolute top="50" right="60" width="500"}
+:::
+
+::: {.fragment .fade-in}
+![](images/metanet_func.png){.absolute top="150" right="40" width="550"}
+:::
+
+:::
+
+::::
+
+::: footer
+[video of MetaNet](https://www.bilibili.com/video/BV1R84y1Q7Um/)
+:::
+
+::: {.notes}
+MetaNet is a comprehensive network analysis package for omics data.
+I also wrote a detailed bookdown tutorial for it. And here is the overall development framework of MetaNet, including data processing, network construction, network analysis, network visualization and other functions.
+:::
+
+## MetaNet features
+
+- [x] Support for integrated analysis for multi-omics data
+
+::: {.panel-tabset}
+
+### Example code
+
+```{r}
+#| include: false
+devtools::load_all("~/Documents/R/MetaNet/MetaNet/")
+```
+
+
+```{r}
+#| eval: false
+library(MetaNet)
+multi_net_build(list(
+  Microbiome = micro,
+  Metabolome = metab,
+  Transcriptome = transc
+)) -> multi1
+# set vertex_class
+multi1_with_anno <- c_net_set(multi1, micro_g, metab_g, transc_g, 
+                              vertex_class = c("Phylum", "kingdom", "type"))
+# set vertex_size
+multi1_with_anno <- c_net_set(multi1_with_anno,
+  data.frame("Abundance1" = colSums(micro)),
+  data.frame("Abundance2" = colSums(metab)),
+  data.frame("Abundance3" = colSums(transc)),
+  vertex_size = paste0("Abundance", 1:3)
+)
+plot(multi1_with_anno)
+```
+
+### Output figure
+
+```{r}
+#| echo: false
+library(MetaNet)
+multi_net_build(list(
+  Microbiome = micro,
+  Metabolome = metab,
+  Transcriptome = transc
+)) -> multi1
+# set vertex_class
+multi1_with_anno <- c_net_set(multi1, micro_g, metab_g, transc_g, 
+                              vertex_class = c("Phylum", "kingdom", "type"))
+# set vertex_size
+multi1_with_anno <- c_net_set(multi1_with_anno,
+  data.frame("Abundance1" = colSums(micro)),
+  data.frame("Abundance2" = colSums(metab)),
+  data.frame("Abundance3" = colSums(transc)),
+  vertex_size = paste0("Abundance", 1:3)
+)
+plot(multi1_with_anno)
+```
+
+:::
+
+::: {.notes}
+MetaNet has some unique features. For example, it supports integrated analysis for multi-omics data. 
+Here is an example code for building a multi-omics network.
+:::
+
+## MetaNet features
+
+- [x] Calculate correlation network quickly, accelerate lots of analysis by parallel computing
+
+::: {.panel-tabset}
+
+### Time & Memory
+
+![](https://bookdown.org/Asa12138/metanet_book/images/2-1.time_memory.png)
+
+### Packages comparison
+
+![](https://bookdown.org/Asa12138/metanet_book/02-construction_files/figure-html/fig-2-packages-comparison-1.png){width=70%}
+
+:::
+
+::: {.notes}
+secondly, MetaNet can calculate correlation network quickly, accelerate lots of analysis by parallel computing.
+Time, memory consumption, and saved file size approximately increase linearly with the square of the number of features.
+The calculation speed of MetaNet is much faster than other R packages, especially when the number of features is large.
+:::
+
+## MetaNet features {.scrollable}
+
+- [x] Offer various layout algorithms for multi-omics network and interfaces to other software (Gephi, Cytoscape, ggplot2), easy to visualize
+
+::: {.panel-tabset}
+
+### Basic layout
+
+```{r}
+#| echo: false
+#| fig-width: 13
+#| fig-height: 10
+#| code-fold: true
+#| fig-cap: "Layout methods for c_net_layout()"
+go <- erdos.renyi.game(30, 0.25)
+# get a metanet
+go <- c_net_update(go)
+
+layout_methods <- list(
+  as_star(), as_tree(), in_circle(), nicely(),
+  on_grid(), on_sphere(), randomly(), with_dh(),
+  with_fr(), with_gem(), with_graphopt(), with_kk(),
+  with_lgl(), with_mds(), as_line(), as_arc(),
+  as_polygon(), as_polyarc(), as_polycircle(), as_circle_tree()
+)
+names(layout_methods) <- c(
+  "as_star ", "as_tree ", "in_circle ", "nicely ",
+  "on_grid ", "on_sphere ", "randomly ", "with_dh ",
+  "with_fr ", "with_gem ", "with_graphopt ", "with_kk ",
+  "with_lgl ", "with_mds", "as_line", "as_arc",
+  "as_polygon", "as_polyarc", "as_polycircle", "as_circle_tree"
+)
+
+par(mfrow = c(4, 5))
+for (i in names(layout_methods)) {
+  plot(go, layout_methods[[i]], legend = F, main = i, labels_num = 0)
+}
+```
+
+### as_polygon()
+
+![](https://bookdown.org/Asa12138/metanet_book/images/4-1.multiangle.gif){width=60%}
+
+### as_circle_tree()
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-df2net-1.png)
+
+### Group layout
+
+::: {layout-ncol=3}
+
+![](images/g_lay_1.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-1.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-2.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-3.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-4.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-5.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-6.png)
+
+![](https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-g_layout_nice-7.png)
+
+:::
+
+### Pie node
+
+```{r}
+#| fig-cap: "Plot a network with pie node"
+data("otutab")
+pie_value=hebing(otutab,metadata$Group)
+c_net_plot(multi1_with_anno,vertex.shape=c("Microbiome"="pie"),
+           pie_value = pie_value,vertex.label=NA,pie_legend = T,color_legend = F)
+```
+
+
+### ggplot2
+```{r}
+#| fig-cap: "Plot a network in ggplot2 style"
+as.ggig(multi1_with_anno) -> ggig
+plot(ggig)
+```
+
+### networkD3
+
+```{r}
+#| fig-cap: "Plot a network in NetworkD3 style"
+
+netD3plot(multi1_with_anno)
+```
+
+:::
+
+::: {.notes}
+Layout is an important part of network visualization, a good layout will present information clearly.
+MetaNet offers various basic layout algorithms.
+The as_polygon() is interesting: it can draw a network in a polygon shape, and you can change the edge numbers of the polygon.
+The as_circle_tree() can draw a network in a circle tree shape.
+
+Beside the basic layout, we provide an advanced layout method for a network with group variable (such as omics or modules). It is easy to use g_layout() to control each group position and layout of each group.
+
+And we can plot a network with pie node, which can show the composition of each node.
+
+If you are more familiar with ggplot2, use the function as.ggig() transfer the basic R plot to ggplot2 style.
+
+NetworkD3 can produce interactive network plot based on JavaScript
+:::
+
+## MetaNet features {.scrollable}
+
+- [x] Provide comprehensive topology indexes calculation，including ecological network stability
+
+::: {.panel-tabset}
+
+### Network indexes
+
+![](images/net_tp.png)
+
+### Node indexes
+
+![](images/node_tp.png)
+
+### Modules
+
+```{r}
+test_module_net <- module_net(module_number = 3, n_node_in_modu = 30)
+plot(test_module_net, mark_module = T)
+```
+
+### Keystone
+
+```{r}
+#| echo: false
+#| tbl-cap: "The topological role of individual node"
+library(kableExtra)
+tibble::tribble(
+  ~"", ~`Zi<2.5`, ~`Zi>2.5`,
+  "Pi<0.62", "peripherals", '<span style=\"     color: red !important;\" >module hubs</span>',
+  "Pi>0.62", '<span style=\"     color: red !important;\" >connectors</span>', '<span style=\"     color: red !important;\" >network hubs</span>'
+) %>%
+  kbl(., escape = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  kable_styling()
+```
+
+![](https://bookdown.org/Asa12138/metanet_book/05-topology_files/figure-html/fig-6-zp-plot2-1.png)
+
+### Stability
+
+<img src="https://bookdown.org/Asa12138/metanet_book/images/6-1.robust_res.png" align="right" width="600" />
+
+- Robust test
+- Robustness
+- Vulnerability
+- Cohesion
+- ...
+
+:::
+
+::: {.notes}
+MetaNet can calculate comprehensive topology indexes, including network indexes and node indexes.
+MetaNet can also do module analysis. And use Zi-Pi analysis to find keystone nodes in a network.
+The stability analysis includes robust test, robustness, vulnerability, cohesion, and so on.
+:::
+
+## [ReporterScore](https://github.com/Asa12138/ReporterScore) <img src="https://asa12138.github.io/ReporterScore/reference/figures/ReporterScore.png" align="right" width="100" />
+
+. . . 
+
+[![](images/grsa_cover.png){width=60%}](https://doi.org/10.1093/bib/bbae116)
+
+:::{.fragment .fade-in}
+![](images/BIB.png){width=100%}
+:::
+
+::: footer
+[introduction post of GRSA](https://asa-blog.netlify.app/p/grsa-bib/); [video of GRSA](https://www.bilibili.com/video/BV12j41157LR/)
+:::
+
+::: {.notes}
+I developed the improved ‘Generalized Reporter Score-based Analysis (GRSA)’ method, implemented in the R package 'ReporterScore', along with comprehensive visualization methods and pathway databases. 
+
+This work was published in Briefings in Bioinformatics recently. 
+
+Here is the graphical abstract: ‘GRSA’ is a threshold-free method that works well with all types of biomedical features, such as ko, genes, chemical compounds, and microbial species. Importantly, the ‘GRSA’ supports multi-group and longitudinal experimental designs.
+
+And you can find the detailed introduction in my blog and the video tutorial on Bilibili.
+:::
+
+## [iCRISPR](https://github.com/Asa12138/iCRISPR) <img src="https://github.com/Asa12138/iCRISPR/blob/main/man/figures/iCRISPR.png?raw=true" align="right" width="100" />
+
+```{mermaid}
+%%| eval: false
+%%| include: false
+flowchart LR
+
+    A["genome(s)"] -- CrisprCasFinder --> B[output_dir]
+    B -- iCRISPR --> C
+
+    subgraph crispr[crispr object]
+    direction LR
+    C([crispr]):::object --- C1[CRISPR]
+    C --- C2[Cas]
+    C --- C3[Array]
+    C --- C4[Spacer]
+    end
+
+    C1--> Statistics
+    C2--> Statistics
+    C3--> Structure
+    C4--> Source-\nTarget
+
+classDef object fill:#6EC3E0,stroke:#333,stroke-width:3px
+```
+
+CRISPR/Cas9 system analysis in genomics and metagenomics.
+
+. . .
+
+![](images/iCRISPR_ab.png){width=87%}
+
+::: {.notes}
+The iCRISPR package is an analysis tool for CRISPR/Cas9 system in genomics and metagenomics. In the beginning, I developed it for the CRISPR project of LiuZhen, it is not completed yet.
+We use the CripsrCasFinder to predict the CRISPR array in the genome, but its output is not easy to use. iCRISPR can help process the output and transform to a crispr object.
+The crispr object containg the information of CRISPR, Cas, Array, and Spacer. We can do statistics, structure analysis, and source-target analysis with it.
+:::
+
+## [plot4fun](https://github.com/Asa12138/plot4fun) <img src="https://asa12138.github.io/plot4fun/reference/figures/plot4fun.png" align="right" width="100" />
+
+It provides some interesting functions for plotting. 
+
+. . .
+
+How to bend your text? How to draw a DNA? How to handle the relationship between layers? How to make a LED display?
+
+
+```{r}
+#| include: false
+library(plot4fun)
+```
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
+::: {.fragment .fade-in}
+```{r}
+clock(rotate_text = T)
+```
+:::
+
+::: {.fragment .fade-in}
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+DNA_plot()
+```
+:::
+
+:::
+
+::: {.column width="30%"}
+
+::: {.fragment .fade-in}
+```{r}
+#| out-height: "440"
+#| out-width: "300"
+#| fig-width: 4
+#| fig-height: 7
+
+chunlian(words = 1)
+```
+:::
+
+:::
+
+::: {.column width="30%"}
+
+::: {.fragment .fade-in}
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+Olympic_rings()
+```
+:::
+
+::: {.fragment .fade-in}
+```{r}
+#| eval: false
+make_LED("一起来画图！")
+```
+
+![](https://github.com/Asa12138/plot4fun/raw/main/man/figures/README-unnamed-chunk-5-1.gif)
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+The last package is plot4fun, which provides many interesting functions for plotting.
+For example, how to bend your words? we can make a clock with the bendable text.
+And we can use the DNA_plot function to draw a DNA.
+We can use the chunlian function to draw a Chinese couplet.
+How to use ggplot to draw a standard Olympic rings as the Olympic rings is nested, we need to handle the relationship between layers to display the correct graphics.
+And here is a LED display, I used Image processing technology converts text into heatmaps and combines a GIF.
+
+::: 
+
+## [More Resources](https://asa12138.github.io/)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.fragment .fade-in}
+#### R tips for advanced use
+
+<br/>
+
+[![](images/R-tips.png)](https://asa-blog.netlify.app/r_tips_for_advanced_use_byasa/r_tips){preview-link="true"}
+:::
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+
+::: {.fragment .fade-in}
+
+#### Official account
+![](images/wp.png){width="300"}
+
+:::
+:::
+::::
+
+::: {.notes}
+I have introduced some R tips for advanced use in previous lab meeting, here is the slides.
+For more resources, you can visit my official account, where I share my R packages and other resources.
+::: 
+
+## 
+
+::: {style="text-align: center; margin-top: 4em; font-size: 2em"}
+### Thanks for your attention! 🙏
+:::
+
