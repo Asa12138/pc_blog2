@@ -235,7 +235,7 @@ for file_path in new_md_files:
 ## 解决方法
 
 调教了一下ChatGPT后，就得到了整个更新问题的方法了：
-首先整理一个[refresh_md_to_fit_stack.py](https://github.com/Asa12138/pc_blog/R/refresh_md_to_fit_stack.py)放在网站根目录下，
+首先整理一个[refresh_md_to_fit_stack.py](https://github.com/Asa12138/pc_blog2/R/refresh_md_to_fit_stack.py)放在网站根目录下，
 然后在R文件夹的（如果你是用Rblogdown生成的网站，那就会有这个文件夹）的build2.R中加入一行：
 
 `system("python refresh_md_to_fit_stack.py")`

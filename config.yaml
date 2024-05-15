@@ -78,7 +78,7 @@ params:
         provider: utterances
 
         utterances:
-            repo: Asa12138/pc_blog
+            repo: Asa12138/pc_blog2
             issueTerm: pathname
             label: none
 
