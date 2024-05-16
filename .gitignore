@@ -1,13 +1,18 @@
+# Common R files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+.Renviron
 *.Rproj
 .quarto
 .quarto/
 .DS_Store
 **/.DS_Store
 .DS_Store?
+*_cache/
+/cache/
+
 public/
 resources/
 paste_md_to_csdn_or_jianshu.R

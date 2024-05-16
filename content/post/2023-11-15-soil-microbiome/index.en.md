@@ -8,7 +8,7 @@ categories:
 tags:
   - soil
   - microbiome
-description: 本文综述了土壤微生物组与土壤性质之间的相互作用，以及这些相互作用对土壤生态系统的影响。
+description: 一些有关土壤微生物组的综述文章，帮助快速了解领域主要科学问题
 image: images/soil2.png
 math: ~
 license: ~
@@ -18,11 +18,13 @@ comments: yes
 
 ## Introduction
 
-土壤是地球上最重要的生态系统之一，其中包含着丰富的微生物群落。土壤微生物群落是土壤生态系统中的重要组成部分，对土壤的生物地球化学循环和生态系统功能具有重要影响。土壤微生物群落与土壤性质之间存在着复杂的相互作用，这些相互作用对土壤生态系统的稳定性和功能产生了重要影响。本文综述了土壤微生物组与土壤性质之间的相互作用，以及这些相互作用对土壤生态系统的影响。
+土壤是地球上最重要的生态系统之一，其中包含着丰富的微生物群落。土壤微生物群落是土壤生态系统中的重要组成部分，对土壤的生物地球化学循环和生态系统功能具有重要影响。土壤微生物群落与土壤性质之间存在着复杂的相互作用，这些相互作用对土壤生态系统的稳定性和功能产生了重要影响。
 
 ## The interplay between microbial communities and soil properties
 
-强调土壤微生物对土壤性质的影响的重要性
+1.  L. Philippot, C. Chenu, A. Kappler, M. C. Rillig, N. Fierer, The interplay between microbial communities and soil properties. Nat Rev Microbiol, 1–14 (2023).
+
+本文综述了土壤微生物组与土壤性质之间的相互作用，以及这些相互作用对土壤生态系统的影响。强调土壤微生物对土壤性质的影响的重要性。
 
 ### 土壤微生物与土壤性质的关系
 

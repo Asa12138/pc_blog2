@@ -5,6 +5,7 @@ date: '2023-11-30'
 slug: iphylo
 categories:
   - R
+  - utils
 tags:
   - phylogenetic tree
   - 可视化
@@ -27,6 +28,8 @@ editor_options:
 生信研究中，系统发育树的生成和可视化是我们经常会遇到的问题，（鉴于有有些工具要收费，有些工具使用麻烦），最近和全栈大佬LYE共同开发了一个用于分类树生成和可视化的在线网站iPhylo。不仅可以方便的生成物种树，还可以有化学树和自定义层级树，得到的树也可以无缝衔接到可视化部分，用起来还是非常流畅的，并且全部免费。
 
 iPhylo网址：<https://iphylo.net>
+
+iPhylo全面教程：<https://asa12138.github.io/iPhylo_tutorial/>
 
 <img src="images/iphylo_main.png" title=""/>
 
@@ -74,11 +77,21 @@ iPhylo Visual通过采用与数据框兼容的格式简化了对分类树进行�
 
 iPhylo Visual利用ggtree和ggtreeExtra的全部图形功能来可视化、操作和注释树状结构数据。之前也介绍过直接用R代码绘图的内容：R绘制系统发育树的[基本用法](../r-tree),[进阶使用](../r-tree2)，整体使用逻辑类似，就是在线网站可能对于不熟悉代码的人来说更方便一些。
 
-iPhylo Visual提供了“Basic feature”、“Leaf annotation”、“Node annotation”和“Legend”标签以进行注释控制。其中，“Basic feature”标签提供了各种布局选项，用于树的基本布局，表示树结构的简单形状。用户可以从circular, inward circular, daylight (an unrooted tree layout), rectangular, slanted, ellipse, roundrect中选择布局（附图2）。用户可以在注释过程中在这些布局之间切换，注释的特征会自动适应新布局。此外，用户可以通过滑块和调色板方便地定制树枝粗细、颜色、角度等特征。 “Leaf Annotation”标签管理与树叶相关的注释track，包括tree leaves, encompassing bars, tiles, boxes, violins, tip points, and tip labels。 “Node Annotation”标签处理与内部节点和分支相关的注释track，包括strips, clade branch colors, clade backgrounds, and node labels。此外，“Legend”标签允许用户调整画布大小和每个注释层的图例。
+iPhylo Visual提供了“Basic feature”、“Leaf annotation”、“Node annotation”和“Legend”标签以进行注释控制。
+
+其中，“Basic feature”标签提供了各种布局选项，用于树的基本布局，表示树结构的简单形状。用户可以从circular, inward circular, daylight (an unrooted tree layout), rectangular, slanted, ellipse, roundrect中选择布局。用户可以在注释过程中在这些布局之间切换，注释的特征会自动适应新布局。
+
+此外，用户可以通过滑块和调色板方便地定制树枝粗细、颜色、角度等特征。
+
+“Leaf Annotation”标签管理与树叶相关的注释track，包括tree leaves, encompassing bars, tiles, boxes, violins, tip points, and tip labels。
+
+“Node Annotation”标签处理与内部节点和分支相关的注释track，包括strips, clade branch colors, clade backgrounds, and node labels。此外，“Legend”标签允许用户调整画布大小和每个注释层的图例。
 
 iPhylo Visual强调通过session文件轻松导出和复现树的可视化结果。独特的导出“.iphylo”文件包含生成iPhylo树所需的所有关键数据。session文件非常紧凑，对于包含1000个物种的注释树，大小为30kB。所有树注释session都可以保存到本地计算机并从中上传，使用户能够在保持对原始数据的控制的同时微调复杂的树。此外，session文件可以促进合作注释项目。
 
-iPhylo Visual为树提供了不同的图像导出格式，即PNG、PDF和JPEG。重要的是，iPhylo Visual的“Export Code”功能一键导出可视化和注释树的所有原始数据和绘图代码。该包括树文件、注释表、以JSON文件记录的详细注释参数以及用于可视化数据的R脚本。通过在本地运行此脚本，用户可以复制在iPhylo Visual中看到的树可视化。精通R编程的高级用户还可以通过修改代码进一步定制树。
+iPhylo Visual为树提供了不同的图像导出格式，即PNG、PDF和JPEG。
+
+重要的是，iPhylo Visual的“Export Code”功能一键导出可视化和注释树的所有原始数据和绘图代码。包括树文件、注释表、以JSON文件记录的详细注释参数以及用于可视化数据的R脚本。通过在本地运行此脚本，用户可以复制在iPhylo Visual中看到的树可视化。精通R编程的高级用户还可以通过修改代码进一步定制树。
 
 ### Example
 
