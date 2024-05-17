@@ -2,7 +2,7 @@
 title: R绘制优美的进化树（进阶）
 author: Peng Chen
 date: '2023-05-05'
-slug: r
+slug: r-tree2
 categories:
   - R
 tags:
@@ -389,7 +389,7 @@ p3+geom_text(data = data.frame(x=c(20,22,24,27,31),y=c(10),
 
 ## Example4
 
-第四个例子来自Nature的一篇文章 ([*4*](#ref-leavittVirusesInhibitTIR2022a))。这个图是用iTOL做的，因为iTOL支持直接画tip到圆等半径的空间颜色填充。但是我觉得用R还是一样能画。
+第四个例子来自Nature的一篇文章 ([*4*](#ref-leavittVirusesInhibitTIR2022))。这个图是用iTOL做的，因为iTOL支持直接画tip到圆等半径的空间颜色填充。但是我觉得用R还是一样能画。
 
 <img src="images/exapmle4.png" style="width:90.0%" />
 
@@ -505,25 +505,25 @@ p4+theme(legend.position = "bottom")
 
 <div id="ref-bourquinMicrobiomeCryosphericEcosystems2022" class="csl-entry">
 
-<span class="csl-left-margin">1. </span><span class="csl-right-inline">M. Bourquin, S. B. Busi, S. Fodelianakis, H. Peter, A. Washburne, T. J. Kohler, L. Ezzat, G. Michoud, P. Wilmes, T. J. Battin, [The microbiome of cryospheric ecosystems](https://doi.org/10.1038/s41467-022-30816-4). *Nature Communications*. **13**, 3087 (2022).</span>
+<span class="csl-left-margin">1. </span><span class="csl-right-inline">M. Bourquin, S. B. Busi, S. Fodelianakis, H. Peter, *et al.*, [The microbiome of cryospheric ecosystems](https://doi.org/10.1038/s41467-022-30816-4). *Nature Communications*. **13**, 3087 (2022).</span>
 
 </div>
 
 <div id="ref-royo-llonchCompendium530Metagenomeassembled2021" class="csl-entry">
 
-<span class="csl-left-margin">2. </span><span class="csl-right-inline">M. Royo-Llonch, P. Sánchez, C. Ruiz-González, G. Salazar, C. Pedrós-Alió, M. Sebastián, K. Labadie, L. Paoli, F. M. Ibarbalz, L. Zinger, B. Churcheward, S. Chaffron, D. Eveillard, E. Karsenti, S. Sunagawa, P. Wincker, L. Karp-Boss, C. Bowler, S. G. Acinas, [Compendium of 530 metagenome-assembled bacterial and archaeal genomes from the polar Arctic Ocean](https://doi.org/10.1038/s41564-021-00979-9). *Nature Microbiology*. **6**, 1561–1574 (2021).</span>
+<span class="csl-left-margin">2. </span><span class="csl-right-inline">M. Royo-Llonch, P. Sánchez, C. Ruiz-González, G. Salazar, *et al.*, [Compendium of 530 metagenome-assembled bacterial and archaeal genomes from the polar Arctic Ocean](https://doi.org/10.1038/s41564-021-00979-9). *Nature Microbiology*. **6**, 1561–1574 (2021).</span>
 
 </div>
 
 <div id="ref-liuGenomeGeneCatalog2022" class="csl-entry">
 
-<span class="csl-left-margin">3. </span><span class="csl-right-inline">Y. Liu, M. Ji, T. Yu, J. Zaugg, A. M. Anesio, Z. Zhang, S. Hu, P. Hugenholtz, K. Liu, P. Liu, Y. Chen, Y. Luo, T. Yao, [A genome and gene catalog of glacier microbiomes](https://doi.org/10.1038/s41587-022-01367-2). *Nature Biotechnology*. **40**, 1341–1348 (2022).</span>
+<span class="csl-left-margin">3. </span><span class="csl-right-inline">Y. Liu, M. Ji, T. Yu, J. Zaugg, *et al.*, [A genome and gene catalog of glacier microbiomes](https://doi.org/10.1038/s41587-022-01367-2). *Nature Biotechnology*. **40**, 1341–1348 (2022).</span>
 
 </div>
 
-<div id="ref-leavittVirusesInhibitTIR2022a" class="csl-entry">
+<div id="ref-leavittVirusesInhibitTIR2022" class="csl-entry">
 
-<span class="csl-left-margin">4. </span><span class="csl-right-inline">A. Leavitt, E. Yirmiya, G. Amitai, A. Lu, J. Garb, E. Herbst, B. R. Morehouse, S. J. Hobbs, S. P. Antine, Z.-Y. J. Sun, P. J. Kranzusch, R. Sorek, [Viruses inhibit <span class="nocase">TIR gcADPR</span> signalling to overcome bacterial defence](https://doi.org/10.1038/s41586-022-05375-9). *Nature*. **611**, 326–331 (2022).</span>
+<span class="csl-left-margin">4. </span><span class="csl-right-inline">A. Leavitt, E. Yirmiya, G. Amitai, A. Lu, *et al.*, [Viruses inhibit <span class="nocase">TIR gcADPR</span> signalling to overcome bacterial defence](https://doi.org/10.1038/s41586-022-05375-9). *Nature*. **611**, 326–331 (2022).</span>
 
 </div>
 

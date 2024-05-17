@@ -2,7 +2,7 @@
 title: R绘制优美的进化树（进阶）
 author: Peng Chen
 date: '2023-05-05'
-slug: r
+slug: r-tree2
 categories:
   - R
 tags:
@@ -322,7 +322,7 @@ p3+geom_text(data = data.frame(x=c(20,22,24,27,31),y=c(10),
 
 ## Example4
 
-第四个例子来自Nature的一篇文章 @leavittVirusesInhibitTIR2022a。这个图是用iTOL做的，因为iTOL支持直接画tip到圆等半径的空间颜色填充。但是我觉得用R还是一样能画。
+第四个例子来自Nature的一篇文章 @leavittVirusesInhibitTIR2022。这个图是用iTOL做的，因为iTOL支持直接画tip到圆等半径的空间颜色填充。但是我觉得用R还是一样能画。
 
 ![](images/exapmle4.png){width=90%}
 
