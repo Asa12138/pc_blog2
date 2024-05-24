@@ -8,7 +8,7 @@ categories:
 tags:
   - genome
   - software
-description: ~
+description: ANI 是指平均核苷酸一致性（Average Nucleotide Identity），是一种用来比较基因组的指标。FastANI和Skani是常用于计算ANI的快速准确的软件，在此介绍一下这两个工具。
 image: images/ani3.png
 math: ~
 license: ~
