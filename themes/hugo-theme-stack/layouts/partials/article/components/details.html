@@ -36,6 +36,15 @@
                 </time>
             </div>
         {{ end }}
+        
+        {{- if ne .Lastmod .Date -}}
+          <div>
+            {{ partial "helper/icon" "edit" }}
+              <time class="article-lastmod">
+                {{- .Lastmod.Format (or .Site.Params.dateFormat.published "Jan 02, 2006") -}}
+              </time>
+          </div>
+        {{ end }}
 
         {{ if $showReadingTime }}
             <div>
@@ -45,9 +54,19 @@
                 </time>
             </div>
         {{ end }}
+        
+        {{ if .Site.Params.article.readingTime }}
+          <div>
+            {{ partial "helper/icon" "file-description" }}
+              <time class="article-words">
+                {{ T "article.wordCount" .WordCount }}
+              </time>
+           </div>
+        {{ end }}
+        
     </footer>
     {{ end }}
-
+    
     {{ if .IsTranslated }}
         <footer class="article-translations">
             {{ partial "helper/icon" "language" }}

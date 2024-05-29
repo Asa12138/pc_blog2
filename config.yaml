@@ -5,16 +5,16 @@ paginate: 5
 title: Asa's blog
 
 languages:
-    en:
-        languageName: English
-        title: Asa's blog
-        description: "bioinformatics, microbiology, R-programming..."
-        weight: 1
     zh-cn:
         languageName: 中文
         title: 晨的小屋
         description: "生物信息学、微生物学、R 编程……"
         weight: 2
+    en:
+        languageName: English
+        title: Asa's blog
+        description: "bioinformatics, microbiology, R-programming..."
+        weight: 1
 
 ignoreFiles:
   - \.Rmd$
@@ -66,13 +66,16 @@ params:
 
     #开启latex功能
     article:
+        wordCount: true
         math: true
         toc: true
         readingTime: true
         license:
             enabled: true
-            default: Licensed under CC BY-NC-SA 4.0
-
+            default: Licensed under CC BY-NC-SA 4.0          
+        frontmatter:
+            lastmod: [":fileModTime", "lastmod"]
+            
     comments:
         enabled: true
         provider: utterances
@@ -124,6 +127,8 @@ params:
         content:
             enabled: true
 
+
+
 #整体布局
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
@@ -148,13 +153,13 @@ menu:
           name: Bilibili
           url: https://space.bilibili.com/142776729
           params:
-              icon: bilibili
+              icon: brand-bilibili
               
         - identifier: 4homepage
           name: Homepage
           url: https://asa12138.github.io/
           params:
-              icon: website              
+              icon: world-pin              
 related:
     includeNewer: true
     threshold: 60

@@ -19,6 +19,9 @@ article:
 
     readingTime:
         other: "読了時間: {{ .Count }}分"
+        
+    wordCount:
+        other: "{{.Count}} words"
 
 notFound:
     title:
