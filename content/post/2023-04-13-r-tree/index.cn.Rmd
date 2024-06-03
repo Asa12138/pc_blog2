@@ -9,7 +9,7 @@ tags:
   - 可视化
   - 进化树
   - phylogenetic tree
-description: ~
+description: 介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。
 image: index.cn_files/figure-html/unnamed-chunk-15-1.png
 math: ~
 license: ~

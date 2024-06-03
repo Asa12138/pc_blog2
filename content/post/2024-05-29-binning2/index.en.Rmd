@@ -5,11 +5,10 @@ date: '2024-05-30'
 slug: binning2
 categories:
   - metagenomic
-  - uncompleted
 tags:
   - microbiome
   - binning
-description: ~
+description: MetaWRAP是一个集成的宏基因组分析工具包，侧重于宏基因组Binning，本文将介绍MetaWRAP的具体使用方法。
 image: images/metawrap.png
 math: ~
 license: ~
@@ -529,8 +528,8 @@ $ metawrap annotate_bins -h
     - prokka_out：Prokka预测结果原始文件
 - 运行情况（参考）：
     - 一个合格MAGbin，1.6M
-    - 4核cpu，运行时间为405s
-    - 平均内存占用0.6G，最大内存占用0.83G
+    - 4核cpu，运行时间为100s
+    - 平均内存占用0.15G，最大内存占用0.17G
     
 基因注释的话我们还可以把MAGs的所有fasta序列合并起来，用prodigal统一预测基因并翻译为蛋白序列，然后用序列比对软件diamond比对各种功能数据库比如KEGG，Eggnog，CARD等进行注释整理，从而进行更深入的功能分析。
 

@@ -1,5 +1,5 @@
 ---
-title: 开发一个Rshiny应用（基础）
+title: R-shiny应用开发（基础）
 author: Peng Chen
 date: '2023-03-27'
 slug: rshiny

@@ -7,7 +7,7 @@ categories:
   - utils
 tags:
   - ChatGPT
-description: null
+description: 刚开始搭建博客，看中了stack主题，但是还有一些需求无法满足，于是让ChatGPT辅助我调整stack主题。
 image: ChatGPT.jpg
 math: null
 license: null
@@ -251,3 +251,12 @@ for file_path in new_md_files:
 此外，如果是Rblogdown生成的其他主题的网站有类似问题，也可以这样修改。
 
 最后，ChatGPT真不错！再来一个[攻略](https://k5ms77k0o1.feishu.cn/wiki/wikcnJyI9wsyjyBc8xiDgv0cY8b)
+
+## 其他调整参考
+
+- [Hugo主题stack的使用与优化](https://jinli.io/p/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B%E4%B8%89hugo%E4%B8%BB%E9%A2%98stack%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E4%BC%98%E5%8C%96/)
+- [Stack主题的自定义](https://blog.linsnow.cn/p/modify-hugo/)
+- [使用 Hugo+Stack 简单搭建一个博客](https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod)
+- [Hugo Stack主题更新小记](https://xrg.fj.cn/p/hugo-stack%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%96%B0%E5%B0%8F%E8%AE%B0/)
+- [使用 Hugo 对博客的重建与 Stack 主题优化记录](https://oxidane-uni.github.io/p/%E4%BD%BF%E7%94%A8-hugo-%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E5%BB%BA%E4%B8%8E-stack-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/)
+

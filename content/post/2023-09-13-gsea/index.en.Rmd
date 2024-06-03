@@ -1,6 +1,6 @@
 ---
 title: 基因集富集分析(GSEA)简介
-author: 彭晨
+author: Peng Chen
 date: '2023-09-13'
 slug: gsea
 categories:

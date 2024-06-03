@@ -1,5 +1,5 @@
 ---
-title: R-statistics
+title: R-统计分析
 author: Peng Chen
 date: '2023-03-24'
 slug: r-statistics

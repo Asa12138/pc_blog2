@@ -66,20 +66,19 @@ params:
 
     #开启latex功能
     article:
-        wordCount: true
         math: true
         toc: true
         readingTime: true
         license:
             enabled: true
-            default: Licensed under CC BY-NC-SA 4.0          
+            default: Licensed under CC BY-NC-SA 4.0    
+        wordCount: true      
         frontmatter:
             lastmod: [":fileModTime", "lastmod"]
             
     comments:
         enabled: true
         provider: utterances
-
         utterances:
             repo: Asa12138/pc_blog2
             issueTerm: pathname
@@ -93,10 +92,10 @@ params:
                   limit: 5
             - type: categories
               params:
-                  limit: 10
+                  limit: 15
             - type: tag-cloud
               params:
-                  limit: 10
+                  limit: 15
         page:
             - type: toc
 

@@ -1,0 +1,31 @@
+{{ define "main" }}
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $pag := .Paginate ($filtered) }}
+    <!-- ---这是我们添加进去的--------- -->
+    <!-- 首页欢迎字幅板块 -->
+    <div class="welcome">
+      <p style="font-size: 2rem; text-align: center; font-weight: bold">
+        <span class="shake">👋</span>
+        <span class="jump-text1" > Welcome</span>
+        <span class="jump-text2"> To </span>
+        <span class="jump-text3" style="color:#e99312">A</span><span class="jump-text5" style="color:#e99312">s</span><span class="jump-text7" style="color:#e99312">a</span>
+        <span class="jump-text8" style="color:#e99312">'s</span>
+        <span class="jump-text9" style="color:#e99312">Blog</span>
+      </p>
+    </div>
+    <!-- ------首页欢迎字幅板块------ -->
+    <section class="article-list">
+        {{ range $index, $element := $pag.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

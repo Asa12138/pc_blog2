@@ -9,7 +9,7 @@ tags:
   - 可视化
   - 进化树
   - phylogenetic tree
-description: ~
+description: 介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。
 image: index.cn_files/figure-html/unnamed-chunk-15-1.png
 math: ~
 license: ~
@@ -638,13 +638,13 @@ open_tree(col_p, 180)%>%rotate_tree(90)
 
 <div id="ref-yuGgtreePackageVisualization2017" class="csl-entry">
 
-<span class="csl-left-margin">1. </span><span class="csl-right-inline">G. Yu, D. K. Smith, H. Zhu, Y. Guan, T. T.-Y. Lam, [Ggtree: An r package for visualization and annotation of phylogenetic trees with their covariates and other associated data](https://doi.org/10.1111/2041-210X.12628). *Methods in Ecology and Evolution*. **8**, 28–36 (2017).</span>
+<span class="csl-left-margin">1. </span><span class="csl-right-inline">G. Yu, D. K. Smith, H. Zhu, Y. Guan, *et al.*, [Ggtree: An r package for visualization and annotation of phylogenetic trees with their covariates and other associated data](https://doi.org/10.1111/2041-210X.12628). *Methods in Ecology and Evolution*. **8**, 28–36 (2017).</span>
 
 </div>
 
 <div id="ref-xuGgtreeExtraCompactVisualization2021" class="csl-entry">
 
-<span class="csl-left-margin">2. </span><span class="csl-right-inline">S. Xu, Z. Dai, P. Guo, X. Fu, S. Liu, L. Zhou, W. Tang, T. Feng, M. Chen, L. Zhan, T. Wu, E. Hu, Y. Jiang, X. Bo, G. Yu, [<span class="nocase">ggtreeExtra</span>: Compact Visualization of Richly Annotated Phylogenetic Data](https://doi.org/10.1093/molbev/msab166). *Molecular Biology and Evolution*. **38**, 4039–4042 (2021).</span>
+<span class="csl-left-margin">2. </span><span class="csl-right-inline">S. Xu, Z. Dai, P. Guo, X. Fu, *et al.*, [<span class="nocase">ggtreeExtra</span>: Compact Visualization of Richly Annotated Phylogenetic Data](https://doi.org/10.1093/molbev/msab166). *Molecular Biology and Evolution*. **38**, 4039–4042 (2021).</span>
 
 </div>
 

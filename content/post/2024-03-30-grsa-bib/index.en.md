@@ -18,6 +18,8 @@ hidden: no
 comments: yes
 ---
 
+{{< bilibili BV12j41157LR 1 >}}
+
 最近，我开发的R包ReporterScore（GRSA方法）发表在*Briefings in Bioinformatics*上了，这是一种灵活的，可用于复杂多组学数据的功能富集新方法。
 
 R包主页：<https://github.com/Asa12138/ReporterScore>

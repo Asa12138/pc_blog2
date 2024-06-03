@@ -2,7 +2,7 @@
 title: 紫金春日
 author: Asa，群青
 date: '2023-03-25'
-slug: ''
+slug: 'spring'
 categories:
   - 随笔
 tags:

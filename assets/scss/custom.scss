@@ -14,3 +14,432 @@
   --card-text-color-secondary: #53565A;
   --card-text-color-tertiary: #888B8D;
 }
+
+//  ~\blog\assets\scss\custom.scss
+
+// 页面基本配色
+:root {
+  // 全局顶部边距
+  --main-top-padding: 30px;
+  // 全局卡片圆角
+  --card-border-radius: 25px;
+  // 标签云卡片圆角
+  --tag-border-radius: 8px;
+  // 卡片间距
+  --section-separation: 40px;
+  // 全局字体大小
+  --article-font-size: 1.8rem;
+  // 行内代码背景色
+  --code-background-color: #f8f8f8;
+  // 行内代码前景色
+  --code-text-color: #e96900;
+  // 暗色模式下样式
+  &[data-scheme="dark"] {
+    // 行内代码背景色
+    --code-background-color: #ff6d1b17;
+    // 行内代码前景色
+    --code-text-color: #e96900;
+    // 暗黑模式下背景色
+    --body-background: #000;
+    // 暗黑模式下卡片背景色
+    --card-background: hsl(225 13% 8% / 1);
+  }
+}
+//------------------------------------------------------
+// 修复引用块内容窄页面显示问题
+a {
+  word-break: break-all;
+}
+
+code {
+  word-break: break-all;
+}
+
+//---------------------------------------------------
+// 文章封面高度
+.article-list article .article-image img {
+  width: 100%;
+  height: 200px !important;
+  object-fit: cover;
+
+  @include respond(md) {
+      height: 250px !important;
+  }
+
+  @include respond(xl) {
+      height: 285px !important;
+  }
+}
+
+//--------------------------------------------------
+// 文章内容图片圆角阴影
+.article-page .main-article .article-content {
+  img {
+    max-width: 96% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+}
+
+//------------------------------------------------
+// 文章内容引用块样式
+.article-content {
+  blockquote {
+    border-left: 6px solid #358b9a1f !important;
+    background: #3a97431f;
+  }
+}
+// ---------------------------------------
+// 代码块样式修改
+.highlight {
+  max-width: 102% !important;
+  background-color: var(--pre-background-color);
+  padding: var(--card-padding);
+  position: relative;
+  border-radius: 20px;
+  margin-left: -7px !important;
+  margin-right: -12px;
+  box-shadow: var(--shadow-l1) !important;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  // keep Codeblocks LTR
+  [dir="rtl"] & {
+    direction: ltr;
+  }
+
+  pre {
+    margin: initial;
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+}
+
+// light模式下的代码块样式调整
+[data-scheme="light"] .article-content .highlight {
+  background-color: #fff9f3;
+}
+
+[data-scheme="light"] .chroma {
+  color: #ff6f00;
+  background-color: #fff9f3cc;
+}
+
+//-------------------------------------------
+// 设置选中字体的区域背景颜色
+//修改选中颜色
+::selection {
+  color: #fff;
+  background: #34495e;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--accent-color-darker);
+  }
+
+  &.link {
+    color: #4288b9ad;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+//-------------------------------------------------
+//文章封面高度更改
+.article-list article .article-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+
+  @include respond(md) {
+    height: 200px;
+  }
+
+  @include respond(xl) {
+    height: 305px;
+  }
+}
+
+//---------------------------------------------------
+// 全局页面布局间距调整
+.main-container {
+  min-height: 100vh;
+  align-items: flex-start;
+  padding: 0 15px;
+  gap: var(--section-separation);
+  padding-top: var(--main-top-padding);
+
+  @include respond(md) {
+    padding: 0 37px;
+  }
+}
+
+//--------------------------------------------------
+//页面三栏宽度调整
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  .left-sidebar {
+    order: -3;
+    max-width: var(--left-sidebar-max-width);
+  }
+
+  .right-sidebar {
+    order: -1;
+    max-width: var(--right-sidebar-max-width);
+
+    /// Display right sidebar when min-width: lg
+    @include respond(lg) {
+      display: flex;
+    }
+  }
+
+  &.extended {
+    @include respond(md) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 25%;
+      --right-sidebar-max-width: 22% !important;
+    }
+
+    @include respond(lg) {
+      max-width: 1280px;
+      --left-sidebar-max-width: 20%;
+      --right-sidebar-max-width: 30%;
+    }
+
+    @include respond(xl) {
+      max-width: 1453px; //1536px;
+      --left-sidebar-max-width: 15%;
+      --right-sidebar-max-width: 25%;
+    }
+  }
+
+  &.compact {
+    @include respond(md) {
+      --left-sidebar-max-width: 25%;
+      max-width: 768px;
+    }
+
+    @include respond(lg) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 20%;
+    }
+
+    @include respond(xl) {
+      max-width: 1280px;
+    }
+  }
+}
+
+//-------------------------------------------------------
+//全局页面小图片样式微调
+.article-list--compact article .article-image img {
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  border-radius: 17%;
+}
+
+//----------------------------------------------------
+//固定代码块的高度
+/*
+.article-content {
+  .highlight {
+      padding: var(--card-padding);
+      pre {
+          width: auto;
+          max-height: 20em;
+      }
+  }
+}
+*/
+
+//--------------------------------------------------
+// 修改首页搜索框样式
+.search-form.widget input {
+  font-size: 1.5rem;
+  padding: 44px 25px 19px;
+}
+
+//  ~\blog\assets\scss\custom.scss
+
+//------------------------------------------------
+//将滚动条修改为圆角样式
+//菜单滚动条美化
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+// 全局滚动条美化
+html {
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}
+
+//  ~\blog\assets\scss\custom.scss
+
+//--------------------------------------------------
+//归档页面双栏
+/* 归档页面两栏 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+
+
+//  ~\blog\assets\scss\custom.scss
+
+//---------------------------------------------------------
+//首页欢迎板块样式
+.welcome {
+  color: var(--card-text-color-main);
+  background: var(--card-background);
+  box-shadow: var(--shadow-l2);
+  border-radius: 30px;
+  display: inline-block;
+}
+
+// 👋emoji实现摆动效果
+.shake {
+  display: inline-block;
+  animation: shake 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: shake;
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  animation-delay: 2s;
+  @keyframes shake {
+    0% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(45deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(0) scale(1.2);
+    }
+    75% {
+      transform: rotate(45deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+}
+// 实现字符跳动动画
+.jump-text1 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+}
+
+.jump-text2 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.1s;
+}
+
+.jump-text3 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.2s;
+}
+
+.jump-text4 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.3s;
+}
+
+.jump-text5 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.4s;
+}
+
+.jump-text6 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.5s;
+}
+
+.jump-text7 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.6s;
+}
+
+.jump-text8 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.7s;
+}
+
+.jump-text9 {
+  display: inline-block;
+  animation: jump 0.5s 1;
+  animation-delay: 0.9s;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
