@@ -62,11 +62,11 @@ S语言作者，R语言专家J. M. Chambers指出R的.red[本质特征]：
 - R是一种统计学编程语言
 - Rstudio是R语言最好的IDE（Integrated development environment）
 
-![](https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio.png)
+<img src="https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio.png" title=""/>
 
 2022年RStudio公司正式改名Posit，拥抱大数据科学生态：R、Python、Julia...
 
-![](https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio2.png)
+<img src="https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio2.png" title=""/>
 
 RStudio使用方法概要PDF下载：[rstudio-ide.pdf](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/rstudio-ide.pdf)
 
@@ -150,7 +150,7 @@ Rstuido的魔法：按住Ctrl（Command）单击某个变量名或函数名，�
 - 怎么装，[例子](https://cran.r-project.org/web/packages/pcutils/index.html)：大部分情况下CRAN用 `install.packages("pkg")`，BioConductor用`BiocManager::install("pkg")`，Github用`devtools::install_github("repos")`即可。
 但有时候会有依赖包相关的报错，我们可以手动下载特定版本包文件后安装。
 
-![](https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/pkg_state.png)
+<img src="https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/pkg_state.png" title=""/>
 
 - source， 源码，一堆R脚本和文本文件，我们直接在github上看的就是这个。
 - bundle， 捆绑态，其实就是打包过的source，一般.tar.gz结尾。
@@ -603,7 +603,7 @@ File -> New Project -> New directory -> R package ->
 
 Create Project (click Open in new session)-> Package name -> Build -> Install
 
-![](https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/rfile.png)
+<img src="https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/rfile.png" title=""/>
 
 最简单的包只需要这些目录和文件即可，
 - [R]()目录下放在我们编写的R函数脚本
