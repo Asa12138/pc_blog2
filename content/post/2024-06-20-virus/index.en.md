@@ -352,7 +352,7 @@ VirSorter2 是 VirSorter 的升级版，于2021年发表在Microbiome上[3]。
 
 VirSorter2 采用多分类器、专家指导的方法来检测不同的 DNA 和 RNA 病毒基因组。它对之前的版本进行了重大更新：
 
-与更多病毒组合作，包括双链 DNA 噬菌体、单链 DNA 病毒、RNA 病毒、NCLDV（核细胞病毒）、拉维病毒科（病毒噬菌体）；
+包含更多病毒，包括双链 DNA 噬菌体、单链 DNA 病毒、RNA 病毒、NCLDV（核细胞病毒）、拉维病毒科（病毒噬菌体）；
 应用机器学习使用基因组特征（包括结构/功能/分类注释和病毒标志基因）来估计病毒性；
 使用来自宏基因组或其他来源的高质量病毒基因组进行训练。
 
@@ -444,6 +444,205 @@ download-db.sh ~/db/VIBRANT/ #下载数据库
    
 - bio-transformers 证明蛋白质语言模型可以捕获原核病毒蛋白质功能[6]，从而使病毒序列空间的新部分能够被分配具有生物学意义的标签。蛋白质语言模型增强了病毒蛋白质的远程同源性检测，作为现有方法的有用补充。
 
+## Quality assessment
+
+### CheckV
+
+CheckV 是一个完全自动化的命令行管道，用于评估单contig病毒基因组的质量，包括识别集成原病毒的宿主污染、估计基因组片段的完整性以及识别封闭基因组，于2017年发表在Nature Biotechnology[7]。
+
+软件：<https://bitbucket.org/berkeleylab/checkv/src/master/>
+
+#### Installation
+
+- 安装软件
+
+可以使用通用包管理器（mamba 或 conda）或特定于 Python 的包管理器（pip）在计算机中安装 checkv。
+
+```bash
+# mamba
+mamba install -c conda-forge -c bioconda checkv=1.0.1
+
+# conda
+conda install -c conda-forge -c bioconda checkv=1.0.1
+
+# pip
+pip install checkv
+```
+
+因为跟上面讲的genomad的依赖项基本一致，所以我直接用pip安装在同一环境中就可以用了。
+
+```bash
+$ checkv end_to_end -h
+usage: checkv end_to_end <input> <output> [options]
+positional arguments:
+  input         以FASTA格式输入核苷酸序列（支持.gz，.bz2和.xz文件）
+  output        输出目录
+ 
+optional arguments:
+  -h, --help    显示此帮助消息并退出
+  -d PATH       引用数据库路径。默认情况下，使用 CHECKVDB 环境变量【添加后可不写】
+  --remove_tmp  从输出目录中删除中间文件
+  -t INT        用于Prodigal和DIAMOND的线程数
+  --restart     覆盖现有的中间文件。默认情况下，CheckV 在程序中断的地方继续
+  --quiet       禁止记录消息
+  
+programs:
+    end_to_end          运行完整的管道以估计完整性，污染并识别封闭的基因组
+    contamination       识别并消除集成前病毒上的宿主污染
+    completeness        估计基因组片段的完整性
+    complete_genomes    根据末端重复序列和侧翼宿主区域识别完整基因组
+    quality_summary     跨模块汇总结果
+    download_database   下载最新版本的CheckV数据库
+```
+
+- 下载数据库
+geNomad 依赖于一个包含用于对序列进行分类的标记的概况、它们的分类信息、它们的功能注释等的数据库：
+
+可以通过软件下载：
+```bash
+checkv download_database ./
+```
+
+也可以自行下载并解压（我试了这个快），解压后大概5.4G，我放在~/db/genomad_db/checkv-db-v1.0。
+
+```bash
+#数据库下载（手动）
+wget https://portal.nersc.gov/CheckV/checkv-db-v1.0.tar.gz
+tar zxvf checkv-db-v1.0.tar.gz
+```
+
+#### Example
+
+我们使用上面genomad运行得到的GCF_009025895.1_ASM902589v1_genomic_virus.fna文件来测试：
+
+```bash
+checkv end_to_end GCF_009025895.1_ASM902589v1_genomic_virus.fna checkv_out \
+    -t 4 -d ~/db/genomad_db/checkv-db-v1.0 --remove_tmp
+```
+
+```bash
+CheckV v1.0.3: contamination
+[1/8] Reading database info...
+[2/8] Reading genome info...
+[3/8] Skipping gene calling...
+[4/8] Reading gene info...
+[5/8] Skipping hmmsearch...
+[6/8] Annotating genes...
+[7/8] Identifying host regions...
+[8/8] Writing results...
+Run time: 0.77 seconds
+Peak mem: 0.08 GB
+
+CheckV v1.0.3: completeness
+[1/8] Skipping gene calling...
+[2/8] Initializing queries and database...
+[3/8] Running DIAMOND blastp search...
+[4/8] Computing AAI...
+[5/8] Running AAI based completeness estimation...
+[6/8] Running HMM based completeness estimation...
+[7/8] Determining genome copy number...
+[8/8] Writing results...
+Run time: 9.69 seconds
+Peak mem: 1.12 GB
+
+CheckV v1.0.3: complete_genomes
+[1/7] Reading input sequences...
+[2/7] Finding complete proviruses...
+[3/7] Finding direct/inverted terminal repeats...
+[4/7] Filtering terminal repeats...
+[5/7] Checking genome for completeness...
+[6/7] Checking genome for large duplications...
+[7/7] Writing results...
+Run time: 0.02 seconds
+Peak mem: 1.12 GB
+
+CheckV v1.0.3: quality_summary
+[1/6] Reading input sequences...
+[2/6] Reading results from contamination module...
+[3/6] Reading results from completeness module...
+[4/6] Reading results from complete genomes module...
+[5/6] Classifying contigs into quality tiers...
+[6/6] Writing results...
+Run time: 2.42 seconds
+Peak mem: 1.12 GB
+```
+
+**Output**
+
+- quality_summary.tsv
+这包含三个主要模块的综合结果，应该是所用的主要输出：
+
+
+| contig_id| contig_length|provirus | proviral_length| gene_count| viral_genes| host_genes|checkv_quality |miuvig_quality  | completeness|completeness_method           |complete_genome_type | contamination| kmer_freq|warnings                |
+|---------:|-------------:|:--------|---------------:|----------:|-----------:|----------:|:--------------|:---------------|------------:|:-----------------------------|:--------------------|-------------:|---------:|:-----------------------|
+|         1|          5325|No       |              NA|         11|           0|          2|Not-determined |Genome-fragment |           NA|NA                            |NA                   |           0.0|      1.00|no viral genes detected |
+|         2|         41803|No       |              NA|         72|          27|          1|Low-quality    |Genome-fragment |        21.99|AAI-based (medium-confidence) |NA                   |           0.0|      1.00|flagged DTR             |
+|         3|         38254|Yes      |           36072|         54|          23|          2|Medium-quality |Genome-fragment |        80.30|HMM-based (lower-bound)       |NA                   |           5.7|      1.00|NA                      |
+|         4|         67622|No       |              NA|        143|          25|          0|High-quality   |High-quality    |       100.00|AAI-based (high-confidence)   |NA                   |           0.0|      1.76|high kmer_freq          |
+|         5|         98051|No       |              NA|        158|          27|          1|Complete       |High-quality    |       100.00|AAI-based (high-confidence)   |DTR                  |           0.0|      1.00|NA                      |
+
+在上面的示例中，有 5 个病毒contig的结果：
+- 第一个 5325 bp contig没有完整性预测，这由“checkv_quality”字段的“未确定”指示。该contig也没有鉴定出病毒基因，因此它甚至有可能不是病毒。
+- 第二个 41803 bp contig被归类为“低质量”，因为其完整性<50%。这是基于“AAI”方法的估计。请注意，quality_summary.tsv 文件中仅报告高或中置信度估计值。您可以查看“completeness.tsv”了解更多详细信息。该contig具有 DTR，但由于某种原因被标记（有关详细信息，请参阅complete_genomes.tsv）
+- 第三个contig被认为是“中等质量”，因为其完整性估计为 80%（基于“HMM”方法）。这意味着它太新颖了，无法基于 AAI 来估计完整性，但与 CheckV 参考基因组共享 HMM。请注意，该值代表一个下限（意味着真实的完整性可能高于但不低于该值）。请注意，该contig也被归类为原病毒。
+- 第四个contig基于 >90% 的完整性被归类为高质量。但请注意，“kmer_freq”的值为 1.7。这表明病毒基因组在contig中多次出现。这些情况相当罕见，但仍需警惕。
+- 根据直接末端重复 (DTR) 的存在，第五个contig被分类为完整，并且根据 AAI 方法具有 100% 完整性。该序列可以放心地视为完整的基因组。
+
+- contamination.tsv
+如何估计污染的详细概述
+
+- completeness.tsv
+关于如何估计完整性的详细概述
+
+- complete_genomes.tsv
+已确定的假定完整基因组的详细概述
+
+#### Pipeline
+
+<img src="images/checkV.png" title=""/>
+
+geNomad的具体工作流程如下：
+
+A: 去除宿主污染
+
+1. 基因首先基于与自定义HMM数据库的比较被注释为病毒或微生物。
+2. CheckV扫描contig（从5'到3'），比较基因注释和相邻基因窗口之间的GC含量。
+3. 这些信息用于计算每个基因间位置的分数并识别宿主-病毒断点。
+4. 这种方法最适合主要为病毒的contig。
+
+B: 估计基因组完整性
+
+1. 蛋白质首先使用AAI（平均氨基酸身份）与CheckV基因组数据库进行比较。
+2. 在识别到最佳匹配后，完整性作为contig长度（或provirus的病毒区域长度）与匹配参考长度的比率计算。
+3. 根据比对的强度报告置信水平。
+4. 通常，高和中等置信水平的估计非常准确。
+5. 如果病毒基因组没有与CheckV数据库的密切匹配，CheckV基于contig上识别的病毒HMM估计完整性。
+6. 基于找到的HMM，CheckV返回基因组完整性的估计范围（例如，35%到60%完整性），表示基于具有相同病毒HMM的参考基因组长度分布的90%置信区间。
+
+C: 预测封闭基因组
+
+1. 直接末端重复（DTRs）：在contig的起始和结束处有>20bp的重复序列，这是最可信的标志，可能表示环状基因组或从环状模板复制的线性基因组。
+2. Provirus：在5'和3'末端有预测的宿主边界的病毒区域（参见部分A）。
+   - 注意：如果宿主区域已被移除（如使用VIBRANT或VirSorter），CheckV将不会检测到provirus。
+3. 倒位末端重复（ITRs）：在contig的起始和结束处有>20bp的重复序列（3'重复倒置），这是最不可信的标志。
+4. 对于上述所有方法，CheckV还会检查contig是否大致符合基于估计完整性的正确序列长度；这很重要，因为末端重复可能代表宏基因组组装的伪影。
+
+D: 总结质量
+
+1. 基于A-C的结果，CheckV生成报告文件，并将查询contig分配到五个质量层次之一（与MIUViG质量层次一致并扩展）：
+   - 完整（参见部分C）
+   - 高质量（>90%完整性）
+   - 中等质量（50-90%完整性）
+   - 低质量（<50%完整性）
+   - 未确定质量
+
+可以分步使用checkV：
+```bash
+checkv contamination input_file.fna output_directory -t 16
+checkv completeness input_file.fna output_directory -t 16
+checkv complete_genomes input_file.fna output_directory
+checkv quality_summary input_file.fna output_directory
+```
 
 ## Application
 
@@ -453,7 +652,7 @@ download-db.sh ~/db/VIBRANT/ #下载数据库
 
 <img src="images/soil_virome.png" title=""/>
 
-这是马斌老师团队2024发表于Nature Ecology & Evolution的一篇文章[7]。
+这是马斌老师团队2024发表于Nature Ecology & Evolution的一篇文章[8]。
 
 病毒对于塑造土壤微生物功能和生态系统至关重要。然而，对土壤病毒组的研究在空间尺度和生物群落覆盖方面都受到限制。
 
@@ -470,7 +669,7 @@ download-db.sh ~/db/VIBRANT/ #下载数据库
 
 <img src="images/soil_atlats.png" title=""/>
 
-这也是一篇2024年发表于Nature microbiology的文章[8]：
+这也是一篇2024年发表于Nature microbiology的文章[9]：
 
 历史上被微生物生态学家忽视的土壤病毒现在被认为对全球生物地球化学循环至关重要。然而，我们对其全球分布、活动以及与土壤微生物组相互作用的了解仍然有限。
 在这里展示了全球土壤病毒图谱，这是一个综合数据集，由 2,953 个先前测序的土壤宏基因组编译而成，由 616,935 个未培养的病毒基因组和 38,508 个独特的病毒操作分类单元组成。
@@ -499,7 +698,7 @@ download-db.sh ~/db/VIBRANT/ #下载数据库
 
 <img src="images/palaeofaeces.png" title=""/>
 
-这是2024年在NC上发表的研究[9]：
+这是2024年在NC上发表的研究[10]：
 
 噬菌体被广泛认为是快速进化的生物实体。然而，关于古代噬菌体的知识是有限的。在这里，我们分析了先前从古代古粪便和人类肠道内容物样本中生成的 DNA 序列数据集，并鉴定了与当今的 Mushuvirus mushu（一种感染肠道共生细菌的病毒）几乎相同的古代噬菌体基因组。
 基因组的 DNA 损伤模式与其古代起源一致，尽管经过 1300 年的进化，古代木须病毒基因组与现代对应物具有 97.7% 的核苷酸同一性，表明原噬菌体与其宿主之间存在长期关系。此外，还重建并验证了过去 5300 年的 297 个其他噬菌体基因组，包括属于未知家族的噬菌体基因组。
@@ -517,7 +716,8 @@ download-db.sh ~/db/VIBRANT/ #下载数据库
 4. Kieft, K., Zhou, Z. & Anantharaman, K. VIBRANT: automated recovery, annotation and curation of microbial viruses, and evaluation of viral community function from genomic sequences. Microbiome 8, 90 (2020). https://doi.org/10.1186/s40168-020-00867-0
 5. Chen, L., Banfield, J.F. COBRA improves the completeness and contiguity of viral genomes assembled from metagenomes. Nat Microbiol 9, 737–750 (2024). https://doi.org/10.1038/s41564-023-01598-2
 6. Flamholz, Z.N., Biller, S.J. & Kelly, L. Large language models improve annotation of prokaryotic viral proteins. Nat Microbiol 9, 537–549 (2024). https://doi.org/10.1038/s41564-023-01584-8
-7. Ma, B., Wang, Y., Zhao, K. et al. Biogeographic patterns and drivers of soil viromes. Nat Ecol Evol 8, 717–728 (2024). https://doi.org/10.1038/s41559-024-02347-2
-8. Graham, E.B., Camargo, A.P., Wu, R. et al. A global atlas of soil viruses reveals unexplored biodiversity and potential biogeochemical impacts. Nat Microbiol (2024). https://doi.org/10.1038/s41564-024-01686-x
-9. Rozwalak, P., Barylski, J., Wijesekara, Y. et al. Ultraconserved bacteriophage genome sequence identified in 1300-year-old human palaeofaeces. Nat Commun 15, 495 (2024). https://doi.org/10.1038/s41467-023-44370-0
+7. Nayfach, S., Camargo, A.P., Schulz, F. et al. CheckV assesses the quality and completeness of metagenome-assembled viral genomes. Nat Biotechnol 39, 578–585 (2021). https://doi.org/10.1038/s41587-020-00774-7
+8. Ma, B., Wang, Y., Zhao, K. et al. Biogeographic patterns and drivers of soil viromes. Nat Ecol Evol 8, 717–728 (2024). https://doi.org/10.1038/s41559-024-02347-2
+9. Graham, E.B., Camargo, A.P., Wu, R. et al. A global atlas of soil viruses reveals unexplored biodiversity and potential biogeochemical impacts. Nat Microbiol (2024). https://doi.org/10.1038/s41564-024-01686-x
+10. Rozwalak, P., Barylski, J., Wijesekara, Y. et al. Ultraconserved bacteriophage genome sequence identified in 1300-year-old human palaeofaeces. Nat Commun 15, 495 (2024). https://doi.org/10.1038/s41467-023-44370-0
 
