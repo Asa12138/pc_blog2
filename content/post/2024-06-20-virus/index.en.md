@@ -601,7 +601,7 @@ Peak mem: 1.12 GB
 
 <img src="images/checkV.png" title=""/>
 
-geNomad的具体工作流程如下：
+CheckV的具体工作流程如下：
 
 A: 去除宿主污染
 

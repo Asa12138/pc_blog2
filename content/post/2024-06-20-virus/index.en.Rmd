@@ -604,7 +604,7 @@ kableExtra::kbl(df,format = "pipe")
 
 ![](images/checkV.png)
 
-geNomad的具体工作流程如下：
+CheckV的具体工作流程如下：
 
 A: 去除宿主污染
 
