@@ -59,7 +59,7 @@ Positron 构建于 Code OSS 之上，外观和功能都跟VS Code很像。官方
 ### R/R markerdown/Qurato
 
 Rstudio界面：
-![](https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio.png)
+<img src="https://asa-blog.netlify.app//R_tips_for_advanced_use_byAsa/images/Rstudio.png" title=""/>
 
 Positron界面：
 ![](images/overview.png)
