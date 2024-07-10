@@ -9,7 +9,7 @@ tags:
   - R
   - 可视化
 description: 我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下绘制箱形图及其变换。
-image: images/boxplot_explanation.png
+image: index.en_files/figure-html/unnamed-chunk-6-1.png
 math: ~
 license: ~
 hidden: no

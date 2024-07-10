@@ -288,8 +288,8 @@ python dvf.py -h
 # 可以添加环境变量，方便调用
 chmod +x dvf.py
 sed -i '1d' dvf.py
-sed -i '1i #!/miniconda3/envs/dvf/bin/python' dvf.py
-ln -s ./dvf.py ~/miniconda3/envs/dvf/bin/
+sed -i '1i #!~/miniconda3/envs/dvf/bin/python' dvf.py
+ln -s ~/biosoft/DeepVirFinder/dvf.py ~/miniconda3/envs/dvf/bin/
 ln -s ~/biosoft/DeepVirFinder/models ~/miniconda3/envs/dvf/bin/models
 dvf.py -h
 ```

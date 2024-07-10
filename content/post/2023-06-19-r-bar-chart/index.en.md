@@ -1,5 +1,5 @@
 ---
-title: R绘制柱形图及其变换（bar chart）
+title: R绘制柱形图及其变换
 author: Peng Chen
 date: '2023-06-19'
 slug: r-bar-chart
