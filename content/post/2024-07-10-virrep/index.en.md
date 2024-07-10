@@ -8,7 +8,7 @@ categories:
 tags:
   - microbiome
   - virus
-description: VriRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。
+description: VirRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。
 image: images/workflow.png
 math: ~
 license: ~
