@@ -42,6 +42,7 @@ devtools::install_github('Asa12138/pcutils',dependencies=T)
 
 ## Introduction
 
+Venn图是一种比较常用的可视化方法，它可以用来展示多个集合的交集、并集、差集等信息。
 
 在线网站：http://www.ehbio.com/test/venn/#/
 
