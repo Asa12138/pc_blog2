@@ -356,9 +356,7 @@ b_analyse(otutab,method = "pca")->b_res
 plot(b_res,Group = "Group",metadata = metadata)
 ```
 
-    ## $PCA
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="576" />
 
 对于这种分组的显著性（怎么说明三组的群落组成存在显著差异？），具体有adonis/mrpp/anosim/mantel等方法（可参考<https://blog.csdn.net/qq_42830713/article/details/129073120>）,一般用vegan包的`adonis2`函数（又叫PERMANOVA，Permutational Multivariate Analysis of Variance Using Distance Matrices）来检验。
 
@@ -369,21 +367,28 @@ pctax::permanova(otutab,metadata["Group"],method = "adonis")
 ```
 
     ##   group     r2 p_value  sig
-    ## 1 Group 0.1832   0.001 TRUE
+    ## 1 Group 0.1843   0.001 TRUE
 
 ``` r
 pctax::permanova(otutab,metadata["Group"],method = "mrpp")
 ```
 
     ##   group      r p_value  sig
-    ## 1 Group 0.0375   0.002 TRUE
+    ## 1 Group 0.0382   0.001 TRUE
 
 ``` r
 pctax::permanova(otutab,metadata["Group"],method = "anosim")
 ```
 
     ##   group      r p_value  sig
-    ## 1 Group 0.3947   0.001 TRUE
+    ## 1 Group 0.3984   0.001 TRUE
+
+``` r
+adonis_res=pctax::permanova(otutab,metadata["Group"],method = "adonis")
+plot(b_res,Group = "Group",metadata = metadata,permanova_res = adonis_res)
+```
+
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="576" />
 
 也可以将连续变量映射到颜色上：
 
@@ -391,9 +396,7 @@ pctax::permanova(otutab,metadata["Group"],method = "anosim")
 plot(b_res,Group = "env1",metadata = metadata)
 ```
 
-    ## $PCA
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="576" />
 
 绘图有很多可以灵活调节的参数：
 
@@ -406,17 +409,16 @@ plot(b_res,Group = "Group",metadata = metadata,mode = 2)
 plot(b_res,Group = "Group",metadata = metadata,mode = 3)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-1.png" width="1152" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="1152" />
 
 把bi设为true的话，会画出一部分贡献度最高的变量：
 
 ``` r
-plot(b_res,Group = "Group",metadata = metadata,bi = T,Topn = 10)
+plot(b_res,Group = "Group",metadata = metadata,bi = T,Topn = 10,
+     permanova_res = adonis_res,text_param = list(x=-0.3,y=-0.4))
 ```
 
-    ## $PCA
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="576" />
 
 margin 可以画出点的分布密度图或箱形图:
 
@@ -424,17 +426,13 @@ margin 可以画出点的分布密度图或箱形图:
 plot(b_res,Group = "Group",metadata = metadata,margin = T,mode = 3)
 ```
 
-    ## $PCA
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="576" />
 
 ``` r
-plot(b_res,Group = "Group",metadata = metadata,margin = T,box = F)
+plot.b_res(b_res,Group = "Group",metadata = metadata,margin = T,box_margin = F)
 ```
 
-    ## $PCA
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-2.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-2.png" width="576" />
 
 限制性排序则需要输入响应变量数据和我们要研究的环境数据：
 
@@ -447,38 +445,39 @@ env=metadata[,6:10]
 myRDA(otutab,env)->phy.rda
 ```
 
+    ## ==================================Check models================================== 
+    ## DCA analysis, select the sorting analysis model according to the first value of the Axis lengths row.
+    ## - If it is more than 4.0 - CCA (based on unimodal model, canonical correspondence analysis);
+    ## - If it is between 3.0-4.0 - both RDA/CCA;
+    ## - If it is less than 3.0 - RDA (based on linear model, redundancy analysis)
     ## 
     ## Call:
     ## vegan::decorana(veg = dat.h) 
     ## 
     ## Detrended correspondence analysis with 26 segments.
     ## Rescaling of axes with 4 iterations.
-    ## Total inertia (scaled Chi-square): 0.3207 
+    ## Total inertia (scaled Chi-square): 0.3192 
     ## 
-    ##                         DCA1    DCA2    DCA3    DCA4
-    ## Eigenvalues          0.03127 0.02265 0.01916 0.01729
-    ## Additive Eigenvalues 0.03127 0.02265 0.01917 0.01727
-    ## Decorana values      0.03150 0.02146 0.01701 0.01035
-    ## Axis lengths         0.74268 0.74498 0.57253 0.52361
+    ##                         DCA1    DCA2    DCA3     DCA4
+    ## Eigenvalues          0.03142 0.02276 0.01927 0.017818
+    ## Additive Eigenvalues 0.03142 0.02276 0.01927 0.017881
+    ## Decorana values      0.03169 0.02142 0.01511 0.009314
+    ## Axis lengths         0.73929 0.72605 0.52357 0.666913
     ## 
-    ## DCA analysis, select the sorting analysis model according to the first value of the Axis lengths row
-    ##    Axis Lengths >4.0-CCA (based on unimodal model, canonical correspondence analysis);
-    ##    If it is between 3.0-4.0 - both RDA/CCA;
-    ##    If less than 3.0-RDA (based on linear model, redundancy analysis)
-    ## [1] "===============Initial Model================"
-    ## [1] "Initial cca, vif>20 indicates serious collinearity:"
+    ## =================================Initial Model================================== 
+    ## Initial cca, vif>20 indicates serious collinearity:
     ##     env4     env5     env6      lat     long 
-    ## 2.671744 3.148860 1.161378 1.417139 1.120735 
-    ## Initial Model R-square: 0.05504835 
-    ## [1] "=============Statistics==========="
-    ## 0.3329753 Constrained indicates the degree to which environmental factors explain differences in community structure
-    ## 0.6670247 unconstrained means that the environmental factors cannot explain the part of the community structure
+    ## 2.574997 2.674671 1.252002 1.381839 1.211392 
+    ## Initial Model R-square: 0.04828743 
+    ## ===================================Statistics=================================== 
+    ## 0.3282029 constrained indicates the degree to which environmental factors explain differences in community structure
+    ## 0.6717971 unconstrained means that the environmental factors cannot explain the part of the community structure
 
 ``` r
 RDA_plot(phy.rda,"Group",metadata)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-1.png" width="576" />
 
 对于这里每一个环境因素的检验，我们仍然可以使用adonis，或者envfit，bioenv等检验方式：
 
@@ -487,13 +486,13 @@ adonis_res=pctax::permanova(otutab,env,method = "adonis")
 plot(adonis_res)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-1.png" width="576" />
 
 ``` r
 envfit_res=pctax::envfitt(phy.rda,env)
 plot(envfit_res,mode=1)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-2.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-2.png" width="576" />
 
 限制性排序比较复杂，如果输入的环境因素较多具有共线性，还应该对得到的结果使用`ordistep`进行forward，backward，both等方式的筛选，得到最合适的模型。

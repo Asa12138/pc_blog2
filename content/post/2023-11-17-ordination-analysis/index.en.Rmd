@@ -25,8 +25,8 @@ editor_options:
 ```{r include=FALSE}
 Packages <- c("dplyr","kableExtra","ggplot2")
 pcutils::lib_ps(Packages)
-devtools::load_all("~/Documents/R/pctax/")
-knitr::opts_chunk$set(message = FALSE,warning = FALSE,eval = T,cache = T)
+devtools::load_all("~/Documents/R/pctax/pctax/")
+knitr::opts_chunk$set(message = FALSE,warning = FALSE,eval = T,cache = T,fig.width = 6,fig.height = 4)
 ```
 
 ## Introduction
@@ -345,6 +345,12 @@ pctax::permanova(otutab,metadata["Group"],method = "mrpp")
 pctax::permanova(otutab,metadata["Group"],method = "anosim")
 ```
 
+```{r}
+adonis_res=pctax::permanova(otutab,metadata["Group"],method = "adonis")
+plot(b_res,Group = "Group",metadata = metadata,permanova_res = adonis_res)
+```
+
+
 也可以将连续变量映射到颜色上：
 ```{r}
 plot(b_res,Group = "env1",metadata = metadata)
@@ -366,20 +372,21 @@ plot(b_res,Group = "Group",metadata = metadata,mode = 3)
 library(patchwork)
 p1=plot(b_res,Group = "Group",metadata = metadata,mode = 2)
 p2=plot(b_res,Group = "Group",metadata = metadata,mode = 3)
-p1[[1]]+p2[[1]]
+p1+p2
 ```
 
 把bi设为true的话，会画出一部分贡献度最高的变量：
 
 ```{r}
-plot(b_res,Group = "Group",metadata = metadata,bi = T,Topn = 10)
+plot(b_res,Group = "Group",metadata = metadata,bi = T,Topn = 10,
+     permanova_res = adonis_res,text_param = list(x=-0.3,y=-0.4))
 ```
 
 margin 可以画出点的分布密度图或箱形图:
 
 ```{r}
 plot(b_res,Group = "Group",metadata = metadata,margin = T,mode = 3)
-plot(b_res,Group = "Group",metadata = metadata,margin = T,box = F)
+plot.b_res(b_res,Group = "Group",metadata = metadata,margin = T,box_margin = F)
 ```
 
 限制性排序则需要输入响应变量数据和我们要研究的环境数据：
