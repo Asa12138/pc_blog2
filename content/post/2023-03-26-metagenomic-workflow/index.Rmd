@@ -30,9 +30,10 @@ file.edit("~/Documents/R/pctax/pctax_tutorial/11-others.qmd")
 
 ## Logs
 
-- 增加R包`pctax`内的一些帮助上游分析的小脚本（2024.03.03）
-- 增加Mmseqs2用于去冗余，基因聚类的速度非常快，且随序列量线性增长（2024.03.12）
+- 增加使用bwa-mem2去宿主，可以去得更干净。适于宿主序列很高，害怕假阳性结果的情况。（2024.07.15）
 - 更新全文细节（2024.05.29）
+- 增加Mmseqs2用于去冗余，基因聚类的速度非常快，且随序列量线性增长（2024.03.12）
+- 增加R包`pctax`内的一些帮助上游分析的小脚本（2024.03.03）
 
 **注意：**
 
@@ -142,9 +143,11 @@ pctax::pre_fastp("report/")
 
 另外，FastQC，Cutadapt，Trimmomatic等也是常用的测序质控工具。
 
-### 去宿主：bowtie2
+### 去宿主
+去宿主的过程其实就是将序列比对到宿主基因组上，然后没有比对到的序列整合成新文件就是去宿主后的了。
 
-去宿主的过程其实就是将序列比对到宿主基因组上，然后没有比对到的序列整合成新文件就是去宿主后的了。宿主基因组需要自己先下载好并用 bowtie2-build 建立索引，以人类为例：
+#### bowtie2
+宿主基因组需要自己先下载好并用 bowtie2-build 建立索引，以人类为例：
 
 ```{bash}
 #!/bin/bash
@@ -190,7 +193,69 @@ end=`date +%s`
 echo TIME:`expr $end - $start`s
 ```
 
-另外也可以使用bwa，kneaddata等软件去宿主。
+据说bowtie2的敏感性比较低，所以我们这里已经打开了`--very-sensitive`模式。
+敏感度不足会导致有些可能是人类序列但不会比对到genome上而导致结果还有人类序列（<https://mp.weixin.qq.com/s/Qxj0PvVn49ynrD5jVxucTw>），可以用使用bwa-mem，或者在后续kraken中使用带有人类genome的数据库进一步去除宿主。
+
+#### bwa-mem2
+
+bwa-mem2的敏感度较高（<https://hc1023.github.io/2020/11/03/extract-paired-mapping-reads-and-flagstat/>）。
+
+我拿了一个样本试了下，原始reads有10,260,663条，bowtie2过滤有9,441,462条，bwa-mem过滤掉只有6,520,171条，bwa-mem是宁可错杀1000，不放过一个。
+
+宿主基因组需要自己先下载好并用 bwa-mem2 index 建立索引，以人类为例：
+```{bash}
+#!/bin/bash
+#SBATCH --job-name=rm_human
+#SBATCH --output=/share/home/jianglab/pengchen/work/asthma/log/%x_%A_%a.out
+#SBATCH --error=/share/home/jianglab/pengchen/work/asthma/log/%x_%A_%a.err
+#SBATCH --array=1
+#SBATCH --partition=cpu
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=2G
+
+# bwa-mem2 index ~/db/humangenome/hg38.fa #70G内存，1300s
+samplelist=/share/home/jianglab/pengchen/work/asthma/samplelist
+
+echo start: `date +"%Y-%m-%d %T"`
+start=`date +%s`
+
+####################
+echo "SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
+START=$SLURM_ARRAY_TASK_ID
+
+NUMLINES=40 #how many sample in one array
+
+STOP=$((SLURM_ARRAY_TASK_ID*NUMLINES))
+START="$(($STOP - $(($NUMLINES - 1))))"
+
+echo "START=$START"
+echo "STOP=$STOP"
+
+####################
+for (( N = $START; N <= $STOP; N++ ))
+do
+  sample=$(head -n "$N" $samplelist | tail -n 1)
+  echo $sample
+  mkdir -p data/rm_human
+  bwa-mem2 mem -t 8 ~/db/humangenome/hg38.fa data/fastp/${sample}_1.fq.gz \
+    data/fastp/${sample}_2.fq.gz > data/rm_human/${sample}_aligned_reads.sam # 20G内存，8核，419s
+  ~/miniconda3/envs/waste/bin/samtools view -Sb data/rm_human/${sample}_aligned_reads.sam > data/rm_human/${sample}_reads.bam
+  ~/miniconda3/envs/waste/bin/samtools sort data/rm_human/${sample}_reads.bam data/rm_human/${sample}_sorted_reads
+  ~/miniconda3/envs/waste/bin/samtools view -b -f 4 data/rm_human/${sample}_sorted_reads.bam > data/rm_human/${sample}_non_host_reads.bam
+  ~/miniconda3/envs/waste/bin/bedtools bamtofastq -i data/rm_human/${sample}_non_host_reads.bam -fq data/rm_human/${sample}.1.fq -fq2 data/rm_human/${sample}.2.fq
+  
+  rm data/rm_human/${sample}_aligned_reads.sam
+  rm data/rm_human/${sample}_reads.bam
+  rm data/rm_human/${sample}_sorted_reads.bam
+  rm data/rm_human/${sample}_non_host_reads.bam
+done
+
+##############
+echo end: `date +"%Y-%m-%d %T"`
+end=`date +%s`
+echo TIME:`expr $end - $start`s
+```
+
 
 ### fastq信息统计
 

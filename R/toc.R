@@ -1,4 +1,4 @@
-all_post=list.files("~/Documents/R/pc_blog2/content/post/", pattern = "*\\.md", recursive  = TRUE,full.names = TRUE)
+all_post=list.files("~/Documents/R/pc_blog2/content/post/", pattern = "index.*\\.md", recursive  = TRUE,full.names = TRUE)
 all_post2=all_post[-c(1:2)]
 
 yaml_data=list()

@@ -25,7 +25,10 @@ title: Mindmap
 - [R绘制优美的地图](../p/r-map)
 - [R绘制优美的进化树（基础）](../p/r-tree)
 - [R绘制优美的进化树（进阶）](../p/r-tree2)
-- [R绘制柱形图及其变换（bar chart）](../p/r-bar-chart)
+- [R绘制柱形图及其变换](../p/r-bar-chart)
+- [R绘制箱形图及其变换](../p/r-box)
+- [R绘制Venn图及其变换](../p/r-venn)
+- [R展示层级数据（桑基/旭日/珠包/Treemap图等）](../p/treemap)
 - [R进阶使用小技巧](../p/r-tips)
 - [R快速翻译和绘图中文支持](../p/translator)
 - [R调用Taxonkit展示系统发育信息](../p/taxonkit-r)
@@ -33,6 +36,7 @@ title: Mindmap
 - [R语言机器学习（基础）](../p/r-machine-learning)
 - [R包开发（基础）](../p/r-package)
 - [R-shiny应用开发（基础）](../p/rshiny)
+- [R医学数据分析](../p/r-medicine)
 
 ### 统计学
 - [R-统计分析](../p/r-statistics)
@@ -44,13 +48,21 @@ title: Mindmap
 ### 宏基因组分析
 - [宏基因组分析流程（Metagenomic workflow）202405｜持续更新](../p/metagenomic-workflow)
 - [R微生物组分析流程（pctax包）](../p/r-pctax)
+- [Mmseqs2的基础使用](../p/mmseqs2)
+- [使用InStrain进行宏基因组群体分析](../p/instrain)
+#### MAGs
 - [宏基因组分箱（binning）｜1.Metabat实战了解binning](../p/binning)
 - [宏基因组分箱（binning）｜2. MetaWRAP实战深入binning](../p/binning2)
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
 - [使用FastANI与Skani计算平均核苷酸一致性(ANI)](../p/ani)
+#### BGCs
+- [微生物组的生物合成基因簇（BGCs）分析](../p/bgcs)
 - [使用antiSMASH数据库及软件分析微生物组](../p/antismash)
 - [使用BiG-SCAPE挖掘微生物组BGCs](../p/big-scape-bgcs)
-- [Mmseqs2的基础使用](../p/mmseqs2)
+#### Virus
+- [从宏基因组中鉴定病毒序列](../p/virus)
+- [宏基因组中病毒序列的进一步挖掘（功能/宿主）](../p/virus-host)
+- [VirRep: 人类肠道微生物组识别病毒新方法](../p/virrep)
 - [Antibiotics resistance gene 抗生素抗性基因（ARG）](../p/antibiotics-resistance)
 - [CRISPR 相关学习](../p/crispr)
 - [CRISPR analysis](../p/crispr-analysis)
@@ -82,11 +94,14 @@ title: Mindmap
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)
 
 ## 其他工具
+- [一些实用的shell脚本](../p/shell)
+- [Positron初尝试，新一代数据科学IDE（R+Python+...）](../p/positron-ide-r-python)
 - [使用uTools提高办公效率](../p/utools)
 - [Slurm集群使用基础](../p/slurm)
 - [容器（Docker & Singularity）使用入门](../p/docker-singularity)
 - [Mermaid 入门](../p/mermaid)
 - [CSL格式原理和应用](../p/csl)
+- [iPhylo 生成并绘制优美的分类树](../p/iphylo)
 
 ## 学术成果
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)
@@ -98,3 +113,4 @@ title: Mindmap
 - [gut 2023 肠道大会个人总结](../p/gut-2023)
 - [龙年启科研新篇](../p/new_year)
 - [Attack on Titan](../p/attack-on-titan)
+- [公众号长期数据统计（笨方法）](../p/wechat)
