@@ -7,7 +7,7 @@ categories:
   - microbial-ecology
 tags:
   - crispr
-description: CRISPR-Cas 系统的一些基础知识和最新研究进展
+description: CRISPR-Cas 系统的一些基础知识和宏基因组相关研究进展。
 image: images/stress.png
 math: null
 license: null
@@ -96,33 +96,52 @@ RNA），其与重复部分互补并涉及CRISPR（cr）RNA加工和干扰。然
 
 #### Pathogenicity and virulence
 
+CRISPR-Cas系统在多种病原菌中不仅用于自适应免疫，还参与调控病原性和毒力。比如，Francisella novicida 利用Cas9和其他RNA分子减少宿主免疫反应，从而在宿主体内生存。类似的，Neisseria meningitis 和 Streptococcus pyogenes 也依赖Cas9侵染宿主并在其中繁殖。Campylobacter jejuni 的研究表明，Cas9参与调控毒力因子，影响其生物膜形成和宿主体内的生存能力。在 Legionella pneumophila 中，Cas2被发现对感染过程至关重要，具有核酸酶活性，且在 Acinetobacter baumannii 中，CRISPR-Cas系统与高生物膜生成能力有关。
+
 #### Bacterial physiology
+
+在 Myxococcus xanthus 中，cas基因（如cas8、cas7和cas5）对孢子形成和子实体发育至关重要。Salmonella typhi 的研究表明，删除I-E型系统的cas基因会影响外膜蛋白的表达，进而影响生理过程和毒力。在 Pseudomonas aeruginosa 和 Aggregatibacter actinomycetemcomitans 中，CRISPR间隔区的自靶向可能改变病原菌的生理或代谢。在 Listeria monocytogenes 中，尽管CRISPR基因簇缺乏相关的cas基因，但仍能抑制特定基因的表达，影响铁运输和其他生理过程。
 
 #### Response to stress
 
-有人提出，在大肠杆菌中，诱导的 Cas 水平和 CRISPR 阵列中 ssTorA 靶向间隔子（部分匹配）的出现的联合作用导致膜蛋白水平降低，从而影响跨细胞的运输通道。
+在许多细菌中，CRISPR-Cas系统的表达会在应对压力时被激活。例如，在 Escherichia coli 中，膜应激可以诱导CRISPR-Cas系统的表达。同样，Streptococcus thermophilus 和 Sulfolobus islandicus 在噬菌体引发的应激后也会激活该系统。在 Streptococcus mutans 中，不同类型的CRISPR系统在温度和膜应激条件下表现出不同的调控模式，受双组分应激反应调节器VicK/R的影响。研究表明，CRISPR-Cas系统不仅参与适应性免疫，还与压力响应机制密切相关，但具体的分子机制仍需进一步研究。
 
 <img src="images/stress.png" style="width:90.0%" />
 
 #### Endogenous gene regulation
 
+CRISPR-Cas系统在内源性基因调控中发挥作用。例如，在 Escherichia coli 中，I-E型CRISPR-Cas系统被发现有较高的倾向靶向自身染色体的转录活跃区域，表明其参与基因调控。Francisella novicida 利用CRISPR-Cas系统调节毒力相关蛋白的表达，帮助细菌躲避宿主免疫反应。在 Pelobacter carbinolicus 中，CRISPR间隔区自靶向特定基因，影响了该基因的转录。此外，III型系统通过靶向mRNA来调节基因表达，展示了CRISPR-Cas系统在基因调控中的多样性功能。
+
 #### Bacterial genome remodeling
 
-为了避免由于自我靶向间隔子导致的细胞死亡，生物体被证明可以通过移除原型间隔子或删除整个目标区域来重塑目标区域。
+在细菌中，为了避免由于CRISPR-Cas系统自靶向间隔区导致的细胞死亡，细菌会通过基因组重塑来应对。这种重塑通常包括删除原靶序列或整个靶区域。例如，在 Pectobacterium atrosepticum 中，自靶向导致了整个100 kb的水平获取岛（HAI2）区域的删除。类似的情况在其他细菌中也被观察到，如 Escherichia coli 和 Streptococcus thermophilus，自靶向导致了基因组中多达35 kb和37.4 kb的大片段缺失。这些研究表明，自靶向事件会促使细菌通过基因组重塑来进化和适应环境变化。
 
 #### Association with DNA repair system
 
+CRISPR-Cas系统与DNA修复系统在不同层面上存在密切关联，尤其是在适应阶段。Escherichia coli 的I-E型CRISPR-Cas系统在获取新间隔区时会利用DNA修复通路中的DNA聚合酶。此外，CRISPR-Cas系统中的一些蛋白质与DNA修复蛋白共享同源结构域，如Cas3的解旋酶域和Cas4的核酸酶域。Cas1 蛋白与多种细胞修复蛋白（如RecB、RecC和RuvB）相互作用，帮助修复复制过程中的DNA断裂，同时也促进了新间隔区的适应。尽管CRISPR-Cas系统与DNA修复系统在多个层面协同工作，但也存在一定的对抗关系。例如，II型系统与非同源末端连接（NHEJ）重组路径呈负相关。这种复杂的关系可能解释了CRISPR-Cas系统在细菌中的分布和多样性。
+
 ### application
 
-#### Inhibition of horizontal gene transfer
+#### Inhibition of horizontal gene transfer
 
-最近，CRISPR-Cas 还被用作抑制抗生素抗性基因从一种生物体转移到另一种生物体的工具。
+CRISPR-Cas系统正被探索用于抑制抗生素抗性基因的水平转移。研究表明，CRISPR系统能够降低多药耐药（MDR）菌株中抗生素抗性决定因子的浓度。例如，在 Enterococcus faecalis 中，CRISPR系统减少了移动遗传元件（如前噬菌体和质粒）的传播。在 Streptococcus pyogenes 中，CRISPR间隔区的数量增加也降低了整合前噬菌体的频率。通过设计靶向抗药性基因的CRISPR间隔区，可以有效针对带有病原岛的菌株，从而减少抗生素耐药和致病性基因的传播。此外，将CRISPR-Cas系统引入溶原噬菌体中来靶向抗生素抗性基因，以及添加靶向裂解噬菌体的间隔区，有望进一步保护抗生素敏感的细胞免受噬菌体的裂解感染。
 
 #### Typing tool
 
-CRISPR-Cas 系统用于分型细菌物种的多样性
+CRISPR-Cas系统最早被用于细菌种群的分型，以揭示其多样性。例如，在Mycobacterium tuberculosis中，CRISPR系统的间隔区变异常用于流行病学研究和类型学分析。与此不同的是，在Campylobacter jejuni中（使用的是类型II CRISPR系统），单靠CRISPR分型无法充分揭示进化关系，因此常与其他工具如扩增片段长度多态性（AFLP）和多位点序列分型（MLST）联合使用。
 
 #### Genome editing
+
+CRISPR-Cas系统因其在基因组编辑中的高效性而受到广泛关注。尽管所有CRISPR系统都具备识别和靶向DNA的功能，但并非所有系统都适用于基因组编辑。以下是一些关键点：
+
+1.  **系统类型的适用性**：
+    - **I型和III型CRISPR**：这类系统的DNA降解过程不够清晰，需要额外的Cas6蛋白来生成crRNA，因此不适用于基因组编辑。
+    - **II型CRISPR**：以CRISPR-Cas9为代表，仅需少量组件即可执行所有功能，这使其成为理想的基因组编辑工具。Type II系统通过引入双链断裂（DSBs）在哺乳动物细胞中表现出色，这对基因组编辑至关重要。
+2.  **CRISPR-Cas9技术**：
+    - **构建**：CRISPR-Cas9系统使用Cas9蛋白和单导RNA（sgRNA）来靶向特定DNA序列。sgRNA通过将自然存在的tracrRNA和crRNA融合形成，具备与靶标序列的互补性。
+    - **优势**：CRISPR-Cas9技术相比于传统的基因组编辑工具，如转录激活因子样核酸酶（TALENs）和锌指核酸酶（ZFNs），展现了更高的效率和简便性。
+    - **应用**：在进行基因组编辑时，将Cas9-sgRNA构建体引入细胞，同时转化合成的重组DNA模板，可以提高靶位点的突变几率。重组DNA模板应具有突变以防止Cas9核酸酶的持续片段化。
+3.  **效率**：CRISPR-Cas9技术因其操作简单、高效，被广泛应用于多种真核和原核模型生物的基因组编辑。
 
 ## Pangenomes
 
@@ -149,7 +168,7 @@ CRISPR-Cas 系统似乎遍布整个系统发育树
 CRISPR-Cas 系统不会出现在具有固定辅助基因集合的基因组中
 
 具有 CRISPR-Cas
-系统的基因组是否以比没有这些系统的基因组更高的频率呈现特定基因？（进一步看这个）
+系统的基因组是否以比没有这些系统的基因组更高的频率呈现特定基因？
 
 3.  CRISPR-Cas 相关基因富集膜蛋白
 
@@ -159,7 +178,7 @@ CRISPR-Cas 系统不会出现在具有固定辅助基因集合的基因组中
 
 CRISPR-Cas 系统存在于大约 40% 的细菌和 85% 的古细菌基因组中，但不存在于真核生物基因组中。最近，Communications Biology 上发表的一篇文章报道了在人类基因组中鉴定出 12,572 个推定的 CRISPR，他们称之为“hCRISPR” ([*6*](#ref-vanrietCRISPRsHumanGenome2022))。
 
-觉得有点搞笑，人类怎么会有这么多CRISPR系统，所以又看到一篇文章怼他的： ([*7*](#ref-buyukyorukClarifyingCRISPRWhy2023))。
+但感觉人类怎么会有这么多CRISPR系统，所以又看到一篇文章怼他的： ([*7*](#ref-buyukyorukClarifyingCRISPRWhy2023))。
 
 ## Reference
 
