@@ -1,5 +1,5 @@
 ---
-title: CRISPR 相关学习
+title: CRISPR 相关内容学习
 author: Peng Chen
 date: '2023-12-31'
 slug: crispr

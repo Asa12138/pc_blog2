@@ -1,5 +1,5 @@
 ---
-title: Anti-CRISPR相关学习
+title: Anti-CRISPR 相关内容学习
 author: Peng Chen
 date: '2024-07-31'
 slug: anti-crispr
@@ -9,14 +9,12 @@ tags:
   - crispr
   - Acr
 description: 细菌和古菌等微生物与病毒(噬菌体)之间的生存之战是一场“军备竞赛”。噬菌体进化出特异性的anti-CRISPR来抵抗CRISPR-Cas系统的免疫。
-image: ~
+image: images/acr_mechanism.jpg
 math: ~
 license: ~
 hidden: no
 comments: yes
 ---
-
-http://journals.im.ac.cn/html/wswxtbcn/2021/9/tb21093353.htm#rhhz
 
 ## Introduction
 
@@ -26,10 +24,11 @@ CRISPR-Cas系统是微生物为免受噬菌体和外来遗传元件入侵进化�
 
 最初在铜绿假单胞菌的噬菌体中观察到了这种anti-CRISPR现象，尽管这些噬菌体携带与宿主Ⅰ-F型CRISPR-Cas系统Spacer序列匹配的靶标核酸，依然能成功侵染宿主并传播。Bondy-Denomy等研究者在这些噬菌体的基因组中发现了编码5个Acr蛋白（AcrⅠF1、AcrⅠF2、AcrⅠF3、AcrⅠF4和AcrⅠF5）的基因，这些蛋白能帮助噬菌体逃避Ⅰ-F型CRISPR-Cas系统的免疫。
 
-自2013年发现第一个Acr蛋白以来，已确认多种来源于病毒和质粒等移动遗传元件的Acr蛋白可抵御CRISPR-Cas系统的免疫。由于Acr蛋白在序列上相似性较低，因此无法通过氨基酸序列同源比对来预测新的Acr蛋白。当前预测和挖掘Acr蛋白的策略主要有三种：(1) 在序列保守的anti-CRISPR相关蛋白Aca周围进行预测；(2) 在携带内源CRISPR-Cas系统自靶向的宿主菌基因组上筛选；(3) 在能够抵御宿主CRISPR-Cas免疫活性的噬菌体基因组上鉴定。此外，还有研究者通过高通量筛选平台，成功筛选到一个合成的抗SpCas9小分子，这提示我们可以通过类似筛选策略来发现天然和合成的CRISPR-Cas系统抑制分子，以便于开发利用。
+自2013年发现第一个Acr蛋白以来，已确认多种来源于病毒和质粒等移动遗传元件的Acr蛋白可抵御CRISPR-Cas系统的免疫。由于Acr蛋白在序列上相似性较低，因此无法通过氨基酸序列同源比对来预测新的Acr蛋白。
+
+当前预测和挖掘Acr蛋白的策略主要有三种：(1) 在序列保守的anti-CRISPR相关蛋白Aca周围进行预测；(2) 在携带内源CRISPR-Cas系统自靶向的宿主菌基因组上筛选；(3) 在能够抵御宿主CRISPR-Cas免疫活性的噬菌体基因组上鉴定。
 
 ## 分类
-
 
 目前已经发现了至少82种Acr蛋白，它们分别能够抑制Ⅰ、Ⅱ、Ⅲ、Ⅴ和Ⅵ型CRISPR-Cas系统的免疫活性。表1展示了这些发现，注意到目前还没有报道针对Ⅳ型CRISPR-Cas系统的Acr蛋白。研究表明，这些Acr蛋白大多通过与CRISPR-Cas复合物或Cas蛋白相互作用来抑制其免疫活性。
 
@@ -65,16 +64,49 @@ Acr蛋白抵御CRISPR-Cas系统免疫的第三种常见方式是直接抑制CRIS
 
 AcrⅢ-1不直接改变Ⅲ型CRISPR-Cas效应复合体的结构和功能，而是通过降解靶向RNA后生成的环腺苷酸CA4信号分子来帮助病毒逃避Ⅲ型CRISPR-Cas系统的免疫干扰。这种策略表明AcrⅢ-1具有广泛的宿主适应性，在细菌和古菌中普遍存在。此外，Ⅵ-B型CRISPR-Cas系统中的Csx27是一种特殊的Cas蛋白，能减弱Cas13b-crRNA效应复合体对靶向干涉RNA的活性，这种负调节作用可能在微生物宿主的免疫防御中起重要作用。
 
+## 应用
+
+1. **细胞特异性控制**：
+   - 基于AcrIIA4的技术能够将Cas9的活性限制在特定细胞类型中，例如肝细胞和心肌细胞。这种方法通过引入特征性MicroRNAs来实现目标细胞的特异性调控，从而避免非目标细胞中的脱靶效应。
+
+2. **AAV载体与特异性miR-122结合**：
+   - 2019年的研究表明，通过使用Adenovirus-associated vector（AAV）与NmeCas9（来自Neisseria meningitidis）的联合递送，结合带有肝脏特异性miR-122结合位点的AcrIIC3，可以实现肝脏细胞中的基因编辑，同时抑制心肌细胞中的编辑。
+
+3. **生物传感器开发**：
+   - 利用Acr蛋白的特性开发的生物传感器可以用于检测CRISPR-Cas系统的活性。这些传感器在酿酒酵母中被成功构建，并且能够与荧光表达增强耦合，实现了对CRISPR-Cas系统的有效调控。
+
+4. **合成基因电路**：
+   - 基于Acr蛋白的合成基因电路可以在酿酒酵母中实现对CRISPR-Cas系统的精确调控。这些电路通过Acr蛋白介导的抗CRISPR表达和活性诱导方法，为基因组编辑提供了更多的控制手段。
+
+
 ## 生信鉴定方法
 
-http://guolab.whu.edu.cn/anti-CRISPRdb/
+### anti-CRISPRdb
 
-直接跟现成的数据库比对。
+可以直接跟现成的anti-CRISPR数据库比对。
+anti-CRISPRdb （<http://guolab.whu.edu.cn/anti-CRISPRdb/>）存储了已知的一些anti-CRISPR蛋白序列，我们下载序列文件，使用blast或者diamond建库后，进行序列比对即可。
 
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-04986-3
+```bash
+wget -c http://guolab.whu.edu.cn/anti-CRISPRdb/dataset/proteinSequence_V2.2.faa
+# 下载的序列有一些空格，需要去除
+awk '/^>/ {print; next} {gsub(" ", ""); print}' proteinSequence_V2.2.faa >proteinSequence_V2.2_rm_space.faa
+# 建库
+~/miniconda3/envs/func/bin/diamond makedb --in proteinSequence_V2.2_rm_space.faa --db proteinSequence_V2.2
+# 比对
+~/miniconda3/envs/func/bin/diamond blastp --db ~/db/Anti-CRISPRdb/proteinSequence_V2.2 --query your_seq.faa --out your_seq.out --outfmt 6 --max-target-seqs 1 --threads 8 --evalue 1e-5 --quiet
+```
 
+### PreAcrs
+
+![](images/Figure4.png)
+
+一种新型机器学习集成预测器：PreAcrs[3]，用于直接从蛋白质序列中识别抗 CRISPR 蛋白质。使用三种特征和八种不同的机器学习算法来训练 PreAcrs。 PreAcrs 优于其他现有方法，并显着提高了识别抗 CRISPR 蛋白的预测准确性。
+
+源代码位于：<https://github.com/Lyn-666/anti_CRISPR.git>
 
 
 ## References
 
-
+1. PEI Chenchen, LI Yingjun. Origin, development, and application of anti-CRISPR[J]. Microbiology China, 2021, 48(9): 3353-3367.
+2. Na Xu, Yunxia Gong, Yanchun Shao, Shushan Gao, Shouwen Chen, Fusheng Chen. Research progress of CRISPR-Cas system and anti-CRISPR protein in microorganisms. Acta Microbiologica Sinica, 2021, 61(8): 2172-2191.
+3. PreAcrs: a machine learning framework for identifying anti-CRISPR proteins. <https://doi.org/10.1186/s12859-022-04986-3>
