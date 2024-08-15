@@ -17,7 +17,7 @@ comments: yes
 
 ## Introduction
 
-自己整理一些常用的功能基因预测/注释通用工具，因为数量较多，不会写的很仔细，对于每个单独的工具可以进一步找教程学习。
+自己整理一些常用的功能基因预测/注释通用工具，因为数量较多，不会写的很仔细，对于每个单独的工具可以进一步找相关教程学习。
 
 ## 基因结构鉴定工具
 
@@ -238,7 +238,7 @@ DIAMOND是一个快速的蛋白质序列比对工具，设计用于比对大规�
 参考教程：[MMseqs2蛋白质序列快速高效比对工具](https://blog.csdn.net/zrc_xiaoguo/article/details/134747183)
 
 **介绍**：
-MMseqs2（Many-against-Many sequence searching）是一个快速高效的序列搜索和聚类工具，适用于大规模数据集。
+MMseqs2（Many-against-Many sequence searching）是一个快速高效的序列搜索和聚类工具，适用于大规模数据集，这个可以好好学习一下使用，因为速度算是非常快的。
 
 **安装**：
    ```bash
@@ -346,16 +346,3 @@ HMMER是一款基于HMM的工具，适用于检测蛋白质家族和结构域。
 ### SCycDB
 - **官网**: [SCycDB](https://github.com/Tu-Lab/SCycDB)
 - **介绍**: SCycDB 专注于硫循环，包含硫循环相关的基因和酶信息。它帮助研究者理解硫在生态系统中的循环过程，分析硫的生物地球化学作用。
-
-
-## CRISPR
-
-### CRIPSRCasfinder
-
-<https://crisprcas.i2bc.paris-saclay.fr/CrisprCasFinder/Index>
-
-### Anti-CRISPRdb
-
-<http://guolab.whu.edu.cn/anti-CRISPRdb/>
-
-CRISPR是一种广泛用于基因编辑的工具。然而，长期核酸酶活性可能会出现意想不到的脱靶效应。抗 CRISPR 蛋白是抑制 CRISPR-Cas 系统的强大分子，可能有潜力促进 CRISPR 系统在基因编辑中更好地利用，特别是在基因治疗中。 Anti-CRISPRdb 是第一个用于组织这些蛋白质的在线资源。
