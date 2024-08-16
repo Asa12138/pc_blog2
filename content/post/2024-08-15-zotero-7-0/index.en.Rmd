@@ -39,7 +39,7 @@ Zotero 7带来了全新的现代化设计，虽然是重新设计，但依然保
 - 暗黑模式：
 Zotero 7的设计中加入了全新的暗黑模式，确保每个部分都在暗黑模式下表现出色。此外，PDF和EPUB内容的基础暗黑模式支持也已经实现，未来还会有更多高级渲染选项。如果需要查看文档的原始状态，可以在阅读器的视图菜单中关闭内容的暗黑模式。
 
-![](https://www.zotero.org/static/images/blog/7.0/dark-mode.png){width=50%}
+![](images/dark-mode.png){width=50%}
 
 - 界面密度选择：
 Zotero 7现在提供两种界面密度选项：紧凑和舒适。紧凑模式类似于之前的密度，而舒适模式则是新的默认设置，适合新用户或较小的文献库用户，提供了更舒适的使用体验。
@@ -47,7 +47,7 @@ Zotero 7现在提供两种界面密度选项：紧凑和舒适。紧凑模式类
 - 新的应用图标：
 为了配合全新的外观，Zotero 7还设计了一个全新的应用图标。
 
-![](https://www.zotero.org/static/images/blog/7.0/z-logo.png){width=20%}
+![](images/z-logo.png){width=20%}
 
 ### 自定义文件重命名
 
@@ -68,7 +68,7 @@ Zotero 7现在提供两种界面密度选项：紧凑和舒适。紧凑模式类
 
 现在，悬停在引用或内部链接上时，会自动弹出显示相关参考文献或图表的窗口，不必再来回跳转查找参考内容。
 
-![](https://www.zotero.org/static/images/blog/7.0/reference-popup.png)
+![](images/reference-popup.png)
 
 ![](images/fig-popup.png.png)
 
@@ -81,7 +81,7 @@ Zotero 7在整体性能上有了显著提升，并支持Apple Silicon Mac、64�
 ### 改进的阅读器
 Zotero 7的内置PDF阅读器进行了重大升级，现在它不再仅仅是PDF阅读器，还支持EPUB格式。
 
-![](https://www.zotero.org/static/images/blog/7.0/epub.png)
+![](images/epub.png)
 
 - **EPUB支持**：EPUB是目前最流行的电子书格式，许多人更喜欢它的阅读体验。EPUB文档现在可以像PDF一样在Zotero的内置阅读器中打开，可以进行标注并将这些标注添加到笔记中。Zotero还可以自动检索大多数EPUB的元数据，并创建父项目。
 
@@ -91,12 +91,12 @@ Zotero 7的内置PDF阅读器进行了重大升级，现在它不再仅仅是PDF
 
 Zotero 7支持创建墨迹、下划线和文本标注。墨迹标注已经在iOS上支持，现在也可以在桌面应用中使用（在触摸屏PC或手写笔设备上表现最佳）。下划线标注与高亮类似，文本标注则允许直接在页面上添加文本。
 
-![](https://www.zotero.org/static/images/blog/7.0/lassie-760.png){width=50%}
+![](images/lassie-760.png){width=50%}
 
 
 ### 更智能的引用
 
-![](https://www.zotero.org/static/images/blog/7.0/smarter-citing.png)
+![](images/smarter-citing.png)
 
 Zotero 7的引用过程变得更快且更直观。引用对话框会自动建议列表中选择的项目或在阅读器中打开的文档。引用你正在查看的内容现在只需点击“添加/编辑引用”并按Enter即可。
 

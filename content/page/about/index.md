@@ -64,10 +64,10 @@ Any question?
 ### In submission
 
 1.  Yueer Li#, **Chen Peng#**, Fei Chi, Zinuo Huang, Mengyi Yuan, Chao Jiang.The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. *In submission*
-2.  Qiong Chen, **Chen Peng**, Haoteng Xu, Zhuojie Su, Gulimire Yilihan, Xin Wei, Yueran Shen, Chao Jiang. Microplastics released from disposable paper cups are enriched in the placenta and fetus, leading to metabolic and reproductive toxicity in mice. *In submission*
 
 ### Published
 
+1.  Q. Chen, **C. Peng**, R. Xie, H. Xu, Z. Su, G. Yilihan, X. Wei, S. Yang, Y. Shen, C. Ye, C. Jiang, Placental and fetal enrichment of microplastics from disposable paper cups: implications for metabolic and reproductive health during pregnancy. J. Hazard. Mater. 478, 135527 (2024). <https://doi.org/10.1016/j.jhazmat.2024.135527>.
 1.  **C. Peng**, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized reporter score-based enrichment analysis for omics data. *Briefings in Bioinformatics* (2024). <https://doi.org/10.1093/bib/bbae116>.
 2.  Z. Huang#, **C. Peng#**, Z. Rong, L. Jiang, Y. Li, Y. Feng, S. Chen, C. Xie, C. Jiang, Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. *Environmental Science & Technology* (2024). <https://doi.org/10.1021/acs.est.3c09379>.
 3.  **C. Peng**, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized Reporter Score-based Enrichment Analysis for Omics Data. *bioRxiv* \[Preprint\] (2023). <https://doi.org/10.1101/2023.10.13.562235>.
