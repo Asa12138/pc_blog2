@@ -3,7 +3,7 @@ library(httr)
 library(stringr)
 
 # 定义文件路径
-file_path <- "content/post/2024-08-15-zotero-7-0/index.en.Rmd"
+file_path <- "content/post/un-2024-08-14-vcontact2/index.en.Rmd"
 # 获取前面部分定义images目录路径
 images_dir <- file.path(dirname(file_path),"images")
 
