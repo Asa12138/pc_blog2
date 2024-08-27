@@ -1,5 +1,5 @@
 ---
-title: 宏基因组分析流程（Metagenomic workflow）202405｜持续更新
+title: 宏基因组分析流程（Metagenomic workflow）202408｜持续更新
 author: Peng Chen
 date: '2024-05-28'
 slug: metagenomic-workflow
@@ -1222,11 +1222,11 @@ echo TIME:`expr $end - $start`s
 mkdir -p result/summ_table
 if [ -f result/eggnog/eggnog_anno_output ]; then
 # 汇总，9列KO，16列CAZy按逗号分隔，21列COG按字母分隔，原始值累加
-~/db/script/summarizeAbundance.py \\
--i result/salmon/gene.count \\
--m result/eggnog/eggnog_anno_output \\
--c '9,16,21' -s ',+,+*' -n raw \\
--o result/summ_table/eggnog
+~/db/script/summarizeAbundance.py \
+  -i result/salmon/gene.count \
+  -m result/eggnog/eggnog_anno_output \
+  -c '9,16,21' -s ',+,+*' -n raw \
+  -o result/summ_table/eggnog
 sed -i 's/^ko://' summ_table/eggnog.KO.raw.txt
 fi
 ```
