@@ -7,7 +7,7 @@ categories:
   - utils
 tags:
   - shell
-description: ~
+description: 记录分享一些自己在linux下常用的shell脚本和小软件。
 image: ~
 math: ~
 license: ~
@@ -30,7 +30,9 @@ echo 'export PATH=$PATH:~/script' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 无root权限使用yum安装包
+## 脚本
+
+### 无root使用yum安装包
 
 参考： <https://blog.csdn.net/GreenHandCGL/article/details/83055151>
 
@@ -143,4 +145,146 @@ source ~/.bashrc
 
 ### autojump
 
-### 
+官网：<https://github.com/wting/autojump>
+
+Autjump 是一个非常实用的命令行工具，帮助用户快速跳转到常用的目录，尤其适合经常在命令行中导航的用户。以下是一些常见的用法示例：
+
+1. 快速跳转到包含特定关键字的目录
+
+如果你想跳转到包含关键字 `foo` 的目录，可以使用：
+
+```bash
+j foo
+```
+
+2. 跳转到子目录
+
+有时候你可能只想跳转到当前目录的某个子目录，而不想输入完整的路径名称。这时可以使用：
+
+```bash
+jc bar
+```
+
+其中 `bar` 是子目录的名称。
+
+3. 使用文件管理器打开目录
+
+你还可以通过 `jo` 命令来使用系统的文件管理器（如 Mac Finder、Windows Explorer、GNOME Nautilus 等）打开目录，而不是直接跳转：
+
+```bash
+jo music
+```
+
+如果你想打开子目录，也可以使用类似的命令：
+
+```bash
+jco images
+```
+
+4. 使用多个参数来跳转
+
+假设你的数据库中有以下两个目录：
+
+```
+30   /home/user/mail/inbox
+10   /home/user/work/inbox
+```
+
+默认情况下，使用 `j in` 会跳转到 `/home/user/mail/inbox`，因为它的权重更高。但是，如果你想跳转到另一个目录，可以通过传递多个参数来实现：
+
+```bash
+j w in
+```
+
+这会跳转到 `/home/user/work/inbox`。
+
+5. 获取更多选项
+
+如果你想了解更多使用选项，可以查看帮助文档：
+
+```bash
+autojump --help
+```
+
+通过这些命令可以更高效地在系统目录中导航，节省大量时间。
+
+### 查找差集
+
+使用awk查找file1中存在但file2中不存在的行，并将结果打印到标准输出，有时候在做文件名对比之类时很有用：
+
+脚本，保存为`diff_rows`：
+```bash
+#!/bin/bash
+
+# 初始化变量
+file1=""
+file2=""
+
+# 使用getopts解析命令行参数
+while getopts ":f:s:" opt; do
+  case "$opt" in
+    f)
+      file1="$OPTARG"
+      ;;
+    s)
+      file2="$OPTARG"
+      ;;
+    \?)
+      echo "无效的选项： -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "选项 -$OPTARG 需要一个参数" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# 检查必需的参数是否提供
+if [ -z "$file1" ] || [ -z "$file2" ]; then
+  echo "用法: $0 -f <file1> -s <file2>"
+  exit 1
+fi
+
+awk 'NR==FNR{seen[$0]=1; next} !seen[$0]' "$file2" "$file1"
+```
+
+### 文件夹软链接
+
+方便创建多个软链接，将源目录中的所有文件链接到目标目录中：
+
+脚本，保存为`link_dir`：
+
+```bash
+#!/bin/bash
+
+# 检查是否提供了源目录和目标目录
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 <source_directory> <destination_directory>"
+  exit 1
+fi
+
+SOURCE_DIR=$1
+DEST_DIR=$2
+
+# 检查源目录是否存在
+if [ ! -d "$SOURCE_DIR" ]; then
+  echo "Source directory does not exist."
+  exit 1
+fi
+
+# 检查目标目录是否存在，不存在则创建
+if [ ! -d "$DEST_DIR" ]; then
+  echo "Destination directory does not exist. Creating it now."
+  mkdir -p "$DEST_DIR"
+fi
+
+# 创建软链接
+for file in "$SOURCE_DIR"/*; do
+  ln -s "$file" "$DEST_DIR"
+done
+
+echo "Soft links created for all files in $SOURCE_DIR to $DEST_DIR"
+```
+
+
