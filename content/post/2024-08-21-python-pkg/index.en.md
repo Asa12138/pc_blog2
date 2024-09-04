@@ -110,5 +110,3 @@ https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 ### 10. **维护和更新**
    - 定期更新和维护你的库，修复bug，添加新功能。
-
-如果你希望我对上述步骤中的某一部分进行详细解释，随时告诉我！

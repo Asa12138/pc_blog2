@@ -19,6 +19,7 @@ title: Mindmap
 - [Slurm集群使用基础](../p/slurm)
 - [Julia初尝试](../p/julia)
 - [Quarto初尝试](../p/quarto)
+- [尝试开发一个自己的Python库](../p/python-pkg)
 
 ### R语言精进
 - [R-统计分析](../p/r-statistics)
@@ -47,25 +48,33 @@ title: Mindmap
 
 ### 宏基因组分析
 - [宏基因组分析流程（Metagenomic workflow）202405｜持续更新](../p/metagenomic-workflow)
+- [功能基因预测/注释通用工具](../p/function-tools)
 - [R微生物组分析流程（pctax包）](../p/r-pctax)
 - [Mmseqs2的基础使用](../p/mmseqs2)
 - [使用InStrain进行宏基因组群体分析](../p/instrain)
+- [使用Orthofinder进行系统发育直系同源推断](../p/orthofinder)
 #### MAGs
 - [宏基因组分箱（binning）｜1.Metabat实战了解binning](../p/binning)
 - [宏基因组分箱（binning）｜2. MetaWRAP实战深入binning](../p/binning2)
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
 - [使用FastANI与Skani计算平均核苷酸一致性(ANI)](../p/ani)
+- [METABOLIC：微生物基因组群落规模功能网络分析](../p/metabolic)
+- [从宏基因组构建基因组规模代谢模型（GEM）](../p/gem)
 #### BGCs
 - [微生物组的生物合成基因簇（BGCs）分析](../p/bgcs)
 - [使用antiSMASH数据库及软件分析微生物组](../p/antismash)
 - [使用BiG-SCAPE挖掘微生物组BGCs](../p/big-scape-bgcs)
 #### Virus
+- [病毒相关内容学习](../p/learn-virus)
 - [从宏基因组中鉴定病毒序列](../p/virus)
 - [宏基因组中病毒序列的进一步挖掘（功能/宿主）](../p/virus-host)
 - [VirRep: 人类肠道微生物组识别病毒新方法](../p/virrep)
+- [VirSorter2+ DRAM鉴定病毒和辅助代谢基因](../p/virsorter2-dram)
+- [使用PhaGCN2/vConTACT2进行病毒分类注释](../p/vcontact2)
 - [Antibiotics resistance gene 抗生素抗性基因（ARG）](../p/antibiotics-resistance)
 - [CRISPR 相关学习](../p/crispr)
 - [CRISPR analysis](../p/crispr-analysis)
+- [Anti-CRISPR 相关内容学习](../p/anti-crispr)
 
 ### 数据库
 - [上传测序数据至ENA数据库](../p/ena)
@@ -79,6 +88,7 @@ title: Mindmap
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
 
 ### 微生物生态学
+- [群体遗传学基础学习](../p/pop-genetic)
 - [物种多样性研究的理论和方法](../p/biodiversity)
 - [微生物群落构建（community assembly）](../p/community-assembly)
 - [微生物组的生物合成基因簇（BGCs）分析](../p/bgcs)
@@ -102,6 +112,9 @@ title: Mindmap
 - [Mermaid 入门](../p/mermaid)
 - [CSL格式原理和应用](../p/csl)
 - [iPhylo 生成并绘制优美的分类树](../p/iphylo)
+- [更新一下你的Conda吧](../p/conda)
+- [Zotero 7.0正式版，大更新！](../p/zotero-7-0)
+
 
 ## 学术成果
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)

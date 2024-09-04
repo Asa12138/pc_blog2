@@ -7,8 +7,8 @@ categories:
   - metagenomic
 tags:
   - function
-description: ~
-image: ~
+description: 一些常用的功能基因预测/注释通用工具介绍。
+image: images/mobileOG.png
 math: ~
 license: ~
 hidden: no
@@ -328,6 +328,12 @@ HMMER是一款基于HMM的工具，适用于检测蛋白质家族和结构域。
 - **官网**: [CARD](https://card.mcmaster.ca/)
 - **介绍**: CARD（The Comprehensive Antibiotic Resistance Database） 是经过严格筛选的、经过同行评审的耐药性决定因素和相关抗生素的集合，由抗生素耐药性本体论 (ARO) 和 AMR 基因检测模型组织而成。
 
+### mobileOG-db
+- **官网**: [mobileOG-db](https://github.com/clb21565/mobileOG-db)
+- **介绍**: mobileOG-db 是一个用于注释移动基因组的数据库。它基于 HMMs，为每个移动基因组提供详细的功能注释，广泛用于基因组和代谢途径的研究。
+
+<img src="images/mobileOG.png" title=""/>
+
 ## 元素循环
 
 ### 碳循环
@@ -346,3 +352,16 @@ HMMER是一款基于HMM的工具，适用于检测蛋白质家族和结构域。
 ### SCycDB
 - **官网**: [SCycDB](https://github.com/Tu-Lab/SCycDB)
 - **介绍**: SCycDB 专注于硫循环，包含硫循环相关的基因和酶信息。它帮助研究者理解硫在生态系统中的循环过程，分析硫的生物地球化学作用。
+
+### AsgeneDB
+- **官网**: [AsgeneDB](https://github.com/Asgene/AsgeneDB)
+- **介绍**: AsgeneDB 是一个关于氨基酸循环的数据库，包含氨基酸循环相关的基因和酶信息。它有助于研究氨基酸在生态系统中的循环过程，理解氨基酸的生物地球化学作用。
+
+### FeGenie
+- **官网**: [FeGenie](https://github.com/Arkadiy-Garber/FeGenie)
+- **介绍**: FeGenie 是一个关于铁循环的数据库，包含铁循环相关的基因和酶信息。它有助于研究铁在生态系统中的循环过程，理解铁的生物地球化学作用。
+
+### PlasticDB
+- **官网**: [PlasticDB](https://plasticdb.org)
+- **介绍**: PlasticDB 是一个关于塑料循环的数据库，包含塑料循环相关的基因和酶信息。它有助于研究塑料在生态系统中的循环过程，理解塑料的生物地球化学作用。
+
