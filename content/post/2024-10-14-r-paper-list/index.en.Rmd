@@ -346,7 +346,7 @@ plot(CS$graph_terms)
 
 ### 添加期刊影响因子
 
-目前没有特别好的R包或函数来获取期刊的影响因子，之前scholar包 get_impactfactor函数也无法使用了。最好的方法还是自己去下载一下当年的JCR影响因子表格（很多公众号都可以获取），然后自己用R整合一下。我之前也也简单整理了一个IF大于2.4的部分期刊的表，下载链接：<https://asa12138.github.io/FileList/JCR_IF_2024_bigger_than_2.4.csv>。
+目前没有特别好的R包或函数来获取期刊的影响因子，之前scholar包 get_impactfactor函数也无法使用了。最好的方法还是自己去下载一下当年的JCR影响因子表格（很多公众号都可以获取），然后自己用R整合一下。我之前也简单整理了一个IF大于2.4的部分期刊的表，下载链接：<https://asa12138.github.io/FileList/JCR_IF_2024_bigger_than_2.4.csv>。
 
 ```{r eval=FALSE}
 #获取IF
