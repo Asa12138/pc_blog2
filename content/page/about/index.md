@@ -85,8 +85,8 @@ Any question?
 1.  Q. Chen, **C. Peng**, R. Xie, H. Xu, Z. Su, G. Yilihan, X. Wei, S.
     Yang, Y. Shen, C. Ye, C. Jiang, Placental and fetal enrichment of
     microplastics from disposable paper cups: implications for metabolic
-    and reproductive health during pregnancy. J. Hazard. Mater. 478,
-    135527 (2024). <https://doi.org/10.1016/j.jhazmat.2024.135527>.
+    and reproductive health during pregnancy. *Journal of Hazardous Materials*
+    (2024). <https://doi.org/10.1016/j.jhazmat.2024.135527>.
 2.  **C. Peng**, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized
     reporter score-based enrichment analysis for omics data. *Briefings
     in Bioinformatics* (2024). <https://doi.org/10.1093/bib/bbae116>.

@@ -22,7 +22,7 @@ comments: yes
 ### 摘要
 
 背景：
-水生病毒在塑造微生物群落中起着关键作用。在极地环境中，病毒面临着诸多挑战，如宿主资源有限和环境条件恶劣。然而，由于这些生态系统的访问受限，我们对病毒的多样性、丰度、适应性及宿主相互作用的了解仍然有限。
+水生病毒在塑造微生物群落中起着关键作用。在极地环境中，病毒面临着诸多挑战，如宿主资源有限和环境条件恶劣。然而，由于这些生态系统的访问受限，作者对病毒的多样性、丰度、适应性及宿主相互作用的了解仍然有限。
 
 结果：
 为弥补这一知识空白，研究者研究了来自中央北极和格林兰北部大气近水生生态系统的病毒。病毒-宿主分析的水样采集自约60厘米深度和亚毫米表面微层（SML），样本采集是在极地夏季的2021年“同步极地调查”（Synoptic Arctic Survey）期间进行的，地点为破冰船Oden。水样来自融水池和开阔水域，经过大小分级过滤后，进行了基因组解析的宏基因组学和培养研究。融水池中的原核生物多样性显著低于开阔水域。
@@ -35,3 +35,74 @@ comments: yes
 ### 关键结果
 
 #### 
+
+## 格陵兰冰原巨型病毒
+
+### 摘要
+
+背景：
+冰川和冰原上的深色雪和冰川冰藻有助于加速融化。对这些藻类的生物控制，特别是病毒的作用，仍然知之甚少。巨型病毒属于核质大 DNA 病毒 (NCLDV) 超群（核细胞病毒门），种类繁多，分布于全球。众所周知，NCLDV 会感染海洋和淡水环境中的真核细胞，从而对这些生态系统中的藻类种群提供生物控制。然而，关于陆地冰冷栖息地 NCLDV 的多样性和生态系统功能的信息非常有限。
+
+结果：
+在这项研究中，作者首次研究了巨型病毒及其在冰雪栖息地中的宿主联系，例如冰石、黑冰、冰芯、红雪和绿雪，以及五种人工培养的绿藻雪藻的基因组组装。几乎所有样本中都存在巨型病毒标记基因；从红雪和雪藻基因组组合中回收的丰度最高，其次是绿雪和深色冰。这些含有 NCLDV 标记基因的 GrIS 栖息地中的各种活跃藻类和原生生物表明，感染可能发生在一系列真核宿主上。来自红色和绿色雪的宏基因组数据包含来自Imitervirales、Asfuvirales和Algavirales目的巨型病毒宏基因组组装基因组的证据。
+
+结论：
+作者的研究强调了格陵兰冰盖冰雪样本中 NCLDV 家族的特征。在红雪样本中发现巨型病毒宏基因组组装基因组（GVMAG），并首次在雪藻培养基因组组装中鉴定出相关NCLDV标记基因；暗示 NCLDV 和雪藻之间存在关系。宏转录组病毒基因也与宏基因组序列对齐，表明 NCLDV 是微生物群落的活跃组成部分，并且是真核藻类和原生生物成员的潜在“自上而下”控制。这项研究揭示了在以藻类为主的各种冰川栖息地中前所未有地存在着多样化的 NCLDV 群落。
+
+### 关键结果
+
+### 方法
+
+巨型病毒宏基因组组装基因组（GVMAG）是通过使用>=5000个碱基对重叠群与MetaBAT2（v2.12.1）[83]进行分箱而创建的。使用 ViralRecall (v2) [57] 分析生成的 bin 中的 NCLDV 标记基因，如果它们具有 5 个或更多标记基因、基因组大于 100 kbp 以及在其他 NCLDV 基因组中的分类位置，则被视为 GVMAG [51]。 CoverM (v 0.6.1) (https://github.com/wwood/CoverM) 用于评估所有 57 个生成的组件和环境样本读数（18 个宏基因组、19 个宏转录组和 1 个宏病毒组）之间的读数招募。 GVMAG 功能注释通过 InterPro [84] 和 GVOG [50] 进行评估。
+
+ViralRecall was used to identify NCLDV-like sequences and viral-like regions in all the metagenome, metatranscriptomes, metavirome, and pure algal culture. Options used were as follows: -db marker -c. The “marker” option was used to only search against 10 NCLDV marker genes, encoding for factors for maturation of the viral capsid (MCPs), packaging ATPase (A32), DNA polymerase elongation subunit family B (PolB), D5-like helicase-primase (D5), mRNA-capping enzyme (mRNAc), RNA polymerase large and small subunit (RNApl, RNAps), DNA or RNA helicases of superfamily II (RNR, SFII), and poxvirus late transcription factor VLTF3 like (VLTF3). All resulting hits with an e-value less than e^-10 were used further. These genes are universal NCLDV marker genes and hence are routinely assessed for identification of signatures of NCLDVs in different ecosystems [51]. PolB is the only marker gene typically found as single copy and is therefore used for phylogenetic placement within known NCLDV families [57].
+
+ViralRecall 用于识别所有宏基因组、宏转录组、宏病毒组和纯藻类培养物中的 NCLDV 样序列和病毒样区域。使用的选项如下：-db 标记-c。 “标记”选项仅用于搜索 10 个 NCLDV 标记基因，编码病毒衣壳 (MCP) 成熟因子、包装 ATP 酶 (A32)、DNA 聚合酶延伸亚基家族 B (PolB)、D5 样解旋酶 -引物酶 (D5)、mRNA 加帽酶 (mRNAc)、RNA 聚合酶大亚基和小亚基（RNApl、RNAps）、超家族 II 的 DNA 或 RNA 解旋酶（RNR、SFII）和痘病毒晚期转录因子 VLTF3 样（VLTF3）。所有 e 值小于 e^-10 的结果命中均被进一步使用。这些基因是通用的 NCLDV 标记基因，因此经常进行评估，以识别不同生态系统中 NCLDV 的特征 [51]。 PolB 是唯一通常以单拷贝形式发现的标记基因，因此用于已知 NCLDV 家族中的系统发育定位 [57]。
+
+为了确认病毒样区域属于 NCLDV 家族，使用了针对 NCBI nr 的blastp 函数，并针对由 ViralRecall 分类为可能的 NCLDV 基因的每个序列验证了 50 个最高命中。当 NCLDV 结果位于前 10 名命中之内时，该基因被视为来自 NCLDV。通过 NCBI nr 验证之前和之后，通过对 e 值截止值为 1×10−10 的标记基因求和并归一化到总文库大小，计算每个样本中 10 个 NCLDV 核心基因的总丰度。选择病毒标记基因相对存在率最高的 19 个环境样本中的 4 个（MG3、MG8、MG12 和 MG28；图 2）进行更深度的重新测序，以提供更高的测序覆盖率并增加组装 GVMAG。
+
+#### ViralRecall使用：
+
+https://github.com/faylward/viralrecall
+
+```{bash eval=F}
+git clone https://github.com/faylward/viralrecall.git
+cd viralrecall
+#发现deepbgc环境基本满足，主要是prodigal和hmmer
+conda activate deepbgc
+#下载数据库
+wget -O hmm.tar.gz https://zenodo.org/records/12666277/files/hmm.tar.gz?download=1
+tar -xvzf hmm.tar.gz
+
+#测试
+python viralrecall.py -i examples/arm29B.fna -p test_outdir -t 2 -f
+```
+
+
+#### GVMAGs
+
+外部核细胞病毒基因组是从之前发表的研究中下载的 [50, 91]。所有 1171 个外部基因组和我们的 10 个 GVMAG 使用 ncldv_markersearch.py进行比对（最后更新于 2022 年 4 月 21 日，github.com/faylward/ncldv_markersearch）。使用 IQ-TREE 和 LG+F+I+G4 模型以及 -B 超快 1000 个引导程序构建最大似然系统发育树 [90]。系统发育分配是根据以前的文献[51]进行的。
+
+<https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001430>
+A phylogenomic framework for charting the diversity and evolution of giant viruses
+
+<https://zenodo.org/records/6382754#.Y-Pxw-zML0s> ，1175个Representative giant virus genomes。
+
+核细胞病毒门的大型 DNA 病毒最近已成为全球生态系统的重要成员，挑战了病毒复杂性的传统观点。最近报道了该门的许多成员无法分类到已建立的科中，目前强烈需要这些病毒的强大的系统发育和分类学框架。在这里，我们报告了核细胞病毒门的全面系统发育分析，提出了一组巨型病毒直系同源群（GVOG）以及基准参考系统发育，并描绘了该门内的分层分类学。我们表明，大多数核细胞病毒多样性可分为 6 个目、32 个科和 344 个属，大大扩展了目前公认的这些病毒的分类等级数量。我们将我们的结果整合到所有病毒都采用的分类法中，为核细胞病毒多样性、进化和环境分布的研究建立一个统一的框架。
+
+#### ncldv_markersearch
+
+用于识别 Nucleocytoviricota 中的系统发育标记基因并生成串联比对的工具。
+
+该脚本将根据一组 10 个精心策划的隐马尔可夫模型搜索蛋白质文件，以查找核胞质大 DNA 病毒 (NCLDV) 中普遍存在的蛋白质家族。命中相同 HMM、与该 HMM 形成非重叠比对、并且位于同一重叠群上某个确定的邻近范围内的蛋白质将连接在一起并作为单个氨基酸序列输出。这有助于对具有分裂基因的 NCLDV 进行系统发育分析。
+
+```{bash eval=F}
+git clone https://github.com/faylward/ncldv_markersearch.git
+cd ncldv_markersearch
+#发现deepbgc环境基本满足，主要是prodigal和hmmer
+conda activate deepbgc
+python ncldv_markersearch.py -i test_input -n test_run -t 4
+```
+
+
+
