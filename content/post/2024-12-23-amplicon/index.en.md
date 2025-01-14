@@ -299,6 +299,50 @@ qiime vsearch cluster-features-open-reference \
   --o-new-reference-sequences new-ref-seqs-or-85.qza
 ```
 
+### 筛选处理
+
+试了下如果这一步产生的ASV太多的话，后续建树（fasttree预估20多天）和物种注释（2天还没完）要非常久，可以稍微对table进行筛选。
+
+
+例如，当过滤样本时，可以使用它来过滤总频率是样本频率分布中的异常值的样本。在许多16S调查中，某些样本只能获得很少（可能是数十）的序列，这可能是由于样本生物量较低导致DNA提取率较低。在这种情况下，用户可能希望根据样本的最小总频率（即，在此示例中为样本获得的序列总数）来删除样本。这可以通过如下方式实现（在本例中，总频率小于1500的样本将被过滤）。
+
+```bash
+qiime feature-table filter-samples \
+  --i-table table.qza \
+  --p-min-frequency 1500 \
+  --o-filtered-table sample-frequency-filtered-table.qza
+```
+
+此过滤器可以应用于特征轴以从表中删除低丰度特征。例如，您可以删除总丰度（所有样本的总和）小于 10 的所有特征，如下所示。
+
+
+```bash
+qiime feature-table filter-features \
+  --i-table table.qza \
+  --p-min-frequency 10 \
+  --o-filtered-table feature-frequency-filtered-table.qza
+```
+
+基于偶然性的过滤用于根据样本包含的特征数量从表中过滤样本，或者根据观察到的样本数量从表中过滤特征。
+
+
+```bash
+qiime feature-table filter-features \
+  --i-table table.qza \
+  --p-min-samples 2 \
+  --o-filtered-table sample-contingency-filtered-table.qza
+```
+
+
+```bash
+qiime feature-table filter-samples \
+  --i-table table.qza \
+  --p-min-features 10 \
+  --o-filtered-table feature-contingency-filtered-table.qza
+```
+
+
+
 
 ### 建树
 
@@ -394,7 +438,6 @@ qiime taxa barplot \
   --o-visualization taxa-bar-plots.qzv
 ```
 
-
 ### 训练分类器
 
 注意，这个步骤一般需要较大内存（看数据库，UNITE这个我消耗了100G左右内存），运行时间也比较久，10多个小时
@@ -414,6 +457,10 @@ qiime feature-classifier fit-classifier-naive-bayes \
 - Greengenes (16S rRNA)：<http://ftp.microbio.me/greengenes_release/2022.10/sklearn-1.4.2-compatible-nb-classifiers/>
 - Silva (16S/18S rRNA): <https://anw-sh.github.io/silva-138_classifiers/>
 - RDP (16S/28S rRNA): <https://sourceforge.net/projects/rdp-classifier/>
+
+### Kraken物种注释
+
+Qiime2注释可真慢呀😂，赶紧找了Kraken的替代方法，见[使用Kraken进行16S/ITS物种注释（超快）](../kraken-16s-its)
 
 ## Export data
 
