@@ -1,5 +1,5 @@
 ---
-title: Antibiotics resistance gene 抗生素抗性基因（ARG）
+title: 抗生素抗性基因（ARG）基础学习
 author: Peng Chen
 date: '2023-05-16'
 slug: antibiotics-resistance
@@ -525,19 +525,19 @@ rgi bwt --read_one /path/to/fastq/R1.fastq.gz
 
 <div id="ref-alcockCARD2020Antibiotic2020" class="csl-entry">
 
-<span class="csl-left-margin">1. </span><span class="csl-right-inline">B. P. Alcock, A. R. Raphenya, T. T. Y. Lau, K. K. Tsang, *et al.*, [CARD 2020: Antibiotic resistome surveillance with the comprehensive antibiotic resistance database](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7145624). *Nucleic Acids Research*. **48**, D517–D525 (2020).</span>
+<span class="csl-left-margin">1. </span><span class="csl-right-inline">B. P. Alcock, A. R. Raphenya, T. T. Y. Lau, K. K. Tsang, *et al.*, [CARD 2020: Antibiotic resistome surveillance with the comprehensive antibiotic resistance database](https://doi.org/10.1093/nar/gkz935). *Nucleic Acids Research*. **48**, D517–D525 (2020).</span>
 
 </div>
 
 <div id="ref-cassiniAttributableDeathsDisabilityadjusted2019" class="csl-entry">
 
-<span class="csl-left-margin">2. </span><span class="csl-right-inline">A. Cassini, L. D. Högberg, D. Plachouras, A. Quattrocchi, *et al.*, [Attributable deaths and disability-adjusted life-years caused by infections with antibiotic-resistant bacteria in the EU and the European Economic Area in 2015: A population-level modelling analysis](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6300481). *The Lancet. Infectious Diseases*. **19**, 56–66 (2019).</span>
+<span class="csl-left-margin">2. </span><span class="csl-right-inline">A. Cassini, L. D. Högberg, D. Plachouras, A. Quattrocchi, *et al.*, [Attributable deaths and disability-adjusted life-years caused by infections with antibiotic-resistant bacteria in the EU and the european economic area in 2015: A population-level modelling analysis](https://doi.org/10.1016/S1473-3099(18)30605-4). *The Lancet. Infectious Diseases*. **19**, 56–66 (2019).</span>
 
 </div>
 
 <div id="ref-wangEnhancedRemovalAntibiotic2021" class="csl-entry">
 
-<span class="csl-left-margin">3. </span><span class="csl-right-inline">J. Wang, J. Gu, X. Wang, Z. Song, *et al.*, Enhanced removal of antibiotic resistance genes and mobile genetic elements during swine manure composting inoculated with mature compost. *Journal of Hazardous Materials*. **411**, 125135 (2021).</span>
+<span class="csl-left-margin">3. </span><span class="csl-right-inline">J. Wang, J. Gu, X. Wang, Z. Song, *et al.*, [Enhanced removal of antibiotic resistance genes and mobile genetic elements during swine manure composting inoculated with mature compost](https://doi.org/10.1016/j.jhazmat.2021.125135). *Journal of Hazardous materials*. **411**, 125135 (2021).</span>
 
 </div>
 
