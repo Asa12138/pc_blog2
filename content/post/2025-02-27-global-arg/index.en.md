@@ -7,7 +7,7 @@ categories:
   - microbial-ecology
 tags:
   - ARGs
-description: ~
+description: 抗生素耐药性是对人类健康和疾病临床治疗日益严重的全球性威胁，这里介绍一下几篇全球尺度的ARG相关研究。
 image: images/global1.png
 math: ~
 license: ~
