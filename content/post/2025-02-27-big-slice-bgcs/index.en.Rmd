@@ -233,7 +233,7 @@ test_out/
 bigslice test_out/ --export-tsv test_out/result_tsv
 ```
 
-但是目前有`AttributeError: 'tuple' object has no attribute 'values'`的报错，官方还没解决。
+但是目前有`AttributeError: 'tuple' object has no attribute 'values'`的报错，官方还没解决。但是可以自己使用sqlite3对结果的data.db文件进行查看和文件导出。
 
 或者使用用户交互输出：
 
@@ -264,6 +264,104 @@ Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 
 ![](images/web.png)
 
+## BGC Atlas
+
+上次提到过的[BGC Atlas](../bgc-atlas)，那个数据库用的就是BiG-SLiCE的输出结果。该数据库可供下载的有这几个文件：
+
+- complete-bgcs.tar.gz
+A tarball containing the GBK files for only the complete BGC (3.5GB).
+
+- all-bgcs.tar.gz
+A tarball containing the GBK files for all BGCs (13GB).
+
+- bigslice_2.0.0_T0.4_16April.tar.gz
+A tarball containing the BiG-SliCE clustering of complete BGCs (2.0 GB).
+
+- atlas_17_07_2004.sql
+The sql dump of the BGC-Atlas database (2.0 GB).
+
+
+bigslice_2.0.0_T0.4_16April.tar.gz文件解压后就是BiG-SLiCE的输出文件夹，里面有result文件夹，里面有data.db文件，这个就是BiG-SLiCE处理后的数据库文件。
+
+另外atlas_17_07_2004.sql里面有所有用到的宏基因组metadata，但它是个PostgreSQL database dump，作为文本文件可以直接打开，但不好转换为数据库或是表格，需要用一下postgresql。
+
+### 使用案例
+
+比如我们自己产生的BGC想要和BGC Atlas进行比较，就可以用[模式2] GCF查询：
+
+```bash
+bigslice --query gbk_files/ --query_name test_MAGs bigslice_2.0.0_T0.4_16April/ -t 8
+```
+
+然后就会在big_slice_test_out目录下产生一个report文件夹（如果原来没有的话），report文件夹下可以找到自己本次运行的结果。可以考虑用户交互输出或用数据库软件查看结果。
+
+主要是查看distance（membership_value）这一列，按默认定义的话<0.4才可以认为我们的query和数据库已有的部分聚成了GCF。
+
+然后我们可以查看相应的GCF中有哪些BGCs以及所对应的metadata：
+
+比如我们的BGC和BGC Atlas中的GCF 13734的distance<0.4，可以认为也是GCF 13734的一员，然后快速的方法是去官网查询<https://bgc-atlas.cs.uni-tuebingen.de/bgcs?gcf=13734>，可以看到一共有258条核心BGC，我们可以下载相应的metadata（一次最多1000条），然后和我们的进行比较分析。
+
+但上述方法只适合查询的BGC不多的情况，很多的话最好还是考虑用代码处理atlas_17_07_2004.sql文件，获取metadata，需要使用postgresql进行处理：
+
+假设你已经会用并成功运行了postgresql（有点难）
+```bash
+# 运行
+brew services start postgresql
+# 创建
+createdb -U asa atlas_db
+# 导入
+psql -U asa -d atlas_db -f atlas_17_07_2004.sql
+```
+
+```
+# 查看表
+atlas_db=# \dt
+                List of relations
+ Schema |          Name           | Type  | Owner 
+--------+-------------------------+-------+-------
+ public | antismash_runs          | table | asa
+ public | antismash_runs_bk       | table | asa
+ public | assembly2biome          | table | asa
+ public | assembly2longestbiome   | table | asa
+ public | bigscape_clustering     | table | asa
+ public | bigscape_networks       | table | asa
+ public | bigslice_gcf            | table | asa
+ public | bigslice_gcf_membership | table | asa
+ public | biomes                  | table | asa
+ public | mgnify_asms             | table | asa
+ public | mgnify_asms_old         | table | asa
+ public | mibig_membership        | table | asa
+ public | protoclusters           | table | asa
+ public | protoclusters_bk        | table | asa
+ public | regions                 | table | asa
+ public | regions_backup          | table | asa
+ public | regions_bk              | table | asa
+ public | sample_metadata         | table | asa
+ public | sample_metadata_old     | table | asa
+(19 rows)
+
+atlas_db=# SELECT * FROM assembly2longestbiome limit 10;
+   assembly   |                  longest_biome                  
+--------------+-------------------------------------------------
+ MGYA00002187 | root:Host-associated:Animal:Digestive system
+ MGYA00002188 | root:Environmental:Terrestrial:Soil:Forest soil
+ MGYA00002318 | root:Host-associated:Animal:Digestive system
+ MGYA00002319 | root:Host-associated:Animal:Digestive system
+ MGYA00002320 | root:Host-associated:Animal:Digestive system
+ MGYA00003147 | root:Host-associated
+ MGYA00003148 | root:Host-associated
+ MGYA00004354 | root:Environmental
+ MGYA00004355 | root:Environmental
+ MGYA00004356 | root:Environmental
+(10 rows)
+```
+
+```bash
+#导出csv
+psql -U asa -d atlas_db -c "COPY assembly2longestbiome TO STDOUT WITH CSV HEADER" > assembly2longestbiome.csv
+```
+
+然后就可以查看csv并和自己的数据整合分析。
 
 ## Reference
 

@@ -7,7 +7,7 @@ categories:
   - microbial-ecology
 tags:
   - function
-description: ~
+description: 木质纤维素（lignocellulose）是一种由纤维素（cellulose）、半纤维素（hemicellulose）、果胶（pectin）和木质素（lignin）等聚合物组成的复合物，生物体通过多种方式降解木质纤维素。
 image: images/fig2.png
 math: ~
 license: ~
