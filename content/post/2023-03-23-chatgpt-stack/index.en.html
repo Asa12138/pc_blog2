@@ -1,0 +1,221 @@
+---
+title: ChatGPT帮我调整stack主题
+author: Peng Chen
+date: '2023-03-23'
+slug: Chatgpt-stack
+categories:
+  - utils
+tags:
+  - ChatGPT
+description: 刚开始搭建博客，看中了stack主题，但是还有一些需求无法满足，于是让ChatGPT辅助我调整stack主题。
+image: ChatGPT.jpg
+math: null
+license: null
+hidden: no
+comments: yes
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+
+<p>在<a href="https://github.com/rstudio/blogdown">Rblogdown</a>使用<a href="https://github.com/CaiJimmy/hugo-theme-stack">stack-theme</a>遇到了几个问题，应该是Rblogdown与原生hugo间的不太兼容。</p>
+<p>我很快发现了问题是Rmd产生的md文件可能跟stack主题不太匹配，一开始想看看yaml文件能不能修改解决，但找了不少地方都没找到😭。</p>
+<p>因为问题还比较确定，可以试试自己写脚本转换Rmd产生的md文件。</p>
+<div id="公式问题" class="section level2">
+<h2>公式问题</h2>
+<p>rblogdown 渲染Rmd成md会把我写的公式语法改变：</p>
+<p>例如： <code>$a=sum_i^2$</code>变成了<code>\(a=sum_i^2\)</code></p>
+<p>但是stack主题识别不了后面那种语法，这个比较简单：</p>
+<pre class="python"><code>import re
+
+# 定义一个正则表达式，匹配LaTeX数学公式中的起始和结束行内数学模式符号
+pattern = r&#39;\\\((.*?)\\\)&#39;  
+
+# 定义一个字符串，包含要处理的LaTeX字符串
+latex_string = r&#39;For the equation `\(\sum_{i=1}^n i^2\)`&#39;
+
+# 使用sub()函数替换匹配到的文本
+processed_string = re.sub(pattern, r&#39;$\1$&#39;, latex_string)
+
+# 输出处理后的字符串
+print(processed_string)
+
+a=re.sub(r&#39;`\\\((.*?)\\\)`&#39;,r&#39;$\1$&#39;,&quot;`\(a=sum_i^2\)`jjjhg`\(a=sum_i^2\)`&quot;)</code></pre>
+</div>
+<div id="图片大小调整" class="section level2">
+<h2>图片大小调整</h2>
+<p>因为<code>![from data to viz website](images/data2viz.png){width=60%}</code>这种语法是stack主题不支持的，
+但是</p>
+<pre><code>&#39;&lt;p style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;images/data2viz.png&quot; width=&quot;60%&quot; title=&quot;from data to viz website&quot;/&gt;
+&lt;/p&gt;&#39;</code></pre>
+<p>这种语法是支持的，所以想写一个小脚本转换一下</p>
+<p>自己不太熟悉正则（上面那个公式转换的也是他帮我写的，哈哈），所以试试问了ChatGPT
+：</p>
+<p>可以帮我写一个将插入图片的markdown语法转换为html语法的小脚本吗？
+比如：<code>![A](B.png){width=60%}</code>转换为<code>&lt;img src="B.png" width="60%" title="A"/&gt;</code></p>
+<p>它立马用python帮我写了：</p>
+<pre class="python"><code>import re
+
+def convert_markdown_to_html(markdown_text):
+    # 将插入图片的Markdown语法转换为HTML语法
+    pattern = r&quot;!\[(.*?)\]\((.*?)\){(.*?)}&quot;
+    matches = re.findall(pattern, markdown_text)
+    for match in matches:
+        title = match[0]
+        src = match[1]
+        attributes = match[2].split(&quot;,&quot;)
+        attr_dict = dict([tuple(attribute.split(&quot;=&quot;)) for attribute in attributes])
+        html_tag = f&#39;&lt;img src=&quot;{src}&quot; title=&quot;{title}&quot;&#39;
+        for key, value in attr_dict.items():
+            html_tag += f&#39; {key}=&quot;{value}&quot;&#39;
+        html_tag += &quot;/&gt;&quot;
+        markdown_text = markdown_text.replace(f&quot;![{title}]({src}){{{match[2]}}}&quot;, html_tag)
+    return markdown_text
+
+def convert_latex_to_md(markdown_text):
+    html_text=re.sub(r&#39;`\\\((.*?)\\\)`&#39;,r&#39;$\1$&#39;,markdown_text)
+    return html_text
+
+def convert_markdown_file_to_html(file_path):
+    # 读取Markdown文件
+    with open(file_path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        markdown_text = f.read()
+    # 将Markdown语法转换为HTML语法
+    html_text = convert_markdown_to_html(markdown_text)
+    html_text = convert_latex_to_md(html_text)
+    # 将HTML文本写入文件
+    with open(file_path, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+        f.write(html_text)
+
+if __name__ == &quot;__main__&quot;:
+    file_path = &quot;index.md&quot;
+    convert_markdown_file_to_html(file_path)</code></pre>
+<p>牛牛牛！ 再问一下，可以用R语言写一下吗？</p>
+<pre class="r"><code>convert_markdown_to_html &lt;- function(markdown_text) {
+  # 通过正则表达式匹配图片语法
+  matches &lt;- gregexpr(&quot;!\\[(.*?)\\]\\((.*?)\\){(.*?)}&quot;, markdown_text, perl = TRUE)
+  
+  # 遍历匹配结果，将Markdown语法替换为HTML语法
+  for (i in seq_along(matches[[1]])) {
+    # 判断匹配结果是否为空列表
+    if (length(matches[[1]][i]) == 0) {
+      next
+    }
+    
+    match &lt;- regmatches(markdown_text, matches[[1]][i])
+    title &lt;- match[[2]]
+    src &lt;- match[[3]]
+    attributes &lt;- strsplit(match[[4]], &quot;,&quot;)[[1]]
+    attr_dict &lt;- setNames(sapply(strsplit(attributes, &quot;=&quot;), &quot;[&quot;, 2), sapply(strsplit(attributes, &quot;=&quot;), &quot;[&quot;, 1))
+    
+    # 构造HTML标签
+    html_tag &lt;- sprintf(&#39;&lt;img src=&quot;%s&quot; title=&quot;%s&quot;&#39;, src, title)
+    for (key in names(attr_dict)) {
+      value &lt;- attr_dict[[key]]
+      html_tag &lt;- paste(html_tag, sprintf(&#39;%s=&quot;%s&quot;&#39;, key, value), sep = &quot; &quot;)
+    }
+    html_tag &lt;- paste(html_tag, &quot;/&gt;&quot;, sep = &quot;&quot;)
+    
+    # 将Markdown语法替换为HTML语法
+    markdown_text &lt;- sub(&quot;!\\[(.*?)\\]\\((.*?)\\){(.*?)}&quot;, html_tag, markdown_text, fixed = TRUE)
+  }
+  
+  return(markdown_text)
+}
+markdown_text &lt;- &quot;![A](B.png){width=60%}&quot;
+html_text &lt;- convert_markdown_to_html(markdown_text)
+print(html_text)</code></pre>
+<p>唉，实际上这个代码没有用，我也不知道bug怎么搞，R的正则表达式一直感觉没有python好用。</p>
+<p>还是用写好的python脚本吧。</p>
+</div>
+<div id="修改新的md文件" class="section level2">
+<h2>修改新的md文件</h2>
+<p>我们还需要找到最新render出来的md文件按上述规则进行修改（否则一口气改全部的话，害怕会越来越慢，甚至损坏以前的md文件）：</p>
+<pre class="python"><code>import os
+import datetime
+
+# 定义要查找的目录
+directory = &#39;./content/post/&#39;
+
+# 存储所有的md文件
+md_files = []
+
+# 递归查找目录下的所有文件
+for root, dirs, files in os.walk(directory):
+    for file in files:
+        if file.endswith(&#39;.md&#39;):
+            file_path = os.path.join(root, file)
+            md_files.append((file_path, os.path.getmtime(file_path)))
+
+# 找到最新修改的文件
+latest_file = max(md_files, key=lambda x: x[1])[0]
+
+print(&quot;最新保存的.md文件是：&quot;, latest_file)</code></pre>
+<p>再问问，可以找到目录下所有新保存的.md文件吗，就是修改时间与上次不一致的？</p>
+<pre class="python"><code>import os
+import datetime
+
+# 定义要查找的目录
+directory = &#39;./content/&#39;
+
+# 存储所有新保存的md文件
+new_md_files = []
+
+# 读取上一次检查的时间戳
+if os.path.isfile(&#39;last_check_time.txt&#39;):
+    with open(&#39;last_check_time.txt&#39;, &#39;r&#39;) as f:
+        last_check_time = datetime.datetime.strptime(f.read(), &#39;%Y-%m-%d %H:%M:%S.%f&#39;)
+else:
+    last_check_time = datetime.datetime.now()
+
+# 递归查找目录下的所有文件
+for root, dirs, files in os.walk(directory):
+    for file in files:
+        if file.endswith(&#39;.md&#39;):
+            file_path = os.path.join(root, file)
+            mod_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+            if mod_time &gt; last_check_time:
+                new_md_files.append(file_path)
+
+# 更新上一次检查的时间戳
+last_check_time = datetime.datetime.now()
+
+# 将上一次检查的时间戳保存到文件中
+with open(&#39;last_check_time.txt&#39;, &#39;w&#39;) as f:
+    f.write(last_check_time.strftime(&#39;%Y-%m-%d %H:%M:%S.%f&#39;))
+
+# 打印所有新保存的md文件
+for file_path in new_md_files:
+    print(&quot;新保存的.md文件：&quot;, file_path)
+#更新所有新保存的md文件
+for file_path in new_md_files:
+    convert_markdown_file_to_html(latest_file)</code></pre>
+<p>这个思路真不错，哈哈</p>
+</div>
+<div id="解决方法" class="section level2">
+<h2>解决方法</h2>
+<p>调教了一下ChatGPT后，就得到了整个更新问题的方法了：
+首先整理一个<a href="https://github.com/Asa12138/pc_blog2/R/refresh_md_to_fit_stack.py">refresh_md_to_fit_stack.py</a>放在网站根目录下，
+然后在R文件夹的（如果你是用Rblogdown生成的网站，那就会有这个文件夹）的build2.R中加入一行：</p>
+<p><code>system("python refresh_md_to_fit_stack.py")</code></p>
+<p>即可。
+因为Rblogdown会在每次实时渲染我们的网站后运行build2.R文件，相当于运行了refresh_md_to_fit_stack.py文件，而refresh_md_to_fit_stack.py文件将搜索所有更新的md文件并修改以上两个问题，这样hugo建立的网站就能够契合stack-theme。</p>
+<p>看看结果： 如果调试成功的话，下面显示的即是正常的latex公式:</p>
+<p>$y= $</p>
+<p>如果不是使用的Rblogdown生成的网站，这种思路的方法也可以帮助改变stack-theme。</p>
+<p>此外，如果是Rblogdown生成的其他主题的网站有类似问题，也可以这样修改。</p>
+<p>最后，ChatGPT真不错！再来一个<a href="https://k5ms77k0o1.feishu.cn/wiki/wikcnJyI9wsyjyBc8xiDgv0cY8b">攻略</a></p>
+</div>
+<div id="其他调整参考" class="section level2">
+<h2>其他调整参考</h2>
+<ul>
+<li><a href="https://jinli.io/p/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B%E4%B8%89hugo%E4%B8%BB%E9%A2%98stack%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E4%BC%98%E5%8C%96/">Hugo主题stack的使用与优化</a></li>
+<li><a href="https://blog.linsnow.cn/p/modify-hugo/">Stack主题的自定义</a></li>
+<li><a href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod">使用 Hugo+Stack 简单搭建一个博客</a></li>
+<li><a href="https://xrg.fj.cn/p/hugo-stack%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%96%B0%E5%B0%8F%E8%AE%B0/">Hugo Stack主题更新小记</a></li>
+<li><a href="https://oxidane-uni.github.io/p/%E4%BD%BF%E7%94%A8-hugo-%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E5%BB%BA%E4%B8%8E-stack-%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/">使用 Hugo 对博客的重建与 Stack 主题优化记录</a></li>
+</ul>
+</div>

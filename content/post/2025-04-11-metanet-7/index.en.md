@@ -1,0 +1,52 @@
+---
+title: MetaNet：多组学网络分析工具｜7.网络模块分析
+author: Peng Chen
+date: '2025-04-15'
+slug: metanet-7
+categories:
+  - R
+tags:
+  - network
+  - R
+description: ~
+image: ~
+math: ~
+license: ~
+hidden: no
+comments: yes
+---
+
+
+
+上一篇推文简单介绍了网络基本概念和用于组学网络分析的R包MetaNet，这里我们具体介绍网络分析第一步，网络计算和构建。
+
+通过本文介绍的方法，可以了解从组学数据预处理到网络构建的流程，为后续的网络分析和生物学解释奠定基础。MetaNet包提供的这些功能使得组学网络分析变得更加高效。下一篇就将介绍如何给我们构建好的网络进行各种操作，包括添加注释和属性，筛选合并等。
+
+- 软件主页：<https://github.com/Asa12138/MetaNet> **大家可以帮忙在github上点点star⭐️**，谢谢🙏
+- 详细英文版教程：<https://bookdown.org/Asa12138/metanet_book/>
+
+可以从 CRAN 安装稳定版：`install.packages("MetaNet")`  
+
+最新的开发版本可以在 <https://github.com/Asa12138/MetaNet> 中找到：
+
+```r
+remotes::install_github("Asa12138/MetaNet", dependencies = T)
+```
+
+依赖包 `pcutils`和`igraph`（需提前安装），推荐配合 `dplyr` 进行数据操作。
+
+```r
+library(MetaNet)
+library(igraph)
+
+# ========data manipulation
+library(dplyr)
+library(pcutils)
+```
+
+
+
+## References
+1. Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034
+2. Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. https://doi.org/10.1038/nrmicro2832.
+3. Y. Deng, Y. Jiang, Y. Yang, Z. He, et al., Molecular ecological network analyses. BMC bioinformatics (2012), doi:10.1186/1471-2105-13-113.
