@@ -15,8 +15,6 @@ license: ~
 hidden: no
 comments: yes
 ---
-<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
-<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -160,120 +158,35 @@ sim_df
 
 常用的群落不相似性指数包括：
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> 距离系数 </th>
-   <th style="text-align:left;"> 描述 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Manhattan </td>
-   <td style="text-align:left;"> 曼哈顿距离计算每个维度中坐标的绝对差之和。适用于具有分类变量或属性的数据。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Euclidean </td>
-   <td style="text-align:left;"> 欧几里得距离计算多维空间中两点之间的直线距离。通常用于连续且没有分类属性的数据。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Canberra </td>
-   <td style="text-align:left;"> 堪培拉距离是曼哈顿距离的加权版本，强调坐标之间微小差异的重要性。常用于生态数据分析。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Clark </td>
-   <td style="text-align:left;"> Clark距离测量两个样本之间不同非零属性的比例。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bray </td>
-   <td style="text-align:left;"> Bray距离基于丰度绝对差异之和计算样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kulczynski </td>
-   <td style="text-align:left;"> Kulczynski距离基于共有属性比例的算术平均值测量样本间相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jaccard </td>
-   <td style="text-align:left;"> Jaccard距离基于独特属性的比例测量样本间不相似性。常用于生态学中的二元数据。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Gower </td>
-   <td style="text-align:left;"> Gower距离是曼哈顿距离的泛化，适用于包括分类和连续变量的混合数据类型。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> AltGower </td>
-   <td style="text-align:left;"> AltGower距离是Gower距离的替代形式，使用替代方法标准化连续变量。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Morisita </td>
-   <td style="text-align:left;"> Morisita距离基于共享属性的频率测量样本间不相似性，强调稀有属性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Horn </td>
-   <td style="text-align:left;"> Horn距离基于共享属性比例的几何平均值测量样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mountford </td>
-   <td style="text-align:left;"> Mountford距离基于共享属性比例的算术平均值的倒数测量样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Raup </td>
-   <td style="text-align:left;"> Raup距离基于共享属性的概率测量样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Binomial </td>
-   <td style="text-align:left;"> Binomial距离基于观察共享属性的概率测量样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chao </td>
-   <td style="text-align:left;"> Chao距离是Jaccard距离的修正，调整了对稀有物种的欠采样。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cao </td>
-   <td style="text-align:left;"> Cao距离是Chao距离的修正，加入了物种丰度信息。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mahalanobis </td>
-   <td style="text-align:left;"> Mahalanobis距离考虑变量间相关性，测量多维空间中两个样本的距离。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chisq </td>
-   <td style="text-align:left;"> Chisq距离基于分类变量间的卡方距离计算样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chord </td>
-   <td style="text-align:left;"> Chord距离基于多维空间中点之间角度计算样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hellinger </td>
-   <td style="text-align:left;"> Hellinger距离基于平方根转换丰度的平方差之和的平方根测量样本间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Aitchison </td>
-   <td style="text-align:left;"> Aitchison距离是对组成数据的转换，允许在对数比空间中进行欧几里得距离计算。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Robust Aitchison </td>
-   <td style="text-align:left;"> 稳健Aitchison距离是Aitchison距离的稳健版本，减少了数据中异常值的影响。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Unifrac </td>
-   <td style="text-align:left;"> Unifrac距离基于系统发育树中的进化距离测量微生物群落间不相似性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Beta MPD </td>
-   <td style="text-align:left;"> Beta MPD(平均系统发育距离)基于物种对的平均系统发育距离测量两个群落间的系统发育多样性。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Beta MNTD </td>
-   <td style="text-align:left;"> Beta MNTD(平均最近分类单元距离)基于平均最近分类单元距离测量两个群落间的系统发育周转。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Phylosor </td>
-   <td style="text-align:left;"> Phylosor距离基于系统发育树中共享分支的比例测量群落间不相似性。 </td>
-  </tr>
-</tbody>
-</table>
+
+|距离系数         |描述                                                                                   |
+|:----------------|:--------------------------------------------------------------------------------------|
+|Manhattan        |曼哈顿距离计算每个维度中坐标的绝对差之和。适用于具有分类变量或属性的数据。             |
+|Euclidean        |欧几里得距离计算多维空间中两点之间的直线距离。通常用于连续且没有分类属性的数据。       |
+|Canberra         |堪培拉距离是曼哈顿距离的加权版本，强调坐标之间微小差异的重要性。常用于生态数据分析。   |
+|Clark            |Clark距离测量两个样本之间不同非零属性的比例。                                          |
+|Bray             |Bray距离基于丰度绝对差异之和计算样本间不相似性。                                       |
+|Kulczynski       |Kulczynski距离基于共有属性比例的算术平均值测量样本间相似性。                           |
+|Jaccard          |Jaccard距离基于独特属性的比例测量样本间不相似性。常用于生态学中的二元数据。            |
+|Gower            |Gower距离是曼哈顿距离的泛化，适用于包括分类和连续变量的混合数据类型。                  |
+|AltGower         |AltGower距离是Gower距离的替代形式，使用替代方法标准化连续变量。                        |
+|Morisita         |Morisita距离基于共享属性的频率测量样本间不相似性，强调稀有属性。                       |
+|Horn             |Horn距离基于共享属性比例的几何平均值测量样本间不相似性。                               |
+|Mountford        |Mountford距离基于共享属性比例的算术平均值的倒数测量样本间不相似性。                    |
+|Raup             |Raup距离基于共享属性的概率测量样本间不相似性。                                         |
+|Binomial         |Binomial距离基于观察共享属性的概率测量样本间不相似性。                                 |
+|Chao             |Chao距离是Jaccard距离的修正，调整了对稀有物种的欠采样。                                |
+|Cao              |Cao距离是Chao距离的修正，加入了物种丰度信息。                                          |
+|Mahalanobis      |Mahalanobis距离考虑变量间相关性，测量多维空间中两个样本的距离。                        |
+|Chisq            |Chisq距离基于分类变量间的卡方距离计算样本间不相似性。                                  |
+|Chord            |Chord距离基于多维空间中点之间角度计算样本间不相似性。                                  |
+|Hellinger        |Hellinger距离基于平方根转换丰度的平方差之和的平方根测量样本间不相似性。                |
+|Aitchison        |Aitchison距离是对组成数据的转换，允许在对数比空间中进行欧几里得距离计算。              |
+|Robust Aitchison |稳健Aitchison距离是Aitchison距离的稳健版本，减少了数据中异常值的影响。                 |
+|Unifrac          |Unifrac距离基于系统发育树中的进化距离测量微生物群落间不相似性。                        |
+|Beta MPD         |Beta MPD(平均系统发育距离)基于物种对的平均系统发育距离测量两个群落间的系统发育多样性。 |
+|Beta MNTD        |Beta MNTD(平均最近分类单元距离)基于平均最近分类单元距离测量两个群落间的系统发育周转。  |
+|Phylosor         |Phylosor距离基于系统发育树中共享分支的比例测量群落间不相似性。                         |
 
 
 ### Others

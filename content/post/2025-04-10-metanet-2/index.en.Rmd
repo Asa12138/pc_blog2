@@ -173,7 +173,7 @@ df <- tibble::tribble(
   "Beta MNTD", "Beta MNTD(平均最近分类单元距离)基于平均最近分类单元距离测量两个群落间的系统发育周转。",
   "Phylosor", "Phylosor距离基于系统发育树中共享分支的比例测量群落间不相似性。"
 )
-kbl(data.frame(df, check.names = F), escape = F) 
+kbl(data.frame(df, check.names = F), escape = F,format = "pipe") 
 ```
 
 
