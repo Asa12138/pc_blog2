@@ -187,6 +187,33 @@ go <- c_net_set(go, vertex_size = "Degree")
 plot(go, vertex_size_range = c(5, 20), legend = F, main = "Size map to degree")
 ```
 
+## 子样本网络
+
+有一个这样的常见需求。我们建立了整体网络之后需要提取每个样本物种的子网络，然后计算子网络的网络属性。这样后续可以分析网络属性与环境或者对比不同实验组的差异。例如这篇imeta文章里的分析：
+
+Jiao, S., Chu, H., Zhang, B., Wei, X., Chen, W., and Wei, G. (2022). Linking soil fungi to bacterial community assembly in arid ecosystems. iMeta 1, e2. https://doi.org/10.1002/imt2.2.
+
+![](images/imeta.png)
+
+`extract_sample_net()`函数可以从原网络中根据丰度表（或者有无表）抽取子样本网络(保留丰度大于0的节点)，并保存子样本网络的对象，并且直接计算出每一个子网络的各种拓扑参数：
+
+```{r eval=FALSE}
+data("otutab", package = "pcutils")
+sample_net_par <- extract_sample_net(co_net, otutab)
+
+# 分组比较
+group_box(sample_net_par[,2:10],group = "Group",metadata = metadata)
+```
+
+![](images/00001d.png)
+
+```{r eval=FALSE}
+# 连续变量分析
+my_lm(sample_net_par[,2:10],var = "env1",metadata = metadata)
+```
+
+![](images/00001c.png)
+
 ## 随机网络
 
 随机网络（Random Network）是网络科学中的一类基础网络模型，其核心特征是网络连接遵循某种随机生成规则。Erdős-Rényi（ER）模型是最著名的代表：
@@ -257,3 +284,4 @@ smallworldness(co_net)  # 示例输出：43.09368
 1. Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034
 2. Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. https://doi.org/10.1038/nrmicro2832.
 3. Y. Deng, Y. Jiang, Y. Yang, Z. He, et al., Molecular ecological network analyses. BMC bioinformatics (2012), doi:10.1186/1471-2105-13-113.
+4. Jiao, S., Chu, H., Zhang, B., Wei, X., Chen, W., and Wei, G. (2022). Linking soil fungi to bacterial community assembly in arid ecosystems. iMeta 1, e2. https://doi.org/10.1002/imt2.2.
