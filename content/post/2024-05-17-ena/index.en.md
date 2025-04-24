@@ -229,15 +229,27 @@ java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads \
 ```bash
 for i in `ls manifest/*_manifest`
 do
-echo $i
-java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads \
-	-userName Webin-XXXXX -password XXXXXXX \
-	-manifest ${i} \
-	-outputDir test_submit_out \
-	-inputDir ./ \
-	-submit
-#提交好的就改名，如果有报错方便定位
-mv ${i} ${i}_done
+    echo "Processing: $i"
+    echo "Start time: $(date +'%Y-%m-%d %T')"
+    
+    # 执行上传命令，并捕获退出状态码
+    java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads \
+    	-userName Webin-XXXXX -password XXXXXXX \
+    	-manifest ${i} \
+    	-outputDir test_submit_out \
+    	-inputDir ./ \
+    	-submit
+    
+    # 检查上传是否成功（退出状态码 0 表示成功）
+    if [ $? -eq 0 ]; then
+        echo "Upload SUCCESS: $i"
+        mv "$i" "${i}_done"  # 仅在上传成功后重命名
+    else
+        echo "Upload FAILED: $i (文件未重命名)"
+    fi
+
+    echo "End time: $(date +'%Y-%m-%d %T')"
+    echo "----------------------------------"
 done
 ```
 
