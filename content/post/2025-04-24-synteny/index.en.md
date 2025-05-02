@@ -9,7 +9,7 @@ categories:
 tags:
   - synteny
   - 可视化
-description: ~
+description: 基因组同线性分析和可视化是比较基因组学中重要部分，这里介绍一些相关方法工具。
 image: images/emales.png
 math: ~
 license: ~

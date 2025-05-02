@@ -25,3 +25,9 @@ lapply(yaml_data, \(i){
         description=paste0(i$description,collapse = ", ")
     )
 })%>%do.call(rbind,.)%>%data.frame(row.names = NULL,.)->all_post_yaml_data
+
+all_post_yaml_data$date=as.Date(all_post_yaml_data$date)
+dplyr::filter(all_post_yaml_data,date>as.Date("2025-01-01"))->tmp
+for (i in seq_len(nrow(tmp))) {
+    paste0("- [",tmp[i,"title"],"](../p/",tolower(tmp[i,"slug"]),")\n")%>%cat()
+}

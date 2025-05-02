@@ -58,17 +58,20 @@ title: Mindmap
 - [使用Orthofinder进行系统发育直系同源推断](../p/orthofinder)
 - [扩增子(Amplicon)数据分析流程|Qiime2](../p/amplicon-workflow)
 - [使用Kraken进行16S/ITS物种注释（超快）](../p/kraken-16s-its)
+- [基因组同线性（synteny）分析和可视化](../p/synteny)
 
 #### MAGs
 - [宏基因组分箱（binning）｜1.Metabat实战了解binning](../p/binning)
 - [宏基因组分箱（binning）｜2. MetaWRAP实战深入binning](../p/binning2)
 - [宏基因组分箱（binning）｜3. BASALT优化binning流程](../p/binning3)
+- [宏基因组分箱（binning）｜4. DAS Tool优化binning结果](../p/binning-4-das-tool-binning)
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
 - [使用FastANI与Skani计算平均核苷酸一致性(ANI)](../p/ani)
 - [METABOLIC：微生物基因组群落规模功能网络分析](../p/metabolic)
 - [从宏基因组构建基因组规模代谢模型（GEM）](../p/gem)
 
 #### BGCs
+- [BGCkit：组学数据BGC分析流程](../p/bgckit-bgc)
 - [微生物组的生物合成基因簇（BGCs）分析](../p/bgcs)
 - [使用antiSMASH数据库及软件分析微生物组](../p/antismash)
 - [使用BiG-SCAPE挖掘微生物组BGCs](../p/big-scape-bgcs)
@@ -118,6 +121,16 @@ title: Mindmap
 - [微生物的耐酸机制研究](../p/acid)
 - [微生物的低温适应/抗寒机制研究](../p/psychrophilic)
 
+### 网络分析
+- [MetaNet：多组学网络分析工具｜1.基础介绍](../p/metanet-1)
+- [MetaNet：多组学网络分析工具｜2.网络计算和构建](../p/metanet-2)
+- [MetaNet：多组学网络分析工具｜3.网络注释与操作](../p/metanet-3)
+- [MetaNet：多组学网络分析工具｜4.布局和可视化](../p/metanet-4)
+- [MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具](../p/metanet-5)
+- [MetaNet：多组学网络分析工具｜6.网络拓扑指标分析](../p/metanet-6)
+- [MetaNet：多组学网络分析工具｜7.网络模块分析](../p/metanet-7)
+- [MetaNet：多组学网络分析工具｜8.网络稳定性分析](../p/metanet-8)
+
 ### 富集分析
 - [基因集富集分析(GSEA)简介](../p/gsea)
 - [Reporter Score 微生物功能富集分析](../p/reporter-score)
@@ -130,6 +143,7 @@ title: Mindmap
 - [使用uTools提高办公效率](../p/utools)
 - [Slurm集群使用基础](../p/slurm)
 - [容器（Docker & Singularity）使用入门](../p/docker-singularity)
+- [SQLite使用基础以及在R中操作数据库](../p/sqlite-r)
 - [Mermaid 入门](../p/mermaid)
 - [CSL格式原理和应用](../p/csl)
 - [iPhylo 生成并绘制优美的分类树](../p/iphylo)
@@ -140,8 +154,10 @@ title: Mindmap
 
 ## 学术成果
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)
-- [浙江大学蒋超课题组合作ES&T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘](../p/es-t)
-- [iPhylo 生成并绘制优美的分类树（物种+化学）](../p/iphylo)
+- [ES&T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘](../p/es-t)
+- [BiB: iPhylo 生成并绘制优美的分类树（物种+化学）](../p/iphylo)
+- [Critical Care: ICU医护人员肠道抗生素耐药基因显著增加](../p/critical-care)
+- [JHM: 示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康](../p/jhm)
 
 ## 随笔
 - [紫金春日](../p/spring)
