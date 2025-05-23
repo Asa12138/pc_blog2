@@ -20,7 +20,7 @@ comments: yes
 MetaNet默认使用的是`igraph`的绘图系统，其中自带的节点形状是非常有限的，只有`circle`、`square`、`csquare`、`rectangle`、`crectangle`、`vrectangle`、`pie`、`none`这几种形状，MetaNet在此基础上添加了更多常用形状，并且可以根据本文方法添加自定义形状。
 
 - 软件主页：<https://github.com/Asa12138/MetaNet> **大家可以帮忙在github上点点star⭐️**，谢谢🙏
-- 详细英文版教程：<https://bookdown.org/Asa12138/metanet_book/>
+- 详细英文版教程：<https://bookdown.org/Asa12138/metanet_book>
 
 可以从 CRAN 安装稳定版：`install.packages("MetaNet")`  
 
@@ -86,12 +86,12 @@ c_net_plot(g2,vertex.color= pcutils::get_cols(4))
 
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
-也可以指定`star`、`ploygon`等形状。
+也可以指定`star`、`ploygon`等形状。 
 
 
 ```r
 c_net_plot(g2,vertex.color= pcutils::get_cols(4),
-           vertex.shape=c("circle","square","triangle2","star","polygon"),
+           vertex.shape=c("star","polygon"),vertex.norays=5,
            legend = F)
 ```
 
@@ -135,6 +135,7 @@ add_metanet_shape_star <- function() {
       vertex.size <- vertex.size[v]
     }
     norays <- params("vertex", "norays")
+    if (is.null(norays)) norays=5
     if (length(norays) != 1 && !is.null(v)) {
       norays <- norays[v]
     }
@@ -180,6 +181,7 @@ add_metanet_shape_star()
       vertex.size <- vertex.size[v]
     }
     norays <- params("vertex", "norays")
+    if (is.null(norays)) norays=5
     if (length(norays) != 1 && !is.null(v)) {
       norays <- norays[v]
     }

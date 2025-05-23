@@ -2,7 +2,7 @@
 title: 使用MetaNet进行网络比较
 author: Asa
 date: '2025-05-23'
-slug: metanet- comparison
+slug: metanet-comparison
 categories:
   - R
 tags:
