@@ -88,7 +88,7 @@ df=tibble::tribble(
              "初稿写作",  "Writing – original draft",                       "对发表的内容进行准备、创建或表述，特别是撰写初稿，包括实质性翻译。",
           "审核与编辑写作", "Writing – review & editing", "对原始研究团队提出的发表内容进行准备、创建或表述，特别是评论、注释或修改，包括发表前和发表后所发生的这些工作。"
        )
-suppressWarnings(kableExtra::kbl(df))
+suppressWarnings(kableExtra::kbl(df,format = "pipe")) 
 ```
 
 很多期刊都会让我们以CRediT的格式展示作者贡献，一般手打也很方便。但有时候会统一将名称进行缩写，这里也提供一个函数用来生成，准备一个两列表：

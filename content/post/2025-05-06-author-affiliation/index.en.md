@@ -14,8 +14,6 @@ license: ~
 hidden: no
 comments: yes
 ---
-<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
-<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 
 ## Motivation
 
@@ -73,87 +71,31 @@ pcutils::generate_and_write_author_rmd(df,file = "~/Desktop/test_author.rmd",
 
 CRediT（贡献者角色分类法）是一种高级分类法，该方法将作者的贡献划分为14个类别，并对每个类别的角色详细精确地定义了作者的贡献。
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> 贡献者角色（中文） </th>
-   <th style="text-align:left;"> 贡献者角色（英文） </th>
-   <th style="text-align:left;"> 定义 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 论文构思 </td>
-   <td style="text-align:left;"> Conceptualization </td>
-   <td style="text-align:left;"> 产生想法，构造或演绎发展主要的研究目的。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 数据管理 </td>
-   <td style="text-align:left;"> Data curation </td>
-   <td style="text-align:left;"> 为数据的首用和后续复用产生元数据，整理数据，维护研究数据（包括软件或程序）。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 形式分析 </td>
-   <td style="text-align:left;"> Formal analysis </td>
-   <td style="text-align:left;"> 使用统计、数学、计算或其他形式分析技术分析或合成研究数据。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 获取资助 </td>
-   <td style="text-align:left;"> Funding acquisition </td>
-   <td style="text-align:left;"> 为了项目研究成果能够发表而去争取并获得资助。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 调查研究 </td>
-   <td style="text-align:left;"> Investigation </td>
-   <td style="text-align:left;"> 实施研究和执行调查过程，特别是从事实验研究或收集数据和证据。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 方法论 </td>
-   <td style="text-align:left;"> Methodology </td>
-   <td style="text-align:left;"> 开发或设计研究用的方法，建立模型。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 项目管理 </td>
-   <td style="text-align:left;"> Project administration </td>
-   <td style="text-align:left;"> 为研究活动的策划和执行进行管理和协调。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 提供资源 </td>
-   <td style="text-align:left;"> Resources </td>
-   <td style="text-align:left;"> 提供研究材料、试剂、病例、实验室样品、动物、仪器、计算设备资源或其他分析工具。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 软件 </td>
-   <td style="text-align:left;"> Software </td>
-   <td style="text-align:left;"> 编程，研发软件，设计计算机程序，实施执行计算机程序及支持算法，测试已有的程序。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 指导 </td>
-   <td style="text-align:left;"> Supervision </td>
-   <td style="text-align:left;"> 监督和领导研究活动的策划和执行，包括对核心成员以外的人员进行指导。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 验证 </td>
-   <td style="text-align:left;"> Validation </td>
-   <td style="text-align:left;"> 对研究结果、实验或其他研究输出内容的复制和重现进行核实验证，包括整体的和部分的核实验证。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 可视化呈现 </td>
-   <td style="text-align:left;"> Visualization </td>
-   <td style="text-align:left;"> 对发表的内容进行准备、创建或表述，特别是内容或数据的可视化展现。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 初稿写作 </td>
-   <td style="text-align:left;"> Writing – original draft </td>
-   <td style="text-align:left;"> 对发表的内容进行准备、创建或表述，特别是撰写初稿，包括实质性翻译。 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 审核与编辑写作 </td>
-   <td style="text-align:left;"> Writing – review &amp; editing </td>
-   <td style="text-align:left;"> 对原始研究团队提出的发表内容进行准备、创建或表述，特别是评论、注释或修改，包括发表前和发表后所发生的这些工作。 </td>
-  </tr>
-</tbody>
-</table>
+
+```
+## Warning: 'xfun::attr()' is deprecated.
+## Use 'xfun::attr2()' instead.
+## See help("Deprecated")
+```
+
+
+
+|贡献者角色（中文） |贡献者角色（英文）         |定义                                                                                                           |
+|:------------------|:--------------------------|:--------------------------------------------------------------------------------------------------------------|
+|论文构思           |Conceptualization          |产生想法，构造或演绎发展主要的研究目的。                                                                       |
+|数据管理           |Data curation              |为数据的首用和后续复用产生元数据，整理数据，维护研究数据（包括软件或程序）。                                   |
+|形式分析           |Formal analysis            |使用统计、数学、计算或其他形式分析技术分析或合成研究数据。                                                     |
+|获取资助           |Funding acquisition        |为了项目研究成果能够发表而去争取并获得资助。                                                                   |
+|调查研究           |Investigation              |实施研究和执行调查过程，特别是从事实验研究或收集数据和证据。                                                   |
+|方法论             |Methodology                |开发或设计研究用的方法，建立模型。                                                                             |
+|项目管理           |Project administration     |为研究活动的策划和执行进行管理和协调。                                                                         |
+|提供资源           |Resources                  |提供研究材料、试剂、病例、实验室样品、动物、仪器、计算设备资源或其他分析工具。                                 |
+|软件               |Software                   |编程，研发软件，设计计算机程序，实施执行计算机程序及支持算法，测试已有的程序。                                 |
+|指导               |Supervision                |监督和领导研究活动的策划和执行，包括对核心成员以外的人员进行指导。                                             |
+|验证               |Validation                 |对研究结果、实验或其他研究输出内容的复制和重现进行核实验证，包括整体的和部分的核实验证。                       |
+|可视化呈现         |Visualization              |对发表的内容进行准备、创建或表述，特别是内容或数据的可视化展现。                                               |
+|初稿写作           |Writing – original draft   |对发表的内容进行准备、创建或表述，特别是撰写初稿，包括实质性翻译。                                             |
+|审核与编辑写作     |Writing – review & editing |对原始研究团队提出的发表内容进行准备、创建或表述，特别是评论、注释或修改，包括发表前和发表后所发生的这些工作。 |
 
 很多期刊都会让我们以CRediT的格式展示作者贡献，一般手打也很方便。但有时候会统一将名称进行缩写，这里也提供一个函数用来生成，准备一个两列表：
 
