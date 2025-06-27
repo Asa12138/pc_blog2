@@ -1,6 +1,5 @@
 ---
-title: '预印本｜MetaNet: a scalable and integrated tool for reproducible omics network
-  analysis'
+title: '预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis'
 author: Peng Chen
 date: '2025-06-26'
 slug: metanet-bioRxiv
