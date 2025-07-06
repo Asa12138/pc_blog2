@@ -17,7 +17,7 @@ comments: yes
 
 MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。 
 
-- 预印本地址：<https://www.biorxiv.org/content/10.1101/2025.06.25.546688v1>
+- 预印本地址：<https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1>
 - 软件主页：<https://github.com/Asa12138/MetaNet> **大家可以帮忙在github上点点star⭐️**，谢谢🙏
 - 详细英文版教程：<https://bookdown.org/Asa12138/metanet_book/>
 
