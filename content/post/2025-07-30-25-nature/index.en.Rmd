@@ -1,7 +1,7 @@
 ---
 title: 25年最新的一些Nature环境微生物研究文章（1）
 author: Peng Chen
-date: '2025-07-30'
+date: '2025-07-28'
 slug: 25-nature
 categories:
   - metagenomic
