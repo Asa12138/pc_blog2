@@ -1,6 +1,6 @@
 ---
 title: 抗菌肽（AMP）的结构，功能和应用；相关数据库及预测方法
-author: Package Build
+author: Peng Chen
 date: '2025-09-20'
 slug: amp
 categories:
