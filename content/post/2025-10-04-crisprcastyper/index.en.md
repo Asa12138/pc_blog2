@@ -61,7 +61,7 @@ CRISPRCasTyper提供了最新且免费的软件流程，显著改善了跨基因
 
 ## CRISPRCasTyper使用教程
 
-官方教程：<https://github.com/Russel88/CRISPRCasType>
+官方教程：<https://github.com/Russel88/CRISPRCasTyper>
 
 CRISPRCasTyper是基于Python 3.8开发的开源工具，支持conda和pip两种安装方式，提供命令行接口（CLI），可实现从数据输入到结果可视化的全流程分析。以下为详细使用步骤（基于GitHub官方文档及研究补充材料）。
 
