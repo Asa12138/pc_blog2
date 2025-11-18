@@ -7,7 +7,7 @@ categories:
   - utils
 tags:
   - database
-description: 但最近因为资金短缺，NCBI各种业务暂停维护。把测序原始数据上传至ENA数据库成为更重要的一个选择了，在此以双端fastq测序文件的提交流程为例，讲解具体步骤。
+description: 最近因为资金短缺，NCBI各种业务暂停维护。把测序原始数据上传至ENA数据库成为更重要的一个选择了，在此以双端fastq测序文件的提交流程为例，讲解具体步骤。
 image: images/ena5.png
 math: ~
 license: ~

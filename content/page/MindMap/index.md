@@ -24,6 +24,7 @@ title: Mindmap
 ### R语言精进
 - [R-统计分析](../p/r-statistics)
 - [R绘制优美的地图](../p/r-map)
+- [快速绘制采样地图](../p/sample-map)
 - [R绘制优美的进化树（基础）](../p/r-tree)
 - [R绘制优美的进化树（进阶）](../p/r-tree2)
 - [R绘制柱形图及其变换](../p/r-bar-chart)
@@ -48,6 +49,8 @@ title: Mindmap
 - [降维/排序分析（ordination analysis）](../p/ordination-analysis)
 - [结构方程模型（SEM）学习](../p/sem)
 - [组学数据去除批次效应（batch effect）](../p/batch-effect)
+- [中介分析与结构方程模型（SEM）学习](../p/sem)
+- [MaAsLin 3：微生物组多变量关联分析](../p/maaslin-3)
 
 ### 宏基因组分析
 - [宏基因组分析流程（Metagenomic workflow）202405｜持续更新](../p/metagenomic-workflow)
@@ -59,6 +62,14 @@ title: Mindmap
 - [扩增子(Amplicon)数据分析流程|Qiime2](../p/amplicon-workflow)
 - [使用Kraken进行16S/ITS物种注释（超快）](../p/kraken-16s-its)
 - [基因组同线性（synteny）分析和可视化](../p/synteny)
+- [在低生物量微生物组研究中预防和报告污染｜Nature Microbiology指南](../p/lowmass-nm)
+- [有关Rarefaction的探讨，一篇10年前的文章](../p/rarefaction-10)
+- [使用MLP根据相对丰度预测粪便微生物组负荷｜Cell](../p/mlp-cell)
+- [使用 LexicMap 实现百万级原核生物基因组高效序列比对 | NBT](../p/lexicmap-nbt)
+- [用 MDSINE2 解析微生物组生态系统尺度动态变化｜Nature Microbiology](../p/mdsine2-nature-microbiology)
+- [宏转录组学揭示人体皮肤微生物活性图景（宏转录组分析参考）](../p/skin-metatranscriptomics)
+- [全球公共交通系统空气病毒特征（宏基因组病毒分析参考）](../p/global-air-virus)
+- [使用GenomeSPOT从氨基酸组成预测微生物生长条件](../p/genomespot)
 
 #### MAGs
 - [宏基因组分箱（binning）｜1.Metabat实战了解binning](../p/binning)
@@ -69,6 +80,7 @@ title: Mindmap
 - [使用FastANI与Skani计算平均核苷酸一致性(ANI)](../p/ani)
 - [METABOLIC：微生物基因组群落规模功能网络分析](../p/metabolic)
 - [从宏基因组构建基因组规模代谢模型（GEM）](../p/gem)
+- [从基因组视角解析真菌的多样性与进化](../p/fungi-genome)
 
 #### BGCs
 - [BGCkit：组学数据BGC分析流程](../p/bgckit-bgc)
@@ -78,6 +90,7 @@ title: Mindmap
 - [使用BiG-SLiCE高效聚类大规模BGCs](../p/big-slice-bgcs)
 - [BGC Atlas助力宏基因组中生物合成基因簇的发现与分析](../p/bgc-atlas)
 - [生物合成基因簇家族（GCF）数据库 BiG-FAM](../p/gcf-big-fam)
+- [微生物次生代谢产物：加速从发现到应用的研究进展](../p/secondary-metabolites)
 
 #### Virus
 - [病毒相关内容学习](../p/learn-virus)
@@ -92,9 +105,16 @@ title: Mindmap
 - [巨型病毒(Giant virus)生物学和多样性研究](../p/giant-virus)
 - [一些基于宏基因组的巨型病毒研究](../p/giant-virus-res)
 - [近期的一些环境病毒组研究（2024.10）](../p/env-virus)
+- [细菌移动遗传元件间的互作与进化关系](../p/evo-mges)
+- [呼吸道病毒共感染：相互作用、机制及临床意义](../p/viral-coinfections)
+- [使用CRISPRCasTyper注释和分类CRISPR-Cas基因](../p/crisprcastyper)
+- [病毒出现与全球大流行预防：同一健康框架下的视角](../p/virus-onehealth)
+- [呼吸道病毒组：揭示病毒暗物质在呼吸健康与疾病中的作用](../p/respiratory-tract-virome)
+- [全球公共交通系统空气病毒特征（宏基因组病毒分析参考）](../p/global-air-virus)
 
 ### 数据库
 - [上传测序数据至ENA数据库](../p/ena)
+- [NCBI不维护？试试上传数据至ENA](../p/ena2)
 - [Antibiotics resistance gene 抗生素抗性基因（ARG）](../p/antibiotics-resistance)
 - [KEGG 数据库及API (1)](../p/kegg-api)
 - [KEGG 数据库及API (2)](../p/kegg-api2)
@@ -117,9 +137,19 @@ title: Mindmap
 - [功能基因-氮元素循环（N-cycling）](../p/n-cycling)
 - [全球尺度的抗生素耐药基因（ARG）研究](../p/global-arg)
 - [Antibiotics resistance gene 抗生素抗性基因（ARG）](../p/antibiotics-resistance)
+- [抗菌肽（AMP）的结构，功能和应用；相关数据库及预测方法](../p/amp)
+- [细菌细胞膜靶向抗生素：对抗多重耐药菌的新策略](../p/cell-envelope)
 - [功能基因探索：木质纤维素（lignocellulose）降解](../p/lignocellulose)
 - [微生物的耐酸机制研究](../p/acid)
 - [微生物的低温适应/抗寒机制研究](../p/psychrophilic)
+- [冰冻圈微生物生态系统中气候变化的当前与预期效应](../p/cryosphere)
+- [肠道微生物组塑造跨动物物种的社会行为](../p/gut-behaviour)
+- [室内微生物组相关研究](../p/indoor)
+- [25年最新的一些Nature环境微生物研究文章（1）](../p/25-nature)
+- [25年最新的一些Nature环境微生物研究文章（2）](../p/25-nature-2)
+- [25年最新的一些Nature环境微生物研究文章（3）](../p/25-nature-3)
+- [25年最新的一些Nature环境微生物研究文章（4）](../p/25-nature-4)
+- [基因组视角下的地球生物群落：微生物研究综述](../p/genome-review)
 
 ### 网络分析
 - [MetaNet：多组学网络分析工具｜1.基础介绍](../p/metanet-1)
@@ -130,6 +160,9 @@ title: Mindmap
 - [MetaNet：多组学网络分析工具｜6.网络拓扑指标分析](../p/metanet-6)
 - [MetaNet：多组学网络分析工具｜7.网络模块分析](../p/metanet-7)
 - [MetaNet：多组学网络分析工具｜8.网络稳定性分析](../p/metanet-8)
+- [使用MetaNet进行网络比较](../p/metanet-comparison)
+- [使用MetaNet添加更多节点形状](../p/metanet-shape)
+- [使用MetaNet绘制KEGG通路网络图](../p/metanet-kegg)
 
 ### 富集分析
 - [基因集富集分析(GSEA)简介](../p/gsea)
@@ -138,6 +171,8 @@ title: Mindmap
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)
 
 ## 其他工具
+- [论文作者和单位太多？如何快速整理和修改](../p/author_affiliation)
+- [批量下载NCBI genome相关数据](../p/ncbi-genome)
 - [一些实用的shell脚本](../p/shell)
 - [Positron初尝试，新一代数据科学IDE（R+Python+...）](../p/positron-ide-r-python)
 - [使用uTools提高办公效率](../p/utools)
@@ -150,7 +185,6 @@ title: Mindmap
 - [更新一下你的Conda吧](../p/conda)
 - [Zotero 7.0正式版，大更新！](../p/zotero-7-0)
 - [微生物学名-中文名称转换（可批量）](../p/latin_name)
-
 
 ## 学术成果
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)

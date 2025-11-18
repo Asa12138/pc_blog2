@@ -81,60 +81,30 @@ Any question?
 
 ## Publications 📄
 
+\#: co-first
+
 ### In submission
+
+1. Chen, Q., Yuan, M., Jiang, L., Wei, X., Liu, Z., **Peng, C.**, Huang, Z., Tang, D., Wu, X., and Sun, J. (2023). Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. Biorxiv, 2023–2029.
+2. Chen, Q., Zhang, B., **Peng, C.**, Huang, J., Shen, X., and Jiang, C. (2024). Kun-peng: an ultra-memory-efficient, fast, and accurate pan-domain taxonomic classifier for all. Biorxiv, 2024–12.
+3. **Peng, C.**, Huang, Z., Wei, X., Jiang, L., Zhu, X., Liu, Z., Chen, Q., Shen, X., Gao, P., and Jiang, C. (2025). MetaNet: a scalable and integrated tool for reproducible omics network analysis. Preprint at bioRxiv, https://doi.org/10.1101/2025.06.26.661636 https://doi.org/10.1101/2025.06.26.661636.
+4. **Peng, C.#**, Tan, S.#, Rouillard, A.#, Zhou, L., Li, Q.-Y., Wei, X., Xiang, X., Chen, Q., Yang, C., Jiang, L., et al. (2025). Microbial diversity and functional potential in greenlandic soils under rapid arctic warming. Preprint at Social Science Research Network, https://doi.org/10.2139/ssrn.5254634 https://doi.org/10.2139/ssrn.5254634.
+5. Zhang, W., **Peng, C.#**, Gu, S., Su, X., He, G., Han, Y., He, C., Zhang, L., Wang, M., Zhong, L., et al. (2025). Mapping longitudinal lung mycobiome characteristics of severe COVID-19 patients, a prospective, multicenter cohort study. Preprint at Research Square, https://doi.org/10.21203/rs.3.rs-6189458/v1 https://doi.org/10.21203/rs.3.rs-6189458/v1.
+
 
 ### Published
 
-1.  Huang, L.#, Li, K.#, **Peng, C.#**, Gu, S.#, Huang, X.#, Gao, C.#,
-    Ren, X., Cheng, M., He, G., Xu, Y., et al. (2025). Elevated
-    antibiotic resistance gene abundance of ICU healthcare workers, a
-    multicentre, cross-sectional study. *Crit. Care* 29, 170.
-    <https://doi.org/10.1186/s13054-025-05408-5>.
-2.  Li, Y.#, **Peng, C.#**, Chi, F., Huang, Z., Yuan, M., Zhou, X., &
-    Jiang, C. (2025). The iPhylo suite: An interactive platform for
-    building and annotating biological and chemical taxonomic trees.
-    *Briefings in Bioinformatics*, 26(1), bbae679.
-    <https://doi.org/10.1093/bib/bbae679>
-3.  Chen, Q., **Peng, C.**, Xie, R., Xu, H., Su, Z., Yilihan, G., Wei,
-    X., Yang, S., Shen, Y., Ye, C., & Jiang, C. (2024). Placental and
-    fetal enrichment of microplastics from disposable paper cups:
-    Implications for metabolic and reproductive health during pregnancy.
-    *Journal of Hazardous Materials*, 478, 135527.
-    <https://doi.org/10.1016/j.jhazmat.2024.135527>
-4.  **Peng, C.**, Chen, Q., Tan, S., Shen, X., & Jiang, C. (2024).
-    Generalized reporter score-based enrichment analysis for omics data.
-    *Briefings in Bioinformatics*, 25(3), bbae116.
-    <https://doi.org/10.1093/bib/bbae116>
-5.  Huang, Z.#, **Peng, C.#**, Rong, Z., Jiang, L., Li, Y., Feng, Y.,
-    Chen, S., Xie, C., & Jiang, C. (2024). Longitudinal mapping of
-    personal biotic and abiotic exposomes and transcriptome in
-    underwater confined space using wearable passive samplers.
-    *Environmental Science & Technology*.
-    <https://doi.org/10.1021/acs.est.3c09379>
-6.  Chen, Q., Yuan, M., Jiang, L., Wei, X., Liu, Z., **Peng, C.**,
-    Huang, Z., Tang, D., Wu, X., Sun, J., Ye, C., Liu, Q., Zhu, X., Gao,
-    P., Huang, L., Wang, M., Jiang, M., & Jiang, C. (2023). Progressive
-    community, biogeochemical and evolutionary remodeling of the soil
-    microbiome underpins long-term desert ecosystem restoration (p.
-    2023.09.26.559499). *bioRxiv*.
-    <https://doi.org/10.1101/2023.09.26.559499>
-7.  Wu, H.-R., **Peng, C.**, & Chen, M. (2022). Rethinking the
-    complexity and uncertainty of spatial networks applied to forest
-    ecology. *Scientific Reports*, 12(1), 15917.
-    <https://doi.org/10.1038/s41598-022-16485-9>
-8.  Fan, L., **Peng, C.**, Zhu, X., Liang, Y., Xu, T., Xu, P., & Wu, S.
-    (2022). Dihydrotanshinone I enhances cell adhesion and inhibits cell
-    migration in osteosarcoma U−2 OS cells through CD44 and chemokine
-    signaling. *Molecules*, 27(12), Article 12.
-    <https://doi.org/10.3390/molecules27123714>
-9.  Zhu, X., Xu, T., & **Peng, C.** (2022). Advances in MALDI mass
-    spectrometry imaging single cell and tissues. *Frontiers in
-    Chemistry*, 9. <https://doi.org/10.3389/fchem.2021.782432>
-10. Xia, M., Liu, Y., Liu, J., Chen, D., Shi, Y., Bai, Z., Xiao, Y.,
-    **Peng, C.**, Si, J., Li, P., & Qiu, Y. (2021). A new synonym of
-    polygonatum in China, based on morphological and molecular evidence.
-    *PhytoKeys*, 175, 137--149.
-    <https://doi.org/10.3897/phytokeys.175.63383>
+1. Li, Y.#, **Peng, C.#**, Chi, F., Huang, Z., Yuan, M., Zhou, X., and Jiang, C. (2025). The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. Briefings Bioinf. 26, bbae679. https://doi.org/10.1093/bib/bbae679.
+2. Li, Y.#, Jiang, C.#, Yu, W.#, **Peng, C.#**, Gu, S.#, Ren, X., Ding, P., Qi, Z., Huang, S., Chen, Q., et al. (2025). Antiviral treatment and longitudinal viral mutation dynamics of the first documented human case of H10N5. J. Infect. 91. https://doi.org/10.1016/j.jinf.2025.106580.
+3. Huang, Y.#, Wei, X.#, Huang, X.#, **Peng, C.#**, Lin, B., Ren, X., He, G., Zhang, X., Jiang, C., Huang, L., et al. (2025). Pneumocystis jirovecii associated with lung virome in patients with severe pneumonia. Iscience 28. https://doi.org/10.1016/j.isci.2025.113710.
+4. Huang, L.#, Li, K.#, **Peng, C.#**, Gu, S., Huang, X., Gao, C., Ren, X., Cheng, M., He, G., Xu, Y., et al. (2025). Elevated antibiotic resistance gene abundance of ICU healthcare workers, a multicentre, cross-sectional study. Crit. Care 29, 170. https://doi.org/10.1186/s13054-025-05408-5.
+5. **Peng, C.**, Chen, Q., Tan, S., Shen, X., and Jiang, C. (2024). Generalized reporter score-based enrichment analysis for omics data. Briefings Bioinf. 25, bbae116. https://doi.org/10.1093/bib/bbae116.
+6. Huang, Z.#, **Peng, C.#**, Rong, Z., Jiang, L., Li, Y., Feng, Y., Chen, S., Xie, C., and Jiang, C. (2024). Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environ. Sci. Technol. 58, 5229–5243. https://doi.org/10.1021/acs.est.3c09379.
+7. Chen, Q., **Peng, C.**, Xie, R., Xu, H., Su, Z., Yilihan, G., Wei, X., Yang, S., Shen, Y., Ye, C., et al. (2024). Placental and fetal enrichment of microplastics from disposable paper cups: implications for metabolic and reproductive health during pregnancy. J. Hazard. Mater. 478, 135527. https://doi.org/10.1016/j.jhazmat.2024.135527.
+8. Zhu, X., Xu, T., and **Peng, C.** (2022). Advances in MALDI mass spectrometry imaging single cell and tissues. Front. Chem. 9. https://doi.org/10.3389/fchem.2021.782432.
+9. Wu, H.-R., **Peng, C.**, and Chen, M. (2022). Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Sci. Rep. 12, 15917. https://doi.org/10.1038/s41598-022-16485-9.
+10. Fan, L., **Peng, C.**, Zhu, X., Liang, Y., Xu, T., Xu, P., and Wu, S. (2022). Dihydrotanshinone I enhances cell adhesion and inhibits cell migration in osteosarcoma U−2 OS cells through CD44 and chemokine signaling. Molecules 27, 3714. https://doi.org/10.3390/molecules27123714.
+11. Xia, M., Liu, Y., Liu, J., Chen, D., Shi, Y., Bai, Z., Xiao, Y., **Peng, C.**, Si, J., Li, P., et al. (2021). A new synonym of polygonatum in China, based on morphological and molecular evidence. PhytoKeys 175, 137–149. https://doi.org/10.3897/phytokeys.175.63383.
 
 ## R packages 📦
 
