@@ -45,26 +45,7 @@ Liu, Y., Hu, S., Yu, T., Luo, Y., Zhang, Z., Chen, Y., Guo, S., Sun, Q., Fan, G.
 
 所有数据处理流程均遵循标准化质控标准，确保数据的可比性与一致性。
 
-```mermaid
-flowchart TD
-    A[数据获取] --> B[扩增子数据筛选<br>2039个样本]
-    A --> C[宏基因组数据整合<br>226个样本]
-    A --> D[培养基因组收集<br>999个基因组]
-    
-    B --> E[USEARCH流程处理<br>去噪/聚类/去嵌合]
-    C --> F[质控/组装/基因预测<br>Prodigal+MMseqs2去冗余]
-    D --> G[基因组去冗余<br>ANI≥95%]
-    
-    E --> H[OTU表构建<br>64,510个phylotypes]
-    F --> I[基因功能注释<br>eggNOG/CARD/VFDB]
-    G --> J[基因组分类<br>GTDB-Tk]
-    
-    H --> K[多样性分析<br>α/β多样性/PERMANOVA]
-    I --> L[功能基因统计<br>CAZy/氮循环/ARG等]
-    J --> M[基因组特征分析<br>GC/大小/分类]
-    
-    K & L & M --> N[结果整合与可视化]
-```
+<img src="images/workflow.png" title=""/>
 
 ### 扩增子数据处理
 
