@@ -51,6 +51,7 @@ title: Mindmap
 - [组学数据去除批次效应（batch effect）](../p/batch-effect)
 - [中介分析与结构方程模型（SEM）学习](../p/sem)
 - [MaAsLin 3：微生物组多变量关联分析](../p/maaslin-3)
+- [R语言实现倾向性评分匹配(PSM)](../p/r-psm)
 
 ### 宏基因组分析
 - [宏基因组分析流程（Metagenomic workflow）202405｜持续更新](../p/metagenomic-workflow)
@@ -70,17 +71,20 @@ title: Mindmap
 - [宏转录组学揭示人体皮肤微生物活性图景（宏转录组分析参考）](../p/skin-metatranscriptomics)
 - [全球公共交通系统空气病毒特征（宏基因组病毒分析参考）](../p/global-air-virus)
 - [使用GenomeSPOT从氨基酸组成预测微生物生长条件](../p/genomespot)
+- [Panaroo：微生物泛基因组分析工具](../p/panaroo)
 
 #### MAGs
 - [宏基因组分箱（binning）｜1.Metabat实战了解binning](../p/binning)
 - [宏基因组分箱（binning）｜2. MetaWRAP实战深入binning](../p/binning2)
 - [宏基因组分箱（binning）｜3. BASALT优化binning流程](../p/binning3)
 - [宏基因组分箱（binning）｜4. DAS Tool优化binning结果](../p/binning-4-das-tool-binning)
+- [宏基因组分箱（binning）｜5. Bin Chicken靶向共组装](../p/binning-5-bin-chicken)
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
 - [使用FastANI与Skani计算平均核苷酸一致性(ANI)](../p/ani)
 - [METABOLIC：微生物基因组群落规模功能网络分析](../p/metabolic)
 - [从宏基因组构建基因组规模代谢模型（GEM）](../p/gem)
 - [从基因组视角解析真菌的多样性与进化](../p/fungi-genome)
+- [HRGM2：涵盖 41 个国家的的人类肠道MAGs目录，支持基因组规模代谢模型](../p/hrgm2-41-mags)
 
 #### BGCs
 - [BGCkit：组学数据BGC分析流程](../p/bgckit-bgc)
@@ -111,6 +115,9 @@ title: Mindmap
 - [病毒出现与全球大流行预防：同一健康框架下的视角](../p/virus-onehealth)
 - [呼吸道病毒组：揭示病毒暗物质在呼吸健康与疾病中的作用](../p/respiratory-tract-virome)
 - [全球公共交通系统空气病毒特征（宏基因组病毒分析参考）](../p/global-air-virus)
+- [VIRE：具有环境背景的全球尺度病毒组资源](../p/vire)
+- [大规模细菌基因组分析揭示数千种裂解噬菌体的存在](../p/lytic-phages)
+- [使用最新的vConTACT3进行病毒分类注释|Nat Biotechnol](../p/vcontact3-nat-biotechnol)
 
 ### 数据库
 - [上传测序数据至ENA数据库](../p/ena)
@@ -126,6 +133,8 @@ title: Mindmap
 - [BGC Atlas助力宏基因组中生物合成基因簇的发现与分析](../p/bgc-atlas)
 - [生物合成基因簇家族（GCF）数据库 BiG-FAM](../p/gcf-big-fam)
 - [GTDB基因组分类数据库及GTDB-Tk工具](../p/gtdb)
+- [VIRE：具有环境背景的全球尺度病毒组资源](../p/vire)
+- [ResMicroDb：人类呼吸道微生物组综合数据库与分析平台](../p/resmicrodb)
 
 ### 微生物生态学
 - [群体遗传学基础学习](../p/pop-genetic)
@@ -141,8 +150,6 @@ title: Mindmap
 - [细菌细胞膜靶向抗生素：对抗多重耐药菌的新策略](../p/cell-envelope)
 - [功能基因探索：木质纤维素（lignocellulose）降解](../p/lignocellulose)
 - [微生物的耐酸机制研究](../p/acid)
-- [微生物的低温适应/抗寒机制研究](../p/psychrophilic)
-- [冰冻圈微生物生态系统中气候变化的当前与预期效应](../p/cryosphere)
 - [肠道微生物组塑造跨动物物种的社会行为](../p/gut-behaviour)
 - [室内微生物组相关研究](../p/indoor)
 - [25年最新的一些Nature环境微生物研究文章（1）](../p/25-nature)
@@ -150,6 +157,18 @@ title: Mindmap
 - [25年最新的一些Nature环境微生物研究文章（3）](../p/25-nature-3)
 - [25年最新的一些Nature环境微生物研究文章（4）](../p/25-nature-4)
 - [基因组视角下的地球生物群落：微生物研究综述](../p/genome-review)
+- [Keystone概念再审视：微生物群落动态与调控的新见解](../p/keystone-new)
+- [真核生物起源中阿斯加德古菌的主导贡献|Nature](../p/asgard)
+
+#### 冻土相关专题
+- [微生物的低温适应/抗寒机制研究](../p/psychrophilic)
+- [冰冻圈微生物生态系统中气候变化的当前与预期效应](../p/cryosphere)
+- [寒冷适应和HGT塑造南极海绵微生物组](../p/cold-hgt)
+- [冰川微生物基因组与基因数据库：三极地区的综合资源](../p/three-poles)
+- [生态系统健康塑造泥炭地土壤中的病毒生态|Nature Microbiology](../p/nm-peatland-virus)
+- [全球深海冷泉病毒图谱揭示病毒暗物质及生物技术潜力](../p/deep-sea-viruses)
+- [代谢灵活性微生物快速建立冰川前缘生态系统｜NC](../p/metabolically-flexible)
+- [多年冻土融化梯度下DNA病毒种群生态学及生物地球化学意义｜NC](../p/ssdna-dsdna)
 
 ### 网络分析
 - [MetaNet：多组学网络分析工具｜1.基础介绍](../p/metanet-1)
@@ -163,6 +182,7 @@ title: Mindmap
 - [使用MetaNet进行网络比较](../p/metanet-comparison)
 - [使用MetaNet添加更多节点形状](../p/metanet-shape)
 - [使用MetaNet绘制KEGG通路网络图](../p/metanet-kegg)
+- [microbetag通过注释、富集和代谢互补分析帮助微生物网络解读](../p/microbetag)
 
 ### 富集分析
 - [基因集富集分析(GSEA)简介](../p/gsea)
@@ -185,6 +205,8 @@ title: Mindmap
 - [更新一下你的Conda吧](../p/conda)
 - [Zotero 7.0正式版，大更新！](../p/zotero-7-0)
 - [微生物学名-中文名称转换（可批量）](../p/latin_name)
+- [Snakemake入门和搭配Slurm使用](../p/snakemake-slurm)
+- [使用Pixi进行包管理（入门）](../p/pixi)
 
 ## 学术成果
 - [ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics](../p/grsa-bib)
