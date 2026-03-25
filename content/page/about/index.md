@@ -86,14 +86,15 @@ Any question?
 ### In submission
 
 1. Chen, Q., Yuan, M., Jiang, L., Wei, X., Liu, Z., **Peng, C.**, Huang, Z., Tang, D., Wu, X., and Sun, J. (2023). Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. Biorxiv, 2023–2029.
-2. Chen, Q., Zhang, B., **Peng, C.**, Huang, J., Shen, X., and Jiang, C. (2024). Kun-peng: an ultra-memory-efficient, fast, and accurate pan-domain taxonomic classifier for all. Biorxiv, 2024–12.
 3. **Peng, C.**, Huang, Z., Wei, X., Jiang, L., Zhu, X., Liu, Z., Chen, Q., Shen, X., Gao, P., and Jiang, C. (2025). MetaNet: a scalable and integrated tool for reproducible omics network analysis. Preprint at bioRxiv, https://doi.org/10.1101/2025.06.26.661636 https://doi.org/10.1101/2025.06.26.661636.
 4. **Peng, C.#**, Tan, S.#, Rouillard, A.#, Zhou, L., Li, Q.-Y., Wei, X., Xiang, X., Chen, Q., Yang, C., Jiang, L., et al. (2025). Microbial diversity and functional potential in greenlandic soils under rapid arctic warming. Preprint at Social Science Research Network, https://doi.org/10.2139/ssrn.5254634 https://doi.org/10.2139/ssrn.5254634.
-5. Zhang, W., **Peng, C.#**, Gu, S., Su, X., He, G., Han, Y., He, C., Zhang, L., Wang, M., Zhong, L., et al. (2025). Mapping longitudinal lung mycobiome characteristics of severe COVID-19 patients, a prospective, multicenter cohort study. Preprint at Research Square, https://doi.org/10.21203/rs.3.rs-6189458/v1 https://doi.org/10.21203/rs.3.rs-6189458/v1.
 
 
 ### Published
 
+1. Zhang, W.#, **Peng, C.#**, Gu, S.#, Su, X., He, G., Han, Y., He, C., Zhang, L., Wang, M., Zhong, L., et al. (2026). Mapping longitudinal lung mycobiome characteristics in severe COVID-19 patients. iScience 29, 114995. https://doi.org/10.1016/j.isci.2026.114995.
+2. Xie, R., Yilihan, G., Chen, Q., Lin, D., Liu, Z., Yuan, M., Wang, Y., Xu, H., Zhou, W., Gong, W., Li, Y., **Peng, C.**, et al. (2026). Oil-coated nanoplastics induce rapid membrane disruption and severe intestinal injury. Adv. Sci., e20935. https://doi.org/10.1002/advs.202520935.
+3. Chen, Q., Zhang, B., **Peng, C.**, Huang, J., Liu, Z., Shen, X., and Jiang, C. (2026). Kun-peng enables scalable and accurate pan-domain metagenomic classification. Briefings Bioinf. 27, bbag119. https://doi.org/10.1093/bib/bbag119.
 1. Li, Y.#, **Peng, C.#**, Chi, F., Huang, Z., Yuan, M., Zhou, X., and Jiang, C. (2025). The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. Briefings Bioinf. 26, bbae679. https://doi.org/10.1093/bib/bbae679.
 2. Li, Y.#, Jiang, C.#, Yu, W.#, **Peng, C.#**, Gu, S.#, Ren, X., Ding, P., Qi, Z., Huang, S., Chen, Q., et al. (2025). Antiviral treatment and longitudinal viral mutation dynamics of the first documented human case of H10N5. J. Infect. 91. https://doi.org/10.1016/j.jinf.2025.106580.
 3. Huang, Y.#, Wei, X.#, Huang, X.#, **Peng, C.#**, Lin, B., Ren, X., He, G., Zhang, X., Jiang, C., Huang, L., et al. (2025). Pneumocystis jirovecii associated with lung virome in patients with severe pneumonia. Iscience 28. https://doi.org/10.1016/j.isci.2025.113710.
