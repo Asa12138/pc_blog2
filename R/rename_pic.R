@@ -17,5 +17,6 @@ Nature Microbiology (IF 19.4)
 Nature Reviews Microbiology （IF=103.3）
 Nature Reviews Genetics （IF=52）
 Nature Methods (IF=32.1)
+Nature Biotechnology (IF=41.7)
     '
 }
