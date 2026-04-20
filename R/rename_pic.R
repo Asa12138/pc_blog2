@@ -19,5 +19,6 @@ Nature Reviews Genetics （IF=52）
 Nature Methods (IF=32.1)
 Nature Biotechnology (IF=41.7)
 Nature Medicine (IF=50)
+Cell (IF=42.5)
     '
 }
