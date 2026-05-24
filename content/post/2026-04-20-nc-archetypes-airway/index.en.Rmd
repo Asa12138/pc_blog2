@@ -8,7 +8,7 @@ categories:
 tags:
   - microbiome
 description: 研究通过对 326 名机械通气儿童的气管抽吸物进行宏转录组测序，揭示了两者在免疫应答和微生物生态上的本质差异，并开发出了高精度的诊断模型。
-image: ~
+image: images/fig1.png
 math: ~
 license: ~
 hidden: false
